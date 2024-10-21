@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /AnimalShelters3.Server/appsettings.json
 /AnimalShelters3.Server/Models/MyDbContext.cs
+/animalshelters3.client/.gitignore
