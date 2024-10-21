@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './newProject9/test/test.component';
 import { RegesterComponent } from './newProject9/regester/regester.component';
+import { NavBarComponent } from './newProject9/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    RegesterComponent
+    RegesterComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
