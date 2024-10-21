@@ -8,7 +8,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\animalshelters3.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\Project9\Lujain\" />
-    <Folder Include="src\app\Project9\AOQ\" />
+    <None Remove="src\app\Project9\**" />
+    <TypeScriptConfiguration Remove="src\app\Project9\**" />
   </ItemGroup>
 </Project>
