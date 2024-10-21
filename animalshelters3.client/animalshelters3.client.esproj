@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\newProject9\Lujain\" />
+    <Folder Include="src\app\newProject9\A7mad\" />
     <None Remove="src\app\newProject9\AOQ\**" />
     <None Remove="src\app\Project9\**" />
     <TypeScriptConfiguration Remove="src\app\newProject9\AOQ\**" />
