@@ -6,7 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegesterComponent } from './newProject9/Lujain/regester/regester.component';
 import { NavBarComponent } from './newProject9/nav-bar/nav-bar.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './newProject9/footer/footer.component';
+import { HomeComponent } from './newProject9/AOQ/home/home.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,11 +16,16 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     RegesterComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent, pathMatch: 'full' }])
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
