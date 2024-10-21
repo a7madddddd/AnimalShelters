@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 namespace AnimalShelters3.Server
 {
     public class WeatherForecast
@@ -11,3 +14,6 @@ namespace AnimalShelters3.Server
         public string? Summary { get; set; }
     }
 }
+
+
+
