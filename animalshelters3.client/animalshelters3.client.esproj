@@ -7,8 +7,4 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\animalshelters3.client\browser\</BuildOutputFolder>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="src\app\Project9\" />
-    <Folder Include="src\app\Project9\Lujain\" />
-  </ItemGroup>
 </Project>
