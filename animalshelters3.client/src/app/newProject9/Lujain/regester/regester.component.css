@@ -1,0 +1,10 @@
+.my-account .row {
+  display: flex;
+  justify-content: center; /* Centers the form horizontally */
+}
+
+.account {
+  max-width: 600px; /* Optional: You can control the form width */
+  width: 100%; /* Ensures responsiveness */
+  margin: 0 auto; /* Centers the form container */
+}
