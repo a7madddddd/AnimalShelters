@@ -23,7 +23,9 @@ import { RouterModule } from '@angular/router';
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' }])
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'Register', component: RegesterComponent }
+    ])
 
 
   ],
