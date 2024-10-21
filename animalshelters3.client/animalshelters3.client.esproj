@@ -9,6 +9,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\Project9\" />
-    <Folder Include="src\app\Project9\Lujain\" />
   </ItemGroup>
 </Project>
