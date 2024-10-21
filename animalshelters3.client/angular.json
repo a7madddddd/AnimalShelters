@@ -37,7 +37,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/vendor/bootstrap.min.js",
+              "src/assets/js/vendor/jquery-3.6.3.min.js",
+              "src/assets/js/vendor/slick.min.js",
+              "src/assets/js/vendor/wow.js",
+              "src/assets/js/vendor/video.js",
+              "src/assets/js/app.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -99,8 +106,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "karmaConfig": "karma.conf.js"
+            "scripts": []
           }
         }
       }
@@ -110,4 +116,3 @@
     "analytics": "81e586b6-1868-44d4-b8fc-afabd2545666"
   }
 }
-//teext
