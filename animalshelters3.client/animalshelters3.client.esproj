@@ -10,6 +10,5 @@
   <ItemGroup>
     <None Remove="src\app\Project9\**" />
     <TypeScriptConfiguration Remove="src\app\Project9\**" />
-    <Folder Include="src\app\newProject9\" />
   </ItemGroup>
 </Project>
