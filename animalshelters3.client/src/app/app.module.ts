@@ -9,6 +9,7 @@ import { NavBarComponent } from './newProject9/nav-bar/nav-bar.component';
 import { FooterComponent } from './newProject9/footer/footer.component';
 import { HomeComponent } from './newProject9/AOQ/home/home.component';
 import { RouterModule } from '@angular/router';
+import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
 
 
 @NgModule({
@@ -17,14 +18,16 @@ import { RouterModule } from '@angular/router';
     RegesterComponent,
     NavBarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    SheltersComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Register', component: RegesterComponent }
+      { path: 'Register', component: RegesterComponent },
+      { path: 'Shelters', component: SheltersComponent }
     ])
 
 
