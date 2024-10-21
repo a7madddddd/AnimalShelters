@@ -7,4 +7,10 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\animalshelters3.client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\newProject9\Lujain\" />
+    <Folder Include="src\app\newProject9\AOQ\" />
+    <None Remove="src\app\Project9\**" />
+    <TypeScriptConfiguration Remove="src\app\Project9\**" />
+  </ItemGroup>
 </Project>

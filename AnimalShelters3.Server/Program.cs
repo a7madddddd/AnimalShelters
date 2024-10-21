@@ -13,7 +13,6 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
 
 
-
 var app = builder.Build();
 
 app.UseDefaultFiles();
