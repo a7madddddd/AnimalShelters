@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace AnimalShelters3.Server.Models;
@@ -15,8 +12,6 @@ public partial class Comment
     public int? UserId { get; set; }
 
     public string? Content { get; set; }
-
-    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
 
     public virtual Post? Post { get; set; }
 
