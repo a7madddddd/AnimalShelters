@@ -11,6 +11,7 @@ import { HomeComponent } from './newProject9/AOQ/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
 import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component';
+import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component'
     FooterComponent,
     HomeComponent,
     SheltersComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PostCommunityuserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -29,7 +31,10 @@ import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component'
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
-      { path: 'Shelters', component: SheltersComponent }
+      { path: 'Shelters', component: SheltersComponent },
+      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+
+
     ])
 
 

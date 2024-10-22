@@ -28,7 +28,7 @@ namespace AnimalShelters3.Server.Controllers
         [HttpPost("createPost")]
         public async Task<IActionResult> CreatePost([FromForm] PostDto postDto)
         {
-            string fileName = null; // Declare fileName outside the if block
+            string fileName = null;
 
             // تحقق من وجود المستخدم
             var userExists = await _context.Users.AnyAsync(u => u.UserId == postDto.UserId);
@@ -40,18 +40,15 @@ namespace AnimalShelters3.Server.Controllers
             // التحقق من وجود الصورة وحجمها
             if (postDto.ImageFile != null && postDto.ImageFile.Length > 0)
             {
-                // التأكد من مجلد الصور
                 var imagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
                 if (!Directory.Exists(imagesPath))
                 {
                     Directory.CreateDirectory(imagesPath);
                 }
 
-                // إنشاء اسم فريد للملف باستخدام GUID
                 fileName = $"{Guid.NewGuid()}{Path.GetExtension(postDto.ImageFile.FileName)}";
                 var filePath = Path.Combine(imagesPath, fileName);
 
-                // حفظ الملف في المسار المحدد
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await postDto.ImageFile.CopyToAsync(stream);
@@ -65,7 +62,8 @@ namespace AnimalShelters3.Server.Controllers
                 Content = postDto.Content,
                 Title = postDto.Title,
                 Tag = postDto.Tag,
-                Image = fileName // استخدام اسم الصورة الذي تم إنشاؤه
+                Image = fileName,
+                Status = "Pending" // تعيين الحالة إلى Pending
             };
 
             _context.Posts.Add(post);
