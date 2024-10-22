@@ -35,6 +35,7 @@ namespace AnimalShelters3.Server.Controllers
             {
                 Email = user.Email,
                 UserName = user.UserName,
+                Password=user.Password,
                 PasswordHash = passwordHash,  
                 PasswordSalt = passwordSalt    
             };
