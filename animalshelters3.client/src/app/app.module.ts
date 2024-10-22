@@ -11,7 +11,6 @@ import { HomeComponent } from './newProject9/Qadomi/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
 import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
-import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component';
 import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 
 
@@ -23,8 +22,7 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
     FooterComponent,
     HomeComponent,
     SheltersComponent,
-    AboutUSComponent
-    AboutUsComponent,
+    AboutUSComponent,
     PostCommunityuserComponent
   ],
   imports: [
@@ -34,7 +32,7 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'AboutUs', component: AboutUSComponent }
+      { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
 
