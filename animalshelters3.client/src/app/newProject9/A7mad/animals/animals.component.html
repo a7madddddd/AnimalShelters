@@ -1,1 +1,8 @@
-<p>animals works!</p>
+<div *ngFor="let animal of animals" class="animal-card">
+  <h5>{{ animal.name }}</h5>
+  <p>Breed: {{ animal.breed }}</p>
+  <p>Age: {{ animal.age }}</p>
+  <p>Temperament: {{ animal.temperament }}</p>
+  <img [src]="animal.imageUrl" alt="{{ animal.name }}">
+  <p>Status: {{ animal.adoptionStatus }}</p>
+</div>

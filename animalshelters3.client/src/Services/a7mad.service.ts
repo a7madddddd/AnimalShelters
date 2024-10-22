@@ -10,13 +10,31 @@ export interface Shelter {
   phone: string;
   email: string;
   verified: boolean;
-  createdAt: string; // Or use Date if needed
+  createdAt: string; 
 }
+
+export interface Animal {
+  animalId: number;
+  name: string;
+  categoryId: number;
+  breed: string;
+  age: number;
+  shelterId: number;
+  temperament: string;
+  adoptionStatus: string;
+  imageUrl: string;
+  createdAt: Date; 
+}
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class A7madService {
+    navigate(arg0: (string | number)[]) {
+        throw new Error('Method not implemented.');
+    }
   private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
@@ -29,4 +47,12 @@ export class A7madService {
       })
     );
   }
+
+  
+
+    getAnimalsByShelter(shelterId: number): Observable<Animal[]> {
+      return this.http.get<Animal[]>(`${this.url}Shelters/${shelterId}`); 
+    }
+
+
 }

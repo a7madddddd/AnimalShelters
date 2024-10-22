@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { A7madService } from '../../../../Services/a7mad.service';
+import { Animal } from '../../../../shared/interfaces';
 
 @Component({
   selector: 'app-shelters',
@@ -8,7 +9,9 @@ import { A7madService } from '../../../../Services/a7mad.service';
 })
 export class SheltersComponent implements OnInit {  
 
-  dataArray: any;  
+  dataArray: any[] = [];
+  animals: Animal[] = []; // Array to hold animals
+  selectedShelterId: number | null = null; // Track the selected shelter
 
   constructor(private _ser: A7madService) { }
 
@@ -29,7 +32,15 @@ export class SheltersComponent implements OnInit {
   }
 
   showAnimals(shelterId: number) {
-    this._ser.navigate(['/Animals', shelterId]);
+    this.selectedShelterId = shelterId; // Set the selected shelter ID
+    this._ser.getAnimalsByShelter(shelterId).subscribe(
+      (data) => {
+        this.animals = data; // Store the fetched animals
+      },
+      (error) => {
+        console.error('Error fetching animals:', error);
+      }
+    );
   }
 
 }
