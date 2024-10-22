@@ -33,8 +33,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     AboutUSComponent,
     AboutUSComponent,
     AboutUSComponent,
-    PostCommunityuserComponent
-    AboutUSComponent,
+    PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
     PostCommunityuserComponent
@@ -46,9 +45,10 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
+      { path: 'animal', component: AnimalCategoryComponent },
       { path: 'Login', component: LoginComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'Animals/:shelterId', component: AnimalsComponent },
+      { path: 'Animal/:shelterId', component: AnimalCategoryComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
