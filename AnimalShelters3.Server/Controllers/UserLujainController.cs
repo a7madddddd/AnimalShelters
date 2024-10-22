@@ -37,20 +37,52 @@ namespace AnimalShelters3.Server.Controllers
                 UserName = user.UserName,
                 Password=user.Password,
                 PasswordHash = passwordHash,  
-                PasswordSalt = passwordSalt    
+                PasswordSalt = passwordSalt  
             };
 
             _db.Users.Add(newUser);
             _db.SaveChanges();
 
-            return Ok("Success");
+            return Ok(new { message = "User added successfully" });
         }
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromForm] UserDToLogin user)
+        {
+            var existingUser = _db.Users.FirstOrDefault(a => a.Email == user.Email);
+
+            if (existingUser == null)
+            {
+                return BadRequest("Invalid email or password.");
+            }
+
+            // Validate the password
+            var passwordHash = HashPasswordWithSalt(user.Password, existingUser.PasswordSalt);
+            if (!passwordHash.SequenceEqual(existingUser.PasswordHash))
+            {
+                return BadRequest("Invalid email or password.");
+            }
+
+            return Ok("Login successful");
+        }
+
+    
+
 
         private byte[] HashPassword(string password, out byte[] salt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 salt = hmac.Key;
+                return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+
+        private byte[] HashPasswordWithSalt(string password, byte[] salt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(salt))
+            {
                 return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
