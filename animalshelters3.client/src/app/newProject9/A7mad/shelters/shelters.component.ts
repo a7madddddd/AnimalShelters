@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { A7madService } from '../../../../Services/a7mad.service';
 
 @Component({
   selector: 'app-shelters',
   templateUrl: './shelters.component.html',
-  styleUrl: './shelters.component.css'
+  styleUrls: ['./shelters.component.css']  // Corrected from styleUrl to styleUrls
 })
-export class SheltersComponent {
+export class SheltersComponent implements OnInit {  // Implementing OnInit
 
-  ngOnInit() {
-
-    this.getShelters();
-  }
+  dataArray: any;  // Changed to array for multiple shelters
 
   constructor(private _ser: A7madService) { }
 
-  dataArray: any;
+  ngOnInit() {
+    this.getShelters();
+  }
 
   getShelters() {
-
-    this._ser.getAllShelters().subscribe((data) => {
-
-      this.dataArray = data
-    })
+    this._ser.getAllShelters().subscribe(
+      (data) => {
+        console.log('Shelters fetched:', data);
+        this.dataArray = data; // Make sure this is an array
+      },
+      (error) => {
+        console.error('Error fetching shelters:', error); // Log any errors
+      }
+    );
   }
+
 }

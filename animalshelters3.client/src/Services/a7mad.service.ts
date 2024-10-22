@@ -9,8 +9,8 @@ export class A7madService {
 
   constructor(private http: HttpClient) { }
 
-
-  url = 'https://localhost:7295/api/';
+  
+  url = 'https://localhost:7295/api/'; 
 
 
   getAllShelters():Observable<any> {
