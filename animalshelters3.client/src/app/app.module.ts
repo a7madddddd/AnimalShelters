@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
 import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
 import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
+import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
 
 
 @NgModule({
@@ -26,6 +27,8 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
     PostCommunityuserComponent
     AboutComponent,
     ContactUsComponent,
+    HomeComponent,
+    AnimalCategoryComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
