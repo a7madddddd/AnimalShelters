@@ -3,7 +3,7 @@
     <div class="row row-gap-4 align-items-center">
       <div class="col-xl-6">
         <div class="form-container">
-          <form method="post" class="contact-form">
+          <form (ngSubmit)="submitAdoption()" class="contact-form">
             <div class="form-wrapper bg-ter p-24 br-12">
               <h4 class="fw-700 medium-black mb-12">Animal Details</h4>
               <div *ngIf="!animal">Loading animal details...</div>
@@ -30,23 +30,14 @@
                 </div>
                 <div class="col-md-12">
                   <div class="input-block">
-                    <input type="text" name="name" id="firstName" class="form-control form-control-2 bg-white" required placeholder="First Name">
+                    <textarea [(ngModel)]="applicationMessage" name="description" class="form-control form-control-2 bg-white" required placeholder="Description"></textarea>
                   </div>
                 </div>
-
-
-
-
-                <!--<div class="col-md-12">
-                  <div class="input-block mb-40">
-                    <textarea name="message" [(ngModel)]="animal.message" class="form-control form-control-2 bg-white" placeholder="Write Your Message"></textarea>
-                  </div>
-                </div>-->
               </div>
-              <!--<button class="cus-btn" (click)="submitForm()">
-                <span class="text">Submit</span>
+              <button type="button" (click)="submitAdoption()" class="cus-btn">
+                <span class="text">Submit Application</span>
                 <span class="circle"></span>
-              </button>-->
+              </button>
               <div id="message" class="alert-msg"></div>
             </div>
           </form>
