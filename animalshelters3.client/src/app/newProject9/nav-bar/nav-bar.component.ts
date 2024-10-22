@@ -7,7 +7,7 @@ import { BehaviorSubjectService } from '../Lujain/BehaviorSubject/behavior-subje
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  isLoggedIn: boolean = false;  // Track the logged-in status
+  isLoggedIn: boolean = false;  
 
   constructor(private behaviorSubjectService: BehaviorSubjectService) { }
 
