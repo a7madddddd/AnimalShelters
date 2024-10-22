@@ -1,20 +1,58 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+export interface Shelter {
+  shelterId: number;
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  verified: boolean;
+  createdAt: string; 
+}
+
+export interface Animal {
+  animalId: number;
+  name: string;
+  categoryId: number;
+  breed: string;
+  age: number;
+  shelterId: number;
+  temperament: string;
+  adoptionStatus: string;
+  imageUrl: string;
+  createdAt: Date; 
+}
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class A7madService {
+    navigate(arg0: (string | number)[]) {
+        throw new Error('Method not implemented.');
+    }
+  private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
 
-  
-  url = 'https://localhost:7295/api/'; 
-
-
-  getAllShelters():Observable<any> {
-
-    return this.http.get<any>(`${this.url}Shelters`)
+  getAllShelters(): Observable<Shelter[]> {
+    return this.http.get<Shelter[]>(`${this.url}Shelters`).pipe(
+      catchError(error => {
+        console.error('Error fetching shelters:', error);
+        return throwError(error);
+      })
+    );
   }
+
+  
+
+    getAnimalsByShelter(shelterId: number): Observable<Animal[]> {
+      return this.http.get<Animal[]>(`${this.url}Shelters/${shelterId}`); 
+    }
+
+
 }
