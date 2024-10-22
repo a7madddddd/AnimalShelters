@@ -18,6 +18,7 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
 
 @NgModule({
   declarations: [
+    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
@@ -27,7 +28,7 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
     PostCommunityuserComponent,
     HomeComponent,
     AnimalCategoryComponent,
-    AboutUSComponent
+    AboutUSComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -37,7 +38,7 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'Animals', component: AnimalsComponent },
+      { path: 'Animals/:shelterId', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
