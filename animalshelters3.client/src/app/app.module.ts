@@ -38,8 +38,7 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
     ContactUsComponent,
     LoginComponent,
     PostCommunityuserComponent,
-    AdoptionComponent
-    LoginComponent,
+    AdoptionComponent,
     ProfileComponent,
     EditProfileComponent
   ],
