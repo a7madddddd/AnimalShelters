@@ -12,4 +12,8 @@ public partial class Contact
     public string Email { get; set; } = null!;
 
     public string Message { get; set; } = null!;
+
+    public DateTime? CreatedAt { get; set; }
+
+    public string? ReplyMessage { get; set; }
 }
