@@ -31,8 +31,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     AnimalCategoryComponent,
     AboutUSComponent,
     ContactUsComponent,
-    LoginComponent
-    AboutUSComponent,
+    LoginComponent,
     PostCommunityuserComponent
   ],
   imports: [
