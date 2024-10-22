@@ -39,7 +39,7 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animals', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'AboutUs', component: AboutUSComponent }
+      { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
 
