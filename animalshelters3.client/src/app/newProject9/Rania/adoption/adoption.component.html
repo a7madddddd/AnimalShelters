@@ -1,0 +1,53 @@
+<div class="contact-wrapper pt-40 pb-80">
+  <div class="elements">
+    <img src="assets/media/vector/foot-icon-1.png" alt="">
+    <img src="assets/media/vector/foot-icon-1.png" alt="">
+    <img src="assets/media/vector/foot-icon-1.png" alt="" class="d-sm-block d-none">
+  </div>
+  <div class="container-fluid-2">
+    <div class="row row-gap-4 align-items-center">
+      <div class="col-xl-6">
+        <div class="form-container">
+          <form method="post" class="contact-form">
+            <div class="form-wrapper bg-ter p-24 br-12">
+              <h4 class="fw-700 medium-black mb-12">Animal Details</h4>
+              <div *ngIf="!animal">Loading animal details...</div>
+              <div *ngIf="animal" class="row row-gap-3">
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <input type="text" name="name" [(ngModel)]="animal.name" class="form-control form-control-2 bg-white" required placeholder="Animal Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <input type="text" name="breed" [(ngModel)]="animal.breed" class="form-control form-control-2 bg-white" required placeholder="Breed">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <input type="number" name="age" [(ngModel)]="animal.age" class="form-control form-control-2 bg-white" required placeholder="Age">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <input type="text" name="temperament" [(ngModel)]="animal.temperament" class="form-control form-control-2 bg-white" required placeholder="Temperament">
+                  </div>
+                </div>
+                <!--<div class="col-md-12">
+                  <div class="input-block mb-40">
+                    <textarea name="message" [(ngModel)]="animal.message" class="form-control form-control-2 bg-white" placeholder="Write Your Message"></textarea>
+                  </div>
+                </div>-->
+              </div>
+              <!--<button class="cus-btn" (click)="submitForm()">
+                <span class="text">Submit</span>
+                <span class="circle"></span>
+              </button>-->
+              <div id="message" class="alert-msg"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

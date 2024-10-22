@@ -42,5 +42,17 @@ export class AnimalService {
   // Fetch all categories (for dropdown or other purposes)
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+
+
   }
+
+
+  getAnimalsByShelterId(shelterId: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`https://localhost:7295/api/Animal?shelterId=${shelterId}`);
+  }
+
+  /////////////////////////////////////////
+
+
+ 
 }

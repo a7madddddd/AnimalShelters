@@ -10,7 +10,7 @@ export interface Shelter {
   phone: string;
   email: string;
   verified: boolean;
-  createdAt: string; 
+  createdAt: string;
 }
 
 export interface Animal {
@@ -23,18 +23,13 @@ export interface Animal {
   temperament: string;
   adoptionStatus: string;
   imageUrl: string;
-  createdAt: Date; 
+  createdAt: Date;
 }
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class A7madService {
-    navigate(arg0: (string | number)[]) {
-        throw new Error('Method not implemented.');
-    }
   private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
@@ -48,11 +43,12 @@ export class A7madService {
     );
   }
 
-  
-
-    getAnimalsByShelter(shelterId: number): Observable<Animal[]> {
-      return this.http.get<Animal[]>(`${this.url}Shelters/${shelterId}`); 
-    }
-
-
+  getAnimalsByShelter(shelterId: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${this.url}Shelters/${shelterId}`).pipe(
+      catchError(error => {
+        console.error('Error fetching animals for shelter:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
