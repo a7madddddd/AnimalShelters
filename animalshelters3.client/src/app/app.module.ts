@@ -33,8 +33,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     AboutUSComponent,
     AboutUSComponent,
     AboutUSComponent,
-    PostCommunityuserComponent
-    AboutUSComponent,
+    PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
     PostCommunityuserComponent
