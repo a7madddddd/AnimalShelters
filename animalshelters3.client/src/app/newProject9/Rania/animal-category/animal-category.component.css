@@ -1,0 +1,102 @@
+/*::ng-deep .row.row-gap-custom {
+  margin-top: 20% !important;
+  margin-bottom: 20% !important;
+}
+
+::ng-deep .product-card {
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
+  width: 20% !important;*/ /* Fixed width for the card */
+  /*height: 20% !important;*/ /* Fixed height for the card */
+  /*display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  margin: 10px !important;*/ /* Adjust spacing between cards */
+/*}
+
+::ng-deep .img-box {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 180px !important;*/ /* Fixed height for image box */
+  /*overflow: hidden !important;*/ /* Ensures image does not exceed the container */
+/*}
+
+ .product-card img {
+  max-width: 50% !important;*/ /* Ensures the image scales properly */
+  /*max-height: 100% !important;*/ /* Ensures the image fits inside the container */
+  /*object-fit: cover !important;*/ /* Makes sure the image fills the container, cropping if necessary */
+  /*border-radius: 8px !important;*/ /* Same radius as the card */
+/*}
+
+::ng-deep .text-box {
+  text-align: center !important;
+  margin-top: 1rem !important;
+}
+
+  ::ng-deep .text-box h5 {
+    font-weight: 600 !important;
+  }
+
+::ng-deep .pricing-block {
+  margin-top: 0.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+
+::ng-deep .adopt-btn {
+  background-color: #ff5722 !important;*/ /* Orange background */
+  /*color: #fff !important;*/ /* White text */
+  /*border: none !important;
+  padding: 10px 30px !important;*/ /* Padding to create the rounded effect */
+  /*border-radius: 25px !important;*/ /* Rounded corners */
+  /*font-size: 16px !important;*/ /* Slightly larger font size */
+  /*font-weight: bold !important;*/ /* Bold text */
+  /*cursor: pointer !important;
+  transition: background-color 0.3s ease-in-out !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;*/ /* Similar box shadow */
+/*}
+
+  ::ng-deep .adopt-btn:hover {
+    background-color: #e64a19 !important;*/ /* Darker shade on hover */
+  /*}*/
+.adopt-btn {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+  .adopt-btn:hover {
+    background-color: #e64a19;
+  }
+h2.fw-700.medium-black.mb-24 {
+  margin-top: 13%;
+}
+ .product-card img {
+  width: 100%; /* Ensures the image takes the full width of its container */
+  height: 200px; /* Fixed height for all images */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  border-radius: 8px; /* Adds a slight rounding to the image corners */
+  margin-bottom: 1rem;
+}
+
+/* Additional styling for the card to make it look nice */
+ .product-card {
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
+  text-align: center;
+}
+
