@@ -23,12 +23,10 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
     FooterComponent,
     HomeComponent,
     SheltersComponent,
-    AboutUsComponent,
-    PostCommunityuserComponent
-    AboutComponent,
-    ContactUsComponent,
+    PostCommunityuserComponent,
     HomeComponent,
-    AnimalCategoryComponent
+    AnimalCategoryComponent,
+    AboutUSComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
