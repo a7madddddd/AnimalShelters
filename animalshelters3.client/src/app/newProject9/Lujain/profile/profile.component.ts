@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
   }
   handleUserUpdate(updatedUser: any) {
     this.user = { ...this.user, ...updatedUser }; // Update user data
-    // Optionally, you can call a service to update the user data in your backend here
   }
 
 
