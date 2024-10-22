@@ -26,7 +26,10 @@
         <!-- Profile Card -->
         <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
           <div class="card-body text-center">
-            <img [src]="user.image || 'path/to/default-avatar.jpg'" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <img [src]="user.image"
+                 alt="avatar"
+                 class="rounded-circle img-fluid"
+                 style="width: 150px;">
             <h5 class="my-3">{{ user.userName || 'John Doe' }}</h5>
             <button type="button" class="btn" style="background-color: #d66a00; color: aliceblue;" data-bs-toggle="modal" data-bs-target="#editProfileModal">
               Edit Profile
@@ -120,8 +123,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let application of user.adoptionApplications">
-                  <td>{{ application.id }}</td>
-                  <td>{{ application.animalName }}</td>
+                  <td>{{ application.applicationId }}</td>
+                  <td>{{ application.name }}</td>
                   <td>{{ application.status }}</td>
                   <td>{{ application.submittedAt | date }}</td>
                   <td>

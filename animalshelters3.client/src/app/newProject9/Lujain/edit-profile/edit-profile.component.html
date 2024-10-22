@@ -1,5 +1,5 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit()">
+  <form #EditForm="ngForm" (ngSubmit)="OnSubmit()">
     <div class="mb-3">
       <label for="userName" class="form-label">Full Name</label>
       <input type="text" id="userName" [(ngModel)]="user.userName" name="userName" class="form-control" required>
@@ -34,7 +34,7 @@
                (change)="onFileSelected($event)"
                accept="image/*"
                class="form-control"
-               style="display: none;"> 
+               style="display: none;">
 
         <label class="btn btn-secondary" for="fileUpload" style="cursor: pointer;">
           Upload Image

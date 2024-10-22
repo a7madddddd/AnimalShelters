@@ -13,6 +13,7 @@ import { AdoptionApplication } from '../../../../Services/a7mad.service';
 export class AnimalService {
   [x: string]: any;
   private apiUrl = 'https://localhost:7295/api/Animal';
+  private apiUrl = 'https://localhost:44354/api/Animal';
 
   constructor(private http: HttpClient) { }
 
