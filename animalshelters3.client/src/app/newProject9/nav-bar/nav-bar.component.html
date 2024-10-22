@@ -6,7 +6,13 @@
         <div class="main-menu__nav">
           <ul class="main-menu__list">
             <li>
-              <a href="index.html" class="active">Home</a>
+              <a routerLink="" class="active">Home</a>
+            </li>
+            <li>
+              <a routerLink="/Shelters">Shelters</a>
+            </li>
+            <li>
+              <a routerLink="/post-communityuser">Our Community</a>
             </li>
             <li>
               <a [routerLink]="['/animal']">Animal</a> <!-- Use routerLink for Angular routing -->
@@ -25,7 +31,7 @@
               <a href="javascript:void(0);">Pages</a>
               <ul>
                 <li><a href="service-detail.html">Services Detail</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a routerLink="/AboutUs">About Us</a></li>
                 <li><a href="team.html">Team</a></li>
                 <li><a href="account.html">Account</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -38,12 +44,12 @@
           </ul>
         </div>
       </div>
-      <a href="index.html" class="d-flex align-items-center header-logo-box">
+      <a routerLink="" class="d-flex align-items-center header-logo-box">
         <img src="assets/media/logo.png" alt="/logo" class="header-logo">
       </a>
       <div class="main-menu__right">
         <div class="header-icons d-sm-flex d-none align-items-center gap-16">
-          <a href="account.html" class="icon-box">
+          <a routerLink="/Register" class="icon-box">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  fill="none">
               <path d="M12 0C8.51067 0 5.67188 2.8388 5.67188 6.32812C5.67188 9.81745 8.51067 12.6562 12 12.6562C15.4893 12.6562 18.3281 9.81745 18.3281 6.32812C18.3281 2.8388 15.4893 0 12 0ZM12 11.25C9.28608 11.25 7.07812 9.04205 7.07812 6.32812C7.07812 3.6142 9.28608 1.40625 12 1.40625C14.7139 1.40625 16.9219 3.6142 16.9219 6.32812C16.9219 9.04205 14.7139 11.25 12 11.25Z"
