@@ -11,17 +11,12 @@
     <Folder Include="src\app\newProject9\AOQ\" />
     <Folder Include="src\app\newProject9\A7mad\" />
     <Folder Include="src\app\newProject9\Lujain\LujainService\" />
+    <Folder Include="src\app\test\" />
     <Folder Include="src\Services\" />
     <None Remove="src\app\newProject9\AOQ\**" />
     <None Remove="src\app\Project9\**" />
     <TypeScriptConfiguration Remove="src\app\newProject9\A7mad\**" />
     <TypeScriptConfiguration Remove="src\app\newProject9\AOQ\**" />
     <TypeScriptConfiguration Remove="src\app\Project9\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\app\newProject9\AOQ\home\home.component.css" />
-    <None Include="src\app\newProject9\AOQ\home\home.component.html" />
-    <None Include="src\app\newProject9\AOQ\home\home.component.spec.ts" />
-    <None Include="src\app\newProject9\AOQ\home\home.component.ts" />
   </ItemGroup>
 </Project>
