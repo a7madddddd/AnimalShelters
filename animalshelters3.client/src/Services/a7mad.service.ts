@@ -48,7 +48,7 @@ export interface Animal {
   providedIn: 'root'
 })
 export class A7madService {
-  private url = 'https://localhost:44354/api/';
+  private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
 
