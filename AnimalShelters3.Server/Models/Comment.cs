@@ -13,6 +13,8 @@ public partial class Comment
 
     public string? Content { get; set; }
 
+    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
+
     public virtual Post? Post { get; set; }
 
     public virtual ICollection<Reply> Replies { get; set; } = new List<Reply>();

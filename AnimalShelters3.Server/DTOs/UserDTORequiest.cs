@@ -7,6 +7,9 @@
         public string Email { get; set; } = null!;
 
         public string Password { get; set; } = null!;
+        public byte[]? PasswordHash { get; set; }
+
+        public byte[]? PasswordSalt { get; set; }
 
 
     }
