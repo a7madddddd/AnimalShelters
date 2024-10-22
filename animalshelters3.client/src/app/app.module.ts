@@ -10,6 +10,7 @@ import { FooterComponent } from './newProject9/footer/footer.component';
 import { HomeComponent } from './newProject9/Qadomi/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
+import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.compone
     NavBarComponent,
     FooterComponent,
     HomeComponent,
-    SheltersComponent
+    SheltersComponent,
+    AboutUSComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -27,7 +29,8 @@ import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.compone
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
-      { path: 'Shelters', component: SheltersComponent }
+      { path: 'Shelters', component: SheltersComponent },
+      { path: 'AboutUs', component: AboutUSComponent }
     ])
 
 
