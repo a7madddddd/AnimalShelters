@@ -20,6 +20,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
 
 @NgModule({
   declarations: [
+    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
@@ -29,6 +30,10 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     PostCommunityuserComponent,
     HomeComponent,
     AnimalCategoryComponent,
+    AboutUSComponent,
+    AboutUSComponent,
+    AboutUSComponent,
+    PostCommunityuserComponent
     AboutUSComponent,
     ContactUsComponent,
     LoginComponent,
@@ -43,7 +48,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
       { path: 'Register', component: RegesterComponent },
       { path: 'Login', component: LoginComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'Animals', component: AnimalsComponent },
+      { path: 'Animals/:shelterId', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },

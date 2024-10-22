@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AnimalShelters3.Server.Models; // Your model namespace
 using System.Linq;
+using AnimalShelters3.Server.DTOs;
 
 namespace AnimalShelters3.Server.Controllers
 {
@@ -36,21 +37,53 @@ namespace AnimalShelters3.Server.Controllers
         }
 
         // POST: api/Animal/AddAnimal
+        // POST: api/Animal/AddAnimal
         [HttpPost("AddAnimal")]
-        public IActionResult AddAnimal([FromBody] Animal newAnimal)
+        public async Task<IActionResult> AddAnimal([FromForm] AnimalDto newAnimalDto, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
+                var newAnimal = new Animal
+                {
+                    Name = newAnimalDto.Name,
+                    Age = newAnimalDto.Age,
+                    Temperament = newAnimalDto.Temperament,
+                    CategoryId = newAnimalDto.CategoryId
+                };
+
+                // Handle file upload
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                    if (!Directory.Exists(uploadsDir))
+                    {
+                        Directory.CreateDirectory(uploadsDir);
+                    }
+
+                    var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(imageFile.FileName)}";
+                    var filePath = Path.Combine(uploadsDir, fileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(fileStream);
+                    }
+
+                    // Save the file path as the ImageUrl in the database
+                    newAnimal.ImageUrl = $"/uploads/{fileName}";
+                }
+
                 _context.Animals.Add(newAnimal);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(GetAnimalById), new { id = newAnimal.AnimalId }, newAnimal);
             }
             return BadRequest(ModelState);
         }
 
+
+        // PUT: api/Animal/{id}
         // PUT: api/Animal/{id}
         [HttpPut("{id}")]
-        public IActionResult UpdateAnimal(int id, [FromBody] Animal updatedAnimal)
+        public async Task<IActionResult> UpdateAnimal(int id, [FromForm] AnimalDto updatedAnimalDto, IFormFile imageFile)
         {
             var existingAnimal = _context.Animals.Find(id);
             if (existingAnimal == null)
@@ -58,18 +91,40 @@ namespace AnimalShelters3.Server.Controllers
                 return NotFound();
             }
 
-            existingAnimal.Name = updatedAnimal.Name;
-            existingAnimal.Breed = updatedAnimal.Breed;
-            existingAnimal.Age = updatedAnimal.Age;
-            existingAnimal.Temperament = updatedAnimal.Temperament;
-            existingAnimal.AdoptionStatus = updatedAnimal.AdoptionStatus;
-            existingAnimal.ImageUrl = updatedAnimal.ImageUrl;
+            existingAnimal.Name = updatedAnimalDto.Name;
+            existingAnimal.Age = updatedAnimalDto.Age;
+            existingAnimal.Temperament = updatedAnimalDto.Temperament;
+            existingAnimal.CategoryId = updatedAnimalDto.CategoryId;
+            existingAnimal.Shelter = updatedAnimalDto.Shelter;
+
+
+            // Handle file upload
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsDir))
+                {
+                    Directory.CreateDirectory(uploadsDir);
+                }
+
+                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(imageFile.FileName)}";
+                var filePath = Path.Combine(uploadsDir, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fileStream);
+                }
+
+                // Update the file path as the ImageUrl in the database
+                existingAnimal.ImageUrl = $"/uploads/{fileName}";
+            }
 
             _context.Animals.Update(existingAnimal);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
 
         // DELETE: api/Animal/{id}
         [HttpDelete("{id}")]
