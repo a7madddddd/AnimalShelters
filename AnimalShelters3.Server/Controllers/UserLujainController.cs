@@ -1,7 +1,7 @@
 ﻿using AnimalShelters3.Server.DTOs;
 using AnimalShelters3.Server.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity; // Ensure this is included
+using Microsoft.AspNetCore.Identity; 
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -21,7 +21,6 @@ namespace AnimalShelters3.Server.Controllers
         [HttpPost]
         public IActionResult SignUp([FromForm] UserDTORequiest user)
         {
-            // Check if the email is already registered
             var existingUser = _db.Users.FirstOrDefault(a => a.Email == user.Email);
             if (existingUser != null)
             {
@@ -36,11 +35,10 @@ namespace AnimalShelters3.Server.Controllers
             {
                 Email = user.Email,
                 UserName = user.UserName,
-                PasswordHash = passwordHash,  // Set the hashed password
-                PasswordSalt = passwordSalt    // Store the salt for later verification
+                PasswordHash = passwordHash,  
+                PasswordSalt = passwordSalt    
             };
 
-            // Add the new user to the database
             _db.Users.Add(newUser);
             _db.SaveChanges();
 
@@ -51,9 +49,7 @@ namespace AnimalShelters3.Server.Controllers
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                // Generate a random salt
                 salt = hmac.Key;
-                // Compute the hash
                 return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }

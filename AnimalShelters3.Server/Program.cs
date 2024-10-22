@@ -24,6 +24,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
 
+builder.Services.AddTransient<EmailService>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 

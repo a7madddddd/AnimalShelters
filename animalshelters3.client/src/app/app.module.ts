@@ -10,6 +10,9 @@ import { FooterComponent } from './newProject9/footer/footer.component';
 import { HomeComponent } from './newProject9/AOQ/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
+import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component';
+import { AboutComponent } from './newProject9/AOQ/about/about.component';
+import { ContactUsComponent } from './newProject9/AOQ/contact-us/contact-us.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.compone
     NavBarComponent,
     FooterComponent,
     HomeComponent,
-    SheltersComponent
+    SheltersComponent,
+    AboutUsComponent,
+    AboutComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
