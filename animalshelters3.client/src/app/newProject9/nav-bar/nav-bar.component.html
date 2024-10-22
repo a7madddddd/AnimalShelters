@@ -8,14 +8,8 @@
             <li>
               <a href="index.html" class="active">Home</a>
             </li>
-            <li class="dropdown">
-              <a href="javascript:void(0);">Shop</a>
-              <ul>
-                <li><a href="shop.html">Shop Grid</a></li>
-                <li><a href="shop-detail.html">Shop Detail</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-              </ul>
+            <li>
+              <a [routerLink]="['/animal']">Animal</a> <!-- Use routerLink for Angular routing -->
             </li>
 
             <li class="dropdown">

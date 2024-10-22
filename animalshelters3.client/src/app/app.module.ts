@@ -9,6 +9,7 @@ import { NavBarComponent } from './newProject9/nav-bar/nav-bar.component';
 import { FooterComponent } from './newProject9/footer/footer.component';
 import { HomeComponent } from './newProject9/AOQ/home/home.component';
 import { RouterModule } from '@angular/router';
+import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     RegesterComponent,
     NavBarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    AnimalCategoryComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
