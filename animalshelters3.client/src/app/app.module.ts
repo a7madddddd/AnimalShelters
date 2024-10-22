@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegesterComponent } from './newProject9/Lujain/regester/regester.component';
@@ -24,15 +24,15 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
     FooterComponent,
     HomeComponent,
     SheltersComponent,
-    AnimalsComponent
-    SheltersComponent,
-    AboutUSComponent
     AboutUsComponent,
     PostCommunityuserComponent
+    AboutComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
