@@ -10,7 +10,7 @@ import { Category } from '../../../../shared/interfaces';  // Make sure to impor
   providedIn: 'root'
 })
 export class AnimalService {
-  private apiUrl = 'https://localhost:7295/api/Animal';
+  private apiUrl = 'https://localhost:44354/api/Animal';
 
   constructor(private http: HttpClient) { }
 
