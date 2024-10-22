@@ -1,0 +1,141 @@
+<!-- TITLE BANNER START -->
+<section class="title-banner mb-80">
+  <div class="container-fluid-2">
+    <div class="title-wrapper">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-sm-6">
+          <div class="title-content">
+            <h1 class="medium-black fw-600">Profile</h1>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 d-sm-block d-none">
+          <div class="title-image text-end">
+            <img src="assets/media/backgrounds/banner-image.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container py-5">
+    <h1 style="font-family: 'Arial', sans-serif; font-size: 36px; font-weight: bold; color: black; text-align: center; margin-bottom: 30px; letter-spacing: 1px;">User Profile</h1>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <!-- Profile Card -->
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+          <div class="card-body text-center">
+            <img [src]="user.image || 'path/to/default-avatar.jpg'" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{ user.userName || 'John Doe' }}</h5>
+            <button type="button" class="btn" style="background-color: #d66a00; color: aliceblue;" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <app-edit-profile [user]="user" (userUpdated)="handleUserUpdate($event)"></app-edit-profile>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Objective Section -->
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+          <div class="card-body">
+            <h5 class="mb-3">Objective</h5>
+            <p class="text-muted">{{ user.description || 'No objective provided.' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <!-- User Information Card -->
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.userName || 'John Doe' }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.email || 'johndoe@example.com' }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Age</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.userAge || 'N/A' }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.userAdderss || 'Address not provided.' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adoption History Table -->
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+          <div class="card-body">
+            <h5 class="mb-3">Adoption Applications</h5>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Application ID</th>
+                  <th>Animal Name</th>
+                  <th>Status</th>
+                  <th>Submitted At</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let application of user.adoptionApplications">
+                  <td>{{ application.id }}</td>
+                  <td>{{ application.animalName }}</td>
+                  <td>{{ application.status }}</td>
+                  <td>{{ application.submittedAt | date }}</td>
+                  <td>
+                    <a [href]="'/details/' + application.id" class="btn btn-info btn-sm">Details</a>
+                  </td>
+                </tr>
+                <tr *ngIf="user.adoptionApplications.length === 0">
+                  <td colspan="5" class="text-center">No adoption applications found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

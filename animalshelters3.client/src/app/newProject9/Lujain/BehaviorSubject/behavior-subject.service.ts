@@ -17,6 +17,10 @@ export class BehaviorSubjectService {
     this.userId.next(userId); 
   }
 
+  getUserId(): string {
+    return this.userId.value; 
+  }
+
 
 
 }
