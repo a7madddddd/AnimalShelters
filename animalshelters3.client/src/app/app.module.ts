@@ -11,6 +11,9 @@ import { HomeComponent } from './newProject9/Qadomi/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
+import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
+import { AboutUsComponent } from './newProject9/AOQ/about-us/about-us.component';
+import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 
 
 @NgModule({
@@ -22,6 +25,10 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
     HomeComponent,
     SheltersComponent,
     AnimalsComponent
+    SheltersComponent,
+    AboutUSComponent
+    AboutUsComponent,
+    PostCommunityuserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -31,6 +38,12 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
       { path: 'Register', component: RegesterComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animals', component: AnimalsComponent },
+      { path: 'Shelters', component: SheltersComponent },
+      { path: 'AboutUs', component: AboutUSComponent }
+      { path: 'Shelters', component: SheltersComponent },
+      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+
+
     ])
 
 
