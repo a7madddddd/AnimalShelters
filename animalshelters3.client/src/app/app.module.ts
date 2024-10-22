@@ -10,6 +10,7 @@ import { FooterComponent } from './newProject9/footer/footer.component';
 import { HomeComponent } from './newProject9/Qadomi/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SheltersComponent } from './newProject9/A7mad/shelters/shelters.component';
+import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
 import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
@@ -35,6 +36,8 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
+      { path: 'Shelters', component: SheltersComponent },
+      { path: 'Animals', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'AboutUs', component: AboutUSComponent }
       { path: 'Shelters', component: SheltersComponent },
