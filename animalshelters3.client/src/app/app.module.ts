@@ -32,6 +32,8 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     AboutUSComponent,
     ContactUsComponent,
     LoginComponent
+    AboutUSComponent,
+    PostCommunityuserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
