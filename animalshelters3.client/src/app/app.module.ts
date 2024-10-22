@@ -30,8 +30,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     HomeComponent,
     AnimalCategoryComponent,
     AboutUSComponent,
-    ContactUsComponent
-    AboutUSComponent,
+    ContactUsComponent,
     LoginComponent
   ],
   imports: [
