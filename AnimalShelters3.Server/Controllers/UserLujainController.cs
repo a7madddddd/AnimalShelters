@@ -81,22 +81,37 @@ namespace AnimalShelters3.Server.Controllers
 
             return Ok(new { UserId = existingUser.UserId, message = "Login successful" });
         }
-
         [HttpPut("{id}")]
         public IActionResult EditProfile(int id, [FromForm] UserProfileDto userProfileDto)
         {
-            if (userProfileDto == null)
-            {
-                return BadRequest("User profile data is null.");
-            }
+            var user = _db.Users.Where(p => p.UserId == id).FirstOrDefault();
 
-            var user = _db.Users.Find(id); 
             if (user == null)
             {
-                return NotFound($"User with ID {id} not found."); 
+                return NotFound($"User with ID {id} not found.");
             }
 
-            // Update user properties
+            // Handle image upload
+            if (userProfileDto.Image != null && userProfileDto.Image.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + userProfileDto.Image.FileName;
+                var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
+                {
+                    userProfileDto.Image.CopyTo(fileStream);
+                }
+
+                user.Image = $"/images/{uniqueFileName}";
+            }
+
             if (!string.IsNullOrEmpty(userProfileDto.UserName))
             {
                 user.UserName = userProfileDto.UserName;
@@ -113,34 +128,25 @@ namespace AnimalShelters3.Server.Controllers
             {
                 user.UserAge = userProfileDto.UserAge.Value;
             }
-            if (!string.IsNullOrEmpty(userProfileDto.UserAdderss)) 
+            if (!string.IsNullOrEmpty(userProfileDto.UserAdderss))
             {
                 user.UserAdderss = userProfileDto.UserAdderss;
-            }
-            if (userProfileDto.Image != null && userProfileDto.Image.Length > 0)
-            {
-                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
-
-                // Define your upload path
-                var filePath = Path.Combine(folder, userProfileDto.Image.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    userProfileDto.Image.CopyTo(stream); 
-                }
-
-                user.Image = userProfileDto.Image.FileName; 
             }
 
             // Save changes to the database
             _db.Users.Update(user);
-            _db.SaveChanges(); 
+            _db.SaveChanges();
 
-            return Ok(user);
+            return Ok(new { message = "Profile updated successfully" });
+        }
+
+
+        [HttpGet("/Adoption")]
+        public IActionResult adoption()
+        {
+
+            var adoption = _db.AdoptionApplications.ToList();
+            return Ok(adoption);
         }
 
 

@@ -5,29 +5,31 @@ import { BehaviorSubjectService } from '../BehaviorSubject/behavior-subject.serv
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'] 
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: any; 
+  user: any = { image: '' }; // Initialize user with a default structure
 
   constructor(private _ser: LujainServiceService, private behaviorSubjectService: BehaviorSubjectService) { }
 
   ngOnInit() {
-    const userId = this.behaviorSubjectService.getUserId(); 
+    const userId = this.behaviorSubjectService.getUserId();
     if (userId) {
-      this.ShowUserDetails(Number(userId)); 
+      this.ShowUserDetails(Number(userId));
     } else {
       console.error("User ID not found.");
     }
   }
-
   ShowUserDetails(userId: number): void {
     this._ser.getUser(userId).subscribe(
       (data) => {
-        console.log(data);
+        console.log('API Response:', data);
         this.user = data;
+
         if (this.user.image) {
+          this.user.image = `https://localhost:44354/${this.user.image}`;
         }
+
       },
       (error) => {
         console.error("Login Error:", error);
@@ -35,9 +37,11 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+
+  
+
   handleUserUpdate(updatedUser: any) {
-    this.user = { ...this.user, ...updatedUser }; // Update user data
+    this.user = { ...this.user, ...updatedUser };
   }
-
-
 }

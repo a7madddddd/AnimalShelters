@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LujainServiceService } from '../LujainService/lujain-service.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,13 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
   @Input() user: any;
-  imagePreview: string | ArrayBuffer | null = null; // To store image preview
+  @Output() userUpdated = new EventEmitter<any>(); // Add this line
+  imagePreview: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
 
-  constructor() { }
+  constructor(private _ser: LujainServiceService) { }
 
   ngOnInit(): void {
     console.log(this.user);
-    // Display the current objective if available
     this.user.objective = this.user.objective || '';
   }
 
@@ -21,25 +24,44 @@ export class EditProfileComponent implements OnInit {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
+      this.selectedFile = file;
 
-      // Create a FileReader to preview the image
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imagePreview = reader.result; // Set image preview
+        this.imagePreview = reader.result;
       };
       reader.readAsDataURL(file);
-
-      // You can also save the file if necessary
-      // this.user.imageFile = file; // Save the file reference for upload
     }
   }
 
-  onSubmit(): void {
-    // Here you can handle the form submission,
-    // e.g., send user data and image to the server
-    console.log("User data submitted:", this.user);
+  OnSubmit() {
+    this.Edit();
+  }
 
-    // You may want to send the image and other data to your service
-    // this.myService.updateUser(this.user).subscribe(...);
+  Edit(): void {
+    const formData = new FormData();
+
+    formData.append('UserName', this.user.userName);
+    formData.append('Email', this.user.email);
+    formData.append('Description', this.user.description || '');
+    formData.append('UserAge', this.user.userAge?.toString() || '');
+    formData.append('UserAdderss', this.user.userAdderss || '');
+
+    if (this.selectedFile) {
+      formData.append('Image', this.selectedFile);
+    }
+
+    this._ser.updateProfile(this.user.userId, formData).subscribe(
+      response => {
+        console.log('Profile updated successfully:', response);
+        alert("Profile updated successfully");
+
+        // Emit the updated user data back to the parent
+        this.userUpdated.emit({ ...this.user, image: this.imagePreview });
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error updating profile:', error.message);
+      }
+    );
   }
 }
