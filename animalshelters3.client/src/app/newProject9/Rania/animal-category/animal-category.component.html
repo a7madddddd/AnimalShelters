@@ -23,7 +23,7 @@
               About: {{ animal.temperament }}
             </p>
             <div class="pricing-blockk">
-              <button class="adopt-btn">Adopt</button>
+              <a [routerLink]="['/adoption', animal.animalId]" class="adopt-btn">Adopt</a>
             </div>
           </div>
         </div>
