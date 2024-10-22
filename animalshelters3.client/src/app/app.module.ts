@@ -24,9 +24,9 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
     FooterComponent,
     HomeComponent,
     SheltersComponent,
-    AboutUsComponent,
+    AboutUSComponent,
     PostCommunityuserComponent
-    AboutComponent,
+    AboutUSComponent,
     ContactUsComponent,
     HomeComponent,
     AnimalCategoryComponent
