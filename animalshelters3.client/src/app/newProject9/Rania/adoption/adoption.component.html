@@ -1,9 +1,4 @@
 <div class="contact-wrapper pt-40 pb-80">
-  <div class="elements">
-    <img src="assets/media/vector/foot-icon-1.png" alt="">
-    <img src="assets/media/vector/foot-icon-1.png" alt="">
-    <img src="assets/media/vector/foot-icon-1.png" alt="" class="d-sm-block d-none">
-  </div>
   <div class="container-fluid-2">
     <div class="row row-gap-4 align-items-center">
       <div class="col-xl-6">
@@ -15,24 +10,33 @@
               <div *ngIf="animal" class="row row-gap-3">
                 <div class="col-md-6">
                   <div class="input-block">
-                    <input type="text" name="name" [(ngModel)]="animal.name" class="form-control form-control-2 bg-white" required placeholder="Animal Name">
+                    <input type="text" name="name" [(ngModel)]="animal.name" class="form-control form-control-2 bg-white" disabled placeholder="Animal Name">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-block">
-                    <input type="text" name="breed" [(ngModel)]="animal.breed" class="form-control form-control-2 bg-white" required placeholder="Breed">
+                    <input type="text" name="breed" [(ngModel)]="animal.breed" class="form-control form-control-2 bg-white" disabled placeholder="Breed">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-block">
-                    <input type="number" name="age" [(ngModel)]="animal.age" class="form-control form-control-2 bg-white" required placeholder="Age">
+                    <input type="number" name="age" [(ngModel)]="animal.age" class="form-control form-control-2 bg-white" disabled placeholder="Age">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-block">
-                    <input type="text" name="temperament" [(ngModel)]="animal.temperament" class="form-control form-control-2 bg-white" required placeholder="Temperament">
+                    <input type="text" name="temperament" [(ngModel)]="animal.temperament" class="form-control form-control-2 bg-white" disabled placeholder="Temperament">
                   </div>
                 </div>
+                <div class="col-md-12">
+                  <div class="input-block">
+                    <input type="text" name="name" id="firstName" class="form-control form-control-2 bg-white" required placeholder="First Name">
+                  </div>
+                </div>
+
+
+
+
                 <!--<div class="col-md-12">
                   <div class="input-block mb-40">
                     <textarea name="message" [(ngModel)]="animal.message" class="form-control form-control-2 bg-white" placeholder="Write Your Message"></textarea>
