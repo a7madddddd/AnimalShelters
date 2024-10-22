@@ -4,11 +4,11 @@ import { A7madService } from '../../../../Services/a7mad.service';
 @Component({
   selector: 'app-shelters',
   templateUrl: './shelters.component.html',
-  styleUrls: ['./shelters.component.css']  // Corrected from styleUrl to styleUrls
+  styleUrls: ['./shelters.component.css']
 })
-export class SheltersComponent implements OnInit {  // Implementing OnInit
-
-  dataArray: any;  // Changed to array for multiple shelters
+export class SheltersComponent implements OnInit {
+  dataArray: any[] = [];
+  selectedShelterId: number | undefined = undefined; // Initialize as undefined
 
   constructor(private _ser: A7madService) { }
 
@@ -19,13 +19,15 @@ export class SheltersComponent implements OnInit {  // Implementing OnInit
   getShelters() {
     this._ser.getAllShelters().subscribe(
       (data) => {
-        console.log('Shelters fetched:', data);
-        this.dataArray = data; // Make sure this is an array
+        this.dataArray = data;
       },
       (error) => {
-        console.error('Error fetching shelters:', error); // Log any errors
+        console.error('Error fetching shelters:', error);
       }
     );
   }
 
+  showAnimals(shelterId: number) {
+    this.selectedShelterId = shelterId; // Set selected shelter ID
+  }
 }

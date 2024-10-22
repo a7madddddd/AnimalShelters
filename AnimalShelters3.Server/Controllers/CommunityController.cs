@@ -92,9 +92,8 @@ namespace AnimalShelters3.Server.Controllers
         {
             try
             {
-                // قم بجلب المنشورات التي تم الموافقة عليها فقط
                 var approvedPosts = await _context.Posts
-                    .Where(p => p.Status == "Approved")  // تصفية المنشورات الموافقة عليها فقط
+                    .Where(p => p.Status == "Approved")
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
@@ -110,6 +109,7 @@ namespace AnimalShelters3.Server.Controllers
                 {
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
+                    UserName = post.User.UserName, // إضافة UserName هنا
                     Content = post.Content,
                     Image = post.Image,
                     Title = post.Title,
@@ -136,13 +136,14 @@ namespace AnimalShelters3.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving approved posts: {ex.Message}");
             }
         }
+
         [HttpGet("getAllRejectedPosts")]
         public async Task<IActionResult> GetAllRejectedPosts()
         {
             try
             {
                 var rejectedPosts = await _context.Posts
-                    .Where(p => p.Status == "Rejected") // تصفية المنشورات المرفوضة فقط
+                    .Where(p => p.Status == "Rejected")
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
@@ -158,6 +159,7 @@ namespace AnimalShelters3.Server.Controllers
                 {
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
+                    UserName = post.User.UserName, // إضافة UserName هنا
                     Content = post.Content,
                     Image = post.Image,
                     Title = post.Title,
@@ -184,13 +186,14 @@ namespace AnimalShelters3.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving rejected posts: {ex.Message}");
             }
         }
+
         [HttpGet("getAllPendingPosts")]
         public async Task<IActionResult> GetAllPendingPosts()
         {
             try
             {
                 var pendingPosts = await _context.Posts
-                    .Where(p => p.Status == "Pending") // تصفية المنشورات المعلقة فقط
+                    .Where(p => p.Status == "Pending")
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
@@ -206,6 +209,7 @@ namespace AnimalShelters3.Server.Controllers
                 {
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
+                    UserName = post.User.UserName, // إضافة UserName هنا
                     Content = post.Content,
                     Image = post.Image,
                     Title = post.Title,
@@ -232,8 +236,6 @@ namespace AnimalShelters3.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving pending posts: {ex.Message}");
             }
         }
-
-
 
 
 

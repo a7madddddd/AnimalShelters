@@ -17,7 +17,12 @@ namespace AnimalShelters3.Server.Controllers
         {
             _db = db;
         }
-
+        [HttpGet]
+        public IActionResult GetAllUser()
+        {
+            var user =_db.Users.ToList();
+            return Ok(user);    
+        }
         [HttpPost]
         public IActionResult SignUp([FromForm] UserDTORequiest user)
         {
@@ -63,10 +68,10 @@ namespace AnimalShelters3.Server.Controllers
                 return BadRequest("Invalid email or password.");
             }
 
-            return Ok("Login successful");
+            return Ok(new { UserId = existingUser.UserId, message = "Login successful" });
         }
 
-    
+
 
 
         private byte[] HashPassword(string password, out byte[] salt)

@@ -14,22 +14,30 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
 import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
 import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
+import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
+import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
 
 
 @NgModule({
   declarations: [
+    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
     FooterComponent,
     HomeComponent,
     SheltersComponent,
+    PostCommunityuserComponent,
+    HomeComponent,
+    AnimalCategoryComponent,
+    AboutUSComponent,
+    AboutUSComponent,
     AboutUSComponent,
     PostCommunityuserComponent
     AboutUSComponent,
     ContactUsComponent,
-    HomeComponent,
-    AnimalCategoryComponent
+    LoginComponent,
+    PostCommunityuserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -38,13 +46,17 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
+      { path: 'Login', component: LoginComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'Animals', component: AnimalsComponent },
+      { path: 'Animals/:shelterId', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'AboutUs', component: AboutUSComponent }
+      { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
-      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
 
+
+      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+      { path: 'ContactUs', component: ContactUsComponent },
 
     ])
 

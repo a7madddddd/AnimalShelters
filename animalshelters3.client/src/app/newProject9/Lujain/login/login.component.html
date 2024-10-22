@@ -1,0 +1,67 @@
+<!-- TITLE BANNER START -->
+<section class="title-banner mb-80">
+  <div class="container-fluid-2">
+    <div class="title-wrapper">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-sm-6">
+          <div class="title-content">
+            <h1 class="medium-black fw-600">Login</h1>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 d-sm-block d-none">
+          <div class="title-image text-end">
+            <img src="assets/media/backgrounds/banner-image.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNT START -->
+<section class="my-account py-40">
+  <div class="elements">
+    <img src="assets/media/vector/foot-icon-1.png" alt="">
+    <img src="assets/media/vector/foot-icon-1.png" alt="">
+    <img src="assets/media/vector/foot-icon-1.png" alt="" class="d-sm-block d-none">
+  </div>
+  <div class="container-fluid-2">
+    <div class="row row-gap-4 justify-content-center">
+      <div class="col-xl-6">
+        <div class="account account-1 br-12 p-32">
+          <h4 class="medium-black fw-700 mb-12 text-center">Login</h4>
+          <p class="mb-32 text-center">Please Enter your detail to Sign in.</p>
+          <form   class="blog-form"   #LoginForm="ngForm" (ngSubmit)="Login(LoginForm.value)">
+            <div class="row">
+         
+              <div class="col-sm-12">
+                <div class="input-block mb-24">
+                  <input type="email" name="Email" required class="form-control form-control-2 bg-white" placeholder="Your Email" ngModel>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M18.2422 2.96875H1.75781C0.786602 2.96875 0 3.76023 0 4.72656V15.2734C0 16.2455 0.792383 17.0312 1.75781 17.0312H18.2422C19.2053 17.0312 20 16.2488 20 15.2734V4.72656C20 3.76195 19.2165 2.96875 18.2422 2.96875ZM17.996 4.14062C17.6369 4.49785 11.4564 10.6458 11.243 10.8581C10.9109 11.1901 10.4695 11.3729 10 11.3729C9.53047 11.3729 9.08906 11.1901 8.75594 10.857C8.61242 10.7142 2.50012 4.63414 2.00398 4.14062H17.996ZM1.17188 15.0349V4.96582L6.23586 10.0031L1.17188 15.0349ZM2.00473 15.8594L7.06672 10.8296L7.9284 11.6867C8.48176 12.2401 9.21746 12.5448 10 12.5448C10.7825 12.5448 11.5182 12.2401 12.0705 11.6878L12.9333 10.8296L17.9953 15.8594H2.00473ZM18.8281 15.0349L13.7641 10.0031L18.8281 4.96582V15.0349Z" fill="#141516" />
+                  </svg>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="input-block mb-24">
+                  <input type="password" class="form-control form-control-2 bg-white password-input" id="passWord" name="Password" placeholder="••••••••" required ngModel>
+                  <i class="fas fa-eye-slash" id="eye"></i>
+                </div>
+              </div>
+             
+              <div class="col-sm-12">
+                <button type="submit" class="cus-btn">
+                  <span class="text">Sign In</span>
+                  <span class="circle"></span>
+                </button>
+              </div>
+              <div class="col-sm-12 text-center mt-3">
+                <p class="mb-0">Don't have an account? <a routerLink="/Register" class="color-sec fw-500">Sign Up</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

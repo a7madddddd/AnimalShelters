@@ -14,4 +14,8 @@ export class LujainServiceService {
     return this.http.post<any>(`${this.staticData}/UserLujain`, data)
   }
 
+  LoginUser(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/UserLujain/Login`, data)
+  }
+
 }
