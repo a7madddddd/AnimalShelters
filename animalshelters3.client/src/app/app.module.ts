@@ -16,6 +16,8 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
 import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
 import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
 import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
+import { ProfileComponent } from './newProject9/Lujain/profile/profile.component';
+import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 
 
@@ -36,7 +38,9 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
     ContactUsComponent,
     LoginComponent,
     PostCommunityuserComponent,
-    AdoptionComponent
+    AdoptionComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -47,6 +51,9 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
       { path: 'Register', component: RegesterComponent },
       { path: 'animal', component: AnimalCategoryComponent },
       { path: 'Login', component: LoginComponent },
+      { path: 'Profile', component: ProfileComponent },
+      { path: 'EditProfile/:id', component: EditProfileComponent },
+
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animal/:shelterId', component: AnimalCategoryComponent },
       { path: 'Shelters', component: SheltersComponent },
