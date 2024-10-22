@@ -1,7 +1,4 @@
-﻿
-
-
-using AnimalShelters3.Server.DTOs;
+﻿using AnimalShelters3.Server.DTOs;
 using AnimalShelters3.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity; // Ensure this is included

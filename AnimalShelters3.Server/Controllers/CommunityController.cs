@@ -17,15 +17,25 @@ namespace AnimalShelters3.Server.Controllers
     public class CommunityController : ControllerBase
     {
         private readonly MyDbContext _context;
+        private readonly EmailService _emailService;
 
-        public CommunityController(MyDbContext context)
+        public CommunityController(MyDbContext context, EmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
+
         }
         [HttpPost("createPost")]
         public async Task<IActionResult> CreatePost([FromForm] PostDto postDto)
         {
             string fileName = null; // Declare fileName outside the if block
+
+            // تحقق من وجود المستخدم
+            var userExists = await _context.Users.AnyAsync(u => u.UserId == postDto.UserId);
+            if (!userExists)
+            {
+                return BadRequest(new { success = false, message = "Invalid UserId. The user does not exist." });
+            }
 
             // التحقق من وجود الصورة وحجمها
             if (postDto.ImageFile != null && postDto.ImageFile.Length > 0)
@@ -66,6 +76,7 @@ namespace AnimalShelters3.Server.Controllers
 
 
 
+
         [HttpGet("getImage/{imageName}")]
         public IActionResult GetImage(string imageName)
         {
@@ -78,24 +89,26 @@ namespace AnimalShelters3.Server.Controllers
 
             return NotFound();
         }
-        [HttpGet("getAllPosts")]
-        public async Task<IActionResult> GetAllPosts()
+        [HttpGet("getAllApprovedPosts")]
+        public async Task<IActionResult> GetAllApprovedPosts()
         {
             try
             {
-                var posts = await _context.Posts
+                // قم بجلب المنشورات التي تم الموافقة عليها فقط
+                var approvedPosts = await _context.Posts
+                    .Where(p => p.Status == "Approved")  // تصفية المنشورات الموافقة عليها فقط
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
                     .Include(p => p.Likes)
                     .ToListAsync();
 
-                if (posts == null || !posts.Any())
+                if (approvedPosts == null || !approvedPosts.Any())
                 {
-                    return NotFound("No posts found.");
+                    return NotFound("No approved posts found.");
                 }
 
-                var postDtos = posts.Select(post => new PostDto1
+                var postDtos = approvedPosts.Select(post => new PostDto1
                 {
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
@@ -122,10 +135,105 @@ namespace AnimalShelters3.Server.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving posts: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving approved posts: {ex.Message}");
             }
         }
+        [HttpGet("getAllRejectedPosts")]
+        public async Task<IActionResult> GetAllRejectedPosts()
+        {
+            try
+            {
+                var rejectedPosts = await _context.Posts
+                    .Where(p => p.Status == "Rejected") // تصفية المنشورات المرفوضة فقط
+                    .Include(p => p.User)
+                    .Include(p => p.Comments)
+                        .ThenInclude(c => c.Replies)
+                    .Include(p => p.Likes)
+                    .ToListAsync();
 
+                if (rejectedPosts == null || !rejectedPosts.Any())
+                {
+                    return NotFound("No rejected posts found.");
+                }
+
+                var postDtos = rejectedPosts.Select(post => new PostDto1
+                {
+                    Id = (int)post.Id,
+                    UserId = (int)post.UserId,
+                    Content = post.Content,
+                    Image = post.Image,
+                    Title = post.Title,
+                    Tag = post.Tag,
+                    LikesCount = post.Likes.Count,
+                    Comments = post.Comments.Select(comment => new CommentDto
+                    {
+                        Id = comment.Id,
+                        Content = comment.Content,
+                        UserId = comment.UserId,
+                        Replies = comment.Replies.Select(reply => new ReplyDto
+                        {
+                            Id = reply.Id,
+                            Content = reply.Content,
+                            UserId = reply.UserId
+                        }).ToList()
+                    }).ToList()
+                }).ToList();
+
+                return Ok(postDtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving rejected posts: {ex.Message}");
+            }
+        }
+        [HttpGet("getAllPendingPosts")]
+        public async Task<IActionResult> GetAllPendingPosts()
+        {
+            try
+            {
+                var pendingPosts = await _context.Posts
+                    .Where(p => p.Status == "Pending") // تصفية المنشورات المعلقة فقط
+                    .Include(p => p.User)
+                    .Include(p => p.Comments)
+                        .ThenInclude(c => c.Replies)
+                    .Include(p => p.Likes)
+                    .ToListAsync();
+
+                if (pendingPosts == null || !pendingPosts.Any())
+                {
+                    return NotFound("No pending posts found.");
+                }
+
+                var postDtos = pendingPosts.Select(post => new PostDto1
+                {
+                    Id = (int)post.Id,
+                    UserId = (int)post.UserId,
+                    Content = post.Content,
+                    Image = post.Image,
+                    Title = post.Title,
+                    Tag = post.Tag,
+                    LikesCount = post.Likes.Count,
+                    Comments = post.Comments.Select(comment => new CommentDto
+                    {
+                        Id = comment.Id,
+                        Content = comment.Content,
+                        UserId = comment.UserId,
+                        Replies = comment.Replies.Select(reply => new ReplyDto
+                        {
+                            Id = reply.Id,
+                            Content = reply.Content,
+                            UserId = reply.UserId
+                        }).ToList()
+                    }).ToList()
+                }).ToList();
+
+                return Ok(postDtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving pending posts: {ex.Message}");
+            }
+        }
 
 
 
@@ -213,8 +321,7 @@ namespace AnimalShelters3.Server.Controllers
             {
                 return NotFound();
             }
-
-            var postUrl = $"https://yourwebsite.com/post/{postId}";
+            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
             var whatsappShareUrl = $"https://wa.me/?text=Check out this post: {postUrl}";
 
             return Ok(new { shareUrl = whatsappShareUrl });
@@ -228,13 +335,67 @@ namespace AnimalShelters3.Server.Controllers
                 return NotFound();
             }
 
-            var postUrl = $"https://yourwebsite.com/post/{postId}";
+            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
             var facebookShareUrl = $"https://www.facebook.com/sharer/sharer.php?u={postUrl}";
 
             return Ok(new { shareUrl = facebookShareUrl });
         }
 
+        [HttpPost("approvePost/{postId}")]
+        public async Task<IActionResult> ApprovePost(long postId, int approverUserId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
 
+            if (post == null)
+            {
+                return NotFound("Post not found.");
+            }
+
+            post.Status = "Approved"; // Change status based on your logic
+            await _context.SaveChangesAsync();
+
+            // Fetch the user's email who created the post
+            var postUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == post.UserId);
+            if (postUser == null)
+            {
+                return NotFound("User associated with the post not found.");
+            }
+
+            // إعداد البريد الإلكتروني للموافقة أو الرفض
+            var subject = "تمت الموافقة على منشورك";
+            var body = $"مرحبًا، تم الموافقة على منشورك بعنوان: {post.Title}. شكرًا لك!";
+            await _emailService.SendEmailAsync(postUser.Email, subject, body, approverUserId);
+
+            return Ok("Post approved successfully and email sent.");
+        }
+
+        [HttpPost("rejectPost/{postId}")]
+        public async Task<IActionResult> RejectPost(long postId, int approverUserId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+
+            if (post == null)
+            {
+                return NotFound("Post not found.");
+            }
+
+            post.Status = "Rejected"; // Change status based on your logic
+            await _context.SaveChangesAsync();
+
+            // Fetch the user's email who created the post
+            var postUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == post.UserId);
+            if (postUser == null)
+            {
+                return NotFound("User associated with the post not found.");
+            }
+
+            // إعداد البريد الإلكتروني للرفض
+            var subject = "تم رفض منشورك";
+            var body = $"مرحبًا، تم رفض منشورك بعنوان: {post.Title}. يرجى مراجعته وإجراء التعديلات المطلوبة.";
+            await _emailService.SendEmailAsync(postUser.Email, subject, body, approverUserId);
+
+            return Ok("Post rejected and email sent.");
+        }
 
 
 
