@@ -22,7 +22,7 @@ export class RegesterComponent {
     }
     this._ser.SignUserUp(form).subscribe(() => {
       alert("user added successfully")
-      this._router.navigate(['']);
+      this._router.navigate(['/Login']);
     },
       (error) => {
         alert(error.error)

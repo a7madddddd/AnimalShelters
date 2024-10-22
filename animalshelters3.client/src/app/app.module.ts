@@ -14,6 +14,7 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
 import { AboutUSComponent } from './newProject9/Qadomi/about-us/about-us.component';
 import { PostCommunityuserComponent } from './Communityuser/post-communityuser/post-communityuser.component';
 import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
+import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
 import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
 
 
@@ -30,6 +31,8 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     AnimalCategoryComponent,
     AboutUSComponent,
     ContactUsComponent
+    AboutUSComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -38,11 +41,15 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Register', component: RegesterComponent },
+      { path: 'Login', component: LoginComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animals', component: AnimalsComponent },
       { path: 'Shelters', component: SheltersComponent },
       { path: 'AboutUs', component: AboutUSComponent },
       { path: 'Shelters', component: SheltersComponent },
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
+
+
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
       { path: 'ContactUs', component: ContactUsComponent },
 

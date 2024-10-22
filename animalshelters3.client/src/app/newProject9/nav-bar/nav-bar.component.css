@@ -1,3 +1,17 @@
+.login-button {
+  display: inline-block; 
+  padding: 10px 15px; 
+  background-color: #FF8C00; 
+  color: #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+  .login-button:hover {
+    background-color: #cc7000; 
+  }
 /*.store h6.fw-700.mb-8{
     position:relative,
 
