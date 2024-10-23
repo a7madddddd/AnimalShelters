@@ -83,11 +83,14 @@ import { ContactComponent } from './Admin/contact/contact.component';
 
 
 
-      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
-          { path: 'ContactAdmin', component: ContactComponent }
+          { path: 'Add Shelters', component: AddSheltersComponent },
+          { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'All Shelter', component: GetAllSheltersComponent },
+          { path: 'Edit Shelter/:id', component: EditSheltersComponent }
         ]
       }
 

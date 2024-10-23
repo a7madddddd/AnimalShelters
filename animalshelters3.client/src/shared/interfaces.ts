@@ -16,3 +16,16 @@ export interface Category {
   Species: string;        // Name of the category
   description?: string; // Optional description field
 }
+
+
+
+
+
+export interface ShelterDTO {
+  name: string;
+  address?: string;
+  phone?: string;
+  email: string;
+  verified?: boolean;
+  createdAt?: string; // Or Date
+}
