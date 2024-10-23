@@ -17,11 +17,11 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
 import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
 import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
 import { ProfileComponent } from './newProject9/Lujain/profile/profile.component';
-import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { DetailsComponent } from './newProject9/Lujain/details/details.component';
+import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -44,10 +44,8 @@ import { DetailsComponent } from './newProject9/Lujain/details/details.component
     AdoptionComponent,
     ProfileComponent,
     EditProfileComponent,
-    AddSheltersComponent
-    EditProfileComponent,
-    DashboardComponent
-    EditProfileComponent,
+    AddSheltersComponent,
+    DashboardComponent,
     AnimalsComponent,
     DetailsComponent
   ],
