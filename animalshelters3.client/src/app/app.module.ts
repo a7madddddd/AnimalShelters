@@ -20,6 +20,7 @@ import { ProfileComponent } from './newProject9/Lujain/profile/profile.component
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/get-all-shelters.component';
 import { DetailsComponent } from './newProject9/Lujain/details/details.component';
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
@@ -27,7 +28,6 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
 
 @NgModule({
   declarations: [
-    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
@@ -35,18 +35,16 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
     HomeComponent,
     SheltersComponent,
     PostCommunityuserComponent,
-    HomeComponent,
     AnimalCategoryComponent,
     AboutUSComponent,
-    PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
-    PostCommunityuserComponent,
     AdoptionComponent,
     ProfileComponent,
     EditProfileComponent,
     AddSheltersComponent,
     DashboardComponent,
+    GetAllSheltersComponent,
     AnimalsComponent,
     DetailsComponent,
     CategoriesComponent
@@ -72,6 +70,7 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
+      { path: 'Admin', component: DashboardComponent },
 
 
 

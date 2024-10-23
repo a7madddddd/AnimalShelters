@@ -75,7 +75,7 @@ namespace AnimalShelters3.Server.Controllers
 
         // POST: api/Shelters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("addShelter")]
         public async Task<ActionResult<Shelter>> PostShelter(ShelterDTO shelterDto)
         {
             // Map DTO to Entity

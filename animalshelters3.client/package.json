@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.3",
     "jest-editor-support": "*",
     "jquery": "^3.7.1",
+    "jspdf": "^2.5.2",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
