@@ -49,10 +49,11 @@ export class EditSheltersComponent implements OnInit {
     console.log('Submitted Data:', data);
 
     // Ensure verified is a boolean
-    if (data.verified === undefined) {
-      data.verified = false; // Default to false if undefined
+    if (data.verified === undefined || typeof data.verified !== 'boolean') {
+      data.verified = false; // Default to false if undefined or not a boolean
     }
 
+    // Directly pass the data object
     this._ser.updateShelter(this.shelterId, data).subscribe(
       (response) => {
         Swal.fire({
@@ -70,7 +71,7 @@ export class EditSheltersComponent implements OnInit {
           console.error("Validation errors: ", error.error.errors);
           Swal.fire({
             title: 'Validation Error!',
-            text: JSON.stringify(error.error.errors), // Display detailed error message
+            text: JSON.stringify(error.error.errors),
             icon: 'error',
             confirmButtonText: 'OK'
           });
@@ -84,6 +85,7 @@ export class EditSheltersComponent implements OnInit {
         }
       }
     );
-
   }
+
+
 }
