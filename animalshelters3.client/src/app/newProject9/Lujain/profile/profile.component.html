@@ -31,6 +31,7 @@
                  class="rounded-circle img-fluid"
                  style="width: 150px;">
             <h5 class="my-3">{{ user.userName || 'John Doe' }}</h5>
+
             <button type="button" class="btn" style="background-color: #d66a00; color: aliceblue;" data-bs-toggle="modal" data-bs-target="#editProfileModal">
               Edit Profile
             </button>
@@ -107,37 +108,48 @@
           </div>
         </div>
 
-        <!-- Adoption History Table -->
+        <!-- Adoption History Section -->
         <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
           <div class="card-body">
-            <h5 class="mb-3">Adoption Applications</h5>
-            <table class="table table-bordered">
+            <h5 class="mb-3">Adoption Application</h5>
+
+            <table *ngIf="adoptionData" class="table table-bordered">
               <thead>
                 <tr>
                   <th>Application ID</th>
                   <th>Animal Name</th>
                   <th>Status</th>
                   <th>Submitted At</th>
+                  <th>Download PDF</th>
+
                   <th>Details</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let application of user.adoptionApplications">
-                  <td>{{ application.applicationId }}</td>
-                  <td>{{ application.name }}</td>
-                  <td>{{ application.status }}</td>
-                  <td>{{ application.submittedAt | date }}</td>
+                <tr>
+                  <td>{{ adoptionData.applicationId }}</td>
+                  <td>{{ adoptionData.animalName }}</td>
+                  <td>{{ adoptionData.status }}</td>
+                  <td>{{ adoptionData.submittedAt | date }}</td>
                   <td>
-                    <a [href]="'/details/' + application.id" class="btn btn-info btn-sm">Details</a>
+                    <a (click)="downloadPDF()" class="download-icon">
+                      <i class="fas fa-download" style="color: darkorange;"></i>
+                    </a>
                   </td>
-                </tr>
-                <tr *ngIf="user.adoptionApplications.length === 0">
-                  <td colspan="5" class="text-center">No adoption applications found.</td>
+
+                  <td>
+                    <a [routerLink]="['/details', adoptionData.applicationId]" class="btn btn-info btn-sm">Details</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
+
+            <div *ngIf="!adoptionData" class="text-center">
+              No adoption application found.
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
