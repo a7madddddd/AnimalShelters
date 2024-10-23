@@ -1,0 +1,79 @@
+<!-- TITLE BANNER START -->
+<section class="title-banner mb-80">
+  <div class="container-fluid-2">
+    <div class="title-wrapper">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-sm-6">
+          <div class="title-content">
+            <h1 class="medium-black fw-600">Application Details</h1>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 d-sm-block d-none">
+          <div class="title-image text-end">
+            <img src="assets/media/backgrounds/banner-image.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-5">
+  <h3>Adoption Application Details</h3>
+
+  <div *ngIf="adoptionDataDetails" class="card p-4">
+    <form>
+      <div class="mb-3">
+        <label for="applicationId" class="form-label"><strong>Application ID:</strong></label>
+        <input type="text" id="applicationId" class="form-control" [value]="adoptionDataDetails.applicationId" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="animalName" class="form-label"><strong>Animal Name:</strong></label>
+        <input type="text" id="animalName" class="form-control" [value]="adoptionDataDetails.animalName" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="animalAge" class="form-label"><strong>Animal Age:</strong></label>
+        <input type="text" id="animalAge" class="form-control" [value]="adoptionDataDetails.animalAge" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="animalBreed" class="form-label"><strong>Animal Breed:</strong></label>
+        <input type="text" id="animalBreed" class="form-control" [value]="adoptionDataDetails.animalBread" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="animalTemp" class="form-label"><strong>Animal Temperament:</strong></label>
+        <input type="text" id="animalTemp" class="form-control" [value]="adoptionDataDetails.animalTemp" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="status" class="form-label"><strong>Status:</strong></label>
+        <input type="text" id="status" class="form-control" [value]="adoptionDataDetails.status" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label"><strong>Message:</strong></label>
+        <textarea id="message" class="form-control" rows="3" [value]="adoptionDataDetails.message" readonly></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="submittedAt" class="form-label"><strong>Submitted At:</strong></label>
+        <input type="text" id="submittedAt" class="form-control" [value]="adoptionDataDetails.submittedAt | date" readonly>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="!adoptionDataDetails" class="text-center">
+    No adoption application found.
+  </div>
+  <div class="mt-4 text-center">
+    <button (click)="downloadPDF()" class="btn btn-primary download-btn">
+      <i class="fas fa-download"></i> Download as PDF
+    </button>
+    <a [routerLink]="['/Profile']" class="btn btn-secondary">Back to Profile</a>
+  </div>
+
+  <br />
+</div>

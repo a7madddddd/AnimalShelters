@@ -27,6 +27,7 @@
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.14.4",
     "tslib": "^2.3.0",
     "video.js": "^8.18.1",
     "wowjs": "^1.1.3",

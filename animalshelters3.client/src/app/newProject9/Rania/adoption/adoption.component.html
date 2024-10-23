@@ -1,0 +1,53 @@
+<div class="contact-wrapper pt-40 pb-80">
+  <div class="container-fluid-12">
+    <div class="row row-gap-4 align-items-center">
+      <div class="col-xl-8">
+        <div class="form-container">
+          <form (ngSubmit)="submitAdoption()" class="contact-form">
+            <div class="form-wrapper bg-ter p-24 br-12">
+              <h4 class="fw-700 medium-black mb-12">Animal adoption</h4>
+              <div *ngIf="!animal">Loading animal details...</div>
+              <div *ngIf="animal" class="row row-gap-3">
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="name" class="form-label">Animal Name</label> <!-- Add a label -->
+                    <input type="text" name="name" id="name" [(ngModel)]="animal.name" class="form-control form-control-2 bg-white" disabled placeholder="Animal Name" style="color:lightslategray">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="breed" class="form-label">Animal Breed</label> <!-- Add a label -->
+                    <input type="text" name="breed"  id="breed" [(ngModel)]="animal.breed" class="form-control form-control-2 bg-white" disabled placeholder="Breed" style="color:lightslategray">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="age" class="form-label">Animal Age</label> <!-- Add a label -->
+                    <input type="number" name="age" id="age" [(ngModel)]="animal.age" class="form-control form-control-2 bg-white" disabled placeholder="Age" style="color:lightslategray">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="temperament" class="form-label">Animal Temperament</label> <!-- Add a label -->
+                    <input type="text" name="temperament" id="temperament" [(ngModel)]="animal.temperament" class="form-control form-control-2 bg-white" disabled placeholder="Temperament" style="color:lightslategray">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="input-block">
+                    <textarea [(ngModel)]="applicationMessage" name="description" class="form-control form-control-2 bg-white" required placeholder="Description"></textarea>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <button type="button" (click)="submitAdoption()" class="cus-btn">
+                <span class="text">Submit Application</span>
+                <span class="circle"></span>
+              </button>
+              <div id="message" class="alert-msg"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

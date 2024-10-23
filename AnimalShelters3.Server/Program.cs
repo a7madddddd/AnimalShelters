@@ -30,8 +30,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
-
+app.UseStaticFiles(); 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

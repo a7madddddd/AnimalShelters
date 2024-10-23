@@ -1,0 +1,16 @@
+.download-btn {
+  background-color: #ff8c00; /* Dark orange */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Adjust padding */
+  font-weight: 600; /* Bold text */
+}
+
+  .download-btn:hover {
+    background-color: #e07b00; /* Darker shade on hover */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+
+  .download-btn i {
+    margin-right: 5px; /* Space between icon and text */
+  }

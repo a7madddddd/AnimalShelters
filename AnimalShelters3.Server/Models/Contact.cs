@@ -16,4 +16,6 @@ public partial class Contact
     public DateTime? CreatedAt { get; set; }
 
     public string? ReplyMessage { get; set; }
+
+    public int? PhoneNum { get; set; }
 }
