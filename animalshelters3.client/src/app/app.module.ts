@@ -54,7 +54,7 @@ import { ContactComponent } from './Admin/contact/contact.component';
     AnimalsComponent,
     DetailsComponent,
     CategoriesComponent,
-    EditSheltersComponent
+    EditSheltersComponent,
     CategoriesComponent,
     ContactComponent
   ],
