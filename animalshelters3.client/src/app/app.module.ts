@@ -25,6 +25,7 @@ import { DetailsComponent } from './newProject9/Lujain/details/details.component
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
+import { ContactComponent } from './Admin/contact/contact.component';
 
 
 @NgModule({
@@ -44,12 +45,18 @@ import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-sh
     ProfileComponent,
     EditProfileComponent,
     AddSheltersComponent,
+    EditProfileComponent,
+    DashboardComponent,
+    GetAllSheltersComponent,
+    AddSheltersComponent,
     DashboardComponent,
     GetAllSheltersComponent,
     AnimalsComponent,
     DetailsComponent,
     CategoriesComponent,
     EditSheltersComponent
+    CategoriesComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -80,8 +87,8 @@ import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-sh
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
       { path: 'ContactUs', component: ContactUsComponent },
       {
-        path: '', component: DashboardComponent, children: [
-        
+        path: 'Dashboard', component: DashboardComponent, children: [
+          { path: 'ContactAdmin', component: ContactComponent }
         ]
       }
 
