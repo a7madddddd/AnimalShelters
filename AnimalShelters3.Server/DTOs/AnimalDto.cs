@@ -8,7 +8,7 @@ namespace AnimalShelters3.Server.DTOs
         public int Age { get; set; }
         public string Temperament { get; set; }
 
-        public virtual Shelter? Shelter { get; set; }
+        public int? ShelterId { get; set; }
 
         public long? CategoryId { get; set; }
 

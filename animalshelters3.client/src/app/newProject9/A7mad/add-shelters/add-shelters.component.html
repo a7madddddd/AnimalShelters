@@ -1,0 +1,52 @@
+<form class="contact-form" #addNewShelter="ngForm" (ngSubmit)="addShelters(addNewShelter.value)" novalidate>
+  <div class="form-wrapper bg-ter p-24 br-12">
+    <h4 class="fw-700 medium-black mb-12">Add Shelter</h4> 
+    <div class="row row-gap-3">
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="name" class="form-label">Animal Name</label>
+          <input type="text" name="name" id="name" class="form-control form-control-2 bg-white" placeholder="name" [(ngModel)]="animal.name" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="breed" class="form-label">Animal Breed</label>
+          <input type="text" name="address" id="breed" class="form-control form-control-2 bg-white" placeholder="address" [(ngModel)]="animal.address" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="age" class="form-label">Animal Age</label>
+          <input type="tel" name="phone" id="age" class="form-control form-control-2 bg-white" placeholder="phone" [(ngModel)]="animal.phone" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="temperament" class="form-label">Animal Temperament</label>
+          <input type="email" name="email" id="temperament" class="form-control form-control-2 bg-white" placeholder="email" [(ngModel)]="animal.email" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="createdAt" class="form-label">Date Added</label>
+          <input type="datetime-local" name="createdAt" class="form-control form-control-2 bg-white" placeholder="createdAt" [(ngModel)]="animal.createdAt" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-block">
+          <label for="verified" class="form-label">Is Verified</label>
+          <select name="verified" [(ngModel)]="animal.verified">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <br />
+    <button type="submit" class="cus-btn">
+      <span class="text">Submit Application</span>
+      <span class="circle"></span>
+    </button>
+    <div id="message" class="alert-msg"></div>
+  </div>
+</form>

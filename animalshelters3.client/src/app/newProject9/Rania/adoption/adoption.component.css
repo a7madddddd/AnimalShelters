@@ -1,0 +1,11 @@
+.contact-wrapper {
+  margin-left:25%;
+  margin-top:10%;
+  position:relative;
+}
+
+.contact-wrapper label{
+    
+    margin-left:-50%;
+
+}

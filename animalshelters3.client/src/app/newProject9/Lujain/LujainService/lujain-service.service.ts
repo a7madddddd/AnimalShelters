@@ -18,4 +18,20 @@ export class LujainServiceService {
     return this.http.post<any>(`${this.staticData}/UserLujain/Login`, data)
   }
 
+  getUser(id: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/UserLujain/${id}`);
+  }
+
+
+  updateProfile(userId: number, formData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/UserLujain/${userId}`, formData);
+  }
+
+  getAdoptionApp(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/UserLujain/AdoptionByUserId/${userId}`);
+  }
+
+  getAdoptionAppDetails(appId: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/UserLujain/FromId/${appId}`);
+  }
 }

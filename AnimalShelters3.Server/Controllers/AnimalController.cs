@@ -95,7 +95,7 @@ namespace AnimalShelters3.Server.Controllers
             existingAnimal.Age = updatedAnimalDto.Age;
             existingAnimal.Temperament = updatedAnimalDto.Temperament;
             existingAnimal.CategoryId = updatedAnimalDto.CategoryId;
-            existingAnimal.Shelter = updatedAnimalDto.Shelter;
+            existingAnimal.ShelterId = updatedAnimalDto.ShelterId;
 
 
             // Handle file upload
@@ -140,6 +140,30 @@ namespace AnimalShelters3.Server.Controllers
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+
+        [HttpGet]
+        public IActionResult GetAnimalsByShelter(int shelterId)
+        {
+            var animals = _context.Animals.Where(a => a.ShelterId == shelterId).ToList();
+            return Ok(animals);
+        }
+
+
+
+        [HttpGet("api/categories")]
+        public IActionResult GetCategories()
+        {
+            var categories = _context.Categories.ToList();
+            return Ok(categories);
+        }
+
+        [HttpGet("byCategory/{categoryId}")]
+        public IActionResult GetAnimalsByCategoryId(int categoryId)
+        {
+            var animals = _context.Animals.Where(a => a.CategoryId == categoryId).ToList();
+            return Ok(animals);
         }
     }
 }

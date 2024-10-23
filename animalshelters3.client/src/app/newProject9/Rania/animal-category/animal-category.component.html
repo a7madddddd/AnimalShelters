@@ -2,28 +2,32 @@
   <div class="container-fluid-2">
     <div class="heading text-center mb-48">
       <h2 class="fw-700 medium-black mb-24">Animals for Adoption</h2>
-      <p>
-        Discover a range of animals looking for loving homes.
-      </p>
+      <p>Discover a range of animals looking for loving homes.</p>
     </div>
-    <div class="row row-gap-4">
-      <!-- Dynamically Render Animal Cards -->
-      <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6" *ngFor="let animal of animals">
-        <div class="product-card bg-hex">
-          <a href="animal-detail.html" class="img-box justify-content-start shine">
-            <img [src]="'https://localhost:7295' + animal.imageUrl" alt="{{ animal.name }}">
-          </a>
-          <br />
-          <div class="text-box">
-            <a href="animal-detail.html" class="title-1 h5 fw-600 mb-8">{{ animal.name }}</a>
-            <p class="mb-24">
-              Age: {{ animal.age }} years,
+    <div class="row">
+      <!-- Category Filter Section -->
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3">
+        <!-- Bind categorySelected event to the filtering function in the component -->
+        <app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
+      </div>
 
+      <!-- Animal Cards Section -->
+      <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9">
+        <div class="row row-gap-4">
+          <!-- Use filteredAnimals to display only the filtered results -->
+          <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6" *ngFor="let animal of filteredAnimals">
+            <div class="product-card bg-hex">
+              <a href="animal-detail.html" class="img-box justify-content-start shine">
+                <img [src]="'https://localhost:7295' + animal.imageUrl" alt="{{ animal.name }}">
+              </a>
               <br />
-              About: {{ animal.temperament }}
-            </p>
-            <div class="pricing-blockk">
-              <button class="adopt-btn">Adopt</button>
+              <div class="text-box">
+                <a href="animal-detail.html" class="title-1 h5 fw-600 mb-8">{{ animal.name }}</a>
+                <p class="mb-24">Age: {{ animal.age }} years, <br /> About: {{ animal.temperament }}</p>
+                <div class="pricing-blockk">
+                  <a [routerLink]="['/adoption', animal.animalId]" class="adopt-btn">Adopt</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
