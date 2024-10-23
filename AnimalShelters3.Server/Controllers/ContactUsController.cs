@@ -24,6 +24,8 @@ namespace AnimalShelters3.Server.Controllers
         }
 
 
+
+
         [HttpGet("GetByDesc")]
         public IActionResult GetContact()
         {
@@ -37,6 +39,7 @@ namespace AnimalShelters3.Server.Controllers
                 c.Id,
                 c.Name,
                 c.Email,
+                c.PhoneNum,
                 CreatedAt = c.CreatedAt.HasValue
                     ? c.CreatedAt.Value.ToString("yyyy-MM-dd HH:mm")
                     : "N/A"
@@ -53,6 +56,7 @@ namespace AnimalShelters3.Server.Controllers
                 Name = request.Name,
                 Email = request.Email,
                 Message = request.Message,
+                PhoneNum = request.PhoneNum,
             };
             _db.Contacts.Add(newContact);
             _db.SaveChanges();

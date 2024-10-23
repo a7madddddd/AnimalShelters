@@ -3,6 +3,24 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+
+
+
+
+
+export interface AdoptionApplication {
+  applicationId?: number;
+  userId: number;
+  animalId: number;
+  status?: string;
+  submittedAt?: Date;
+  message: string;
+  updatedAt?: Date;
+}
+
+
+
+
 export interface Shelter {
   shelterId: number;
   name: string;
@@ -30,7 +48,7 @@ export interface Animal {
   providedIn: 'root'
 })
 export class A7madService {
-  private url = 'https://localhost:44354/api/';
+  private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -51,4 +69,11 @@ export class A7madService {
       })
     );
   }
-}
+
+
+  addShelters(data: any): Observable<any> { // Ensure it returns an Observable
+    return this.http.post(this.url, data);
+  }
+
+  }
+
