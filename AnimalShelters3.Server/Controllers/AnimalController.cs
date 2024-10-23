@@ -149,5 +149,21 @@ namespace AnimalShelters3.Server.Controllers
             var animals = _context.Animals.Where(a => a.ShelterId == shelterId).ToList();
             return Ok(animals);
         }
+
+
+
+        [HttpGet("api/categories")]
+        public IActionResult GetCategories()
+        {
+            var categories = _context.Categories.ToList();
+            return Ok(categories);
+        }
+
+        [HttpGet("byCategory/{categoryId}")]
+        public IActionResult GetAnimalsByCategoryId(int categoryId)
+        {
+            var animals = _context.Animals.Where(a => a.CategoryId == categoryId).ToList();
+            return Ok(animals);
+        }
     }
 }

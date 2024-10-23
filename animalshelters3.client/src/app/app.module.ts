@@ -16,6 +16,7 @@ import { PostCommunityuserComponent } from './Communityuser/post-communityuser/p
 import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/animal-category.component';
 import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
 import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
+import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
     PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
-    PostCommunityuserComponent
+    PostCommunityuserComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
