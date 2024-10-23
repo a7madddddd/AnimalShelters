@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubjectService } from '../Lujain/BehaviorSubject/behavior-subject.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +10,7 @@ import { BehaviorSubjectService } from '../Lujain/BehaviorSubject/behavior-subje
 export class NavBarComponent implements OnInit {
   isLoggedIn: boolean = false;  
 
-  constructor(private behaviorSubjectService: BehaviorSubjectService) { }
+  constructor(private behaviorSubjectService: BehaviorSubjectService, private _router: Router) { }
 
   ngOnInit() {
     this.behaviorSubjectService.userId$.subscribe(userId => {
@@ -19,6 +20,7 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.behaviorSubjectService.setUserId(''); 
     alert("Logged out successfully.");
+    this._router.navigate(['']);
   }
 
 }

@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { Animal } from '../../../../shared/interfaces'; // Assuming you have Animal interface
 
 import { Category } from '../../../../shared/interfaces';  // Make sure to import the Category interface
+import { AdoptionApplication } from '../../../../Services/a7mad.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimalService {
+  [x: string]: any;
   private apiUrl = 'https://localhost:7295/api/Animal';
 
   constructor(private http: HttpClient) { }
@@ -42,5 +44,19 @@ export class AnimalService {
   // Fetch all categories (for dropdown or other purposes)
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+
+
   }
+
+
+  getAnimalsByShelterId(shelterId: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`https://localhost:7295/api/Animal?shelterId=${shelterId}`);
+  }
+
+  /////////////////////////////////////////
+
+  submitAdoptionApplication(application: AdoptionApplication): Observable<AdoptionApplication> {
+    return this.http.post<AdoptionApplication>(`https://localhost:7295/api/Adoption`, application);
+  }
+ 
 }
