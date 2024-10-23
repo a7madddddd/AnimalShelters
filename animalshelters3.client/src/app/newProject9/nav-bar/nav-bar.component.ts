@@ -22,5 +22,8 @@ export class NavBarComponent implements OnInit {
     alert("Logged out successfully.");
     this._router.navigate(['']);
   }
+  isAdminLogin(): boolean {
+    return this._router.url.includes('/admin');
+  }
 
 }
