@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\Communityuser\" />
+    <Folder Include="src\app\Admin\" />
     <Folder Include="src\app\newProject9\AOQ\" />
     <Folder Include="src\app\newProject9\A7mad\" />
     <Folder Include="src\app\newProject9\Lujain\BehaviorSubject\" />
