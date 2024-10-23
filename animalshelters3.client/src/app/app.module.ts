@@ -20,6 +20,7 @@ import { ProfileComponent } from './newProject9/Lujain/profile/profile.component
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -43,6 +44,8 @@ import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelt
     ProfileComponent,
     EditProfileComponent,
     AddSheltersComponent
+    EditProfileComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -70,6 +73,11 @@ import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelt
 
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
       { path: 'ContactUs', component: ContactUsComponent },
+      {
+        path: '', component: DashboardComponent, children: [
+        
+        ]
+      }
 
     ])
 
