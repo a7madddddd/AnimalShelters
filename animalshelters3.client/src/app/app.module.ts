@@ -27,6 +27,8 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
 import { AllPostComponent } from './Admin/all-post/all-post.component';
 import { AllRejectPostComponent } from './Admin/all-reject-post/all-reject-post.component';
 import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-post.component';
+import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
+import { ContactComponent } from './Admin/contact/contact.component';
 
 
 @NgModule({
@@ -46,6 +48,10 @@ import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-po
     ProfileComponent,
     EditProfileComponent,
     AddSheltersComponent,
+    EditProfileComponent,
+    DashboardComponent,
+    GetAllSheltersComponent,
+    AddSheltersComponent,
     DashboardComponent,
     GetAllSheltersComponent,
     AnimalsComponent,
@@ -54,6 +60,10 @@ import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-po
     AllPostComponent,
     AllRejectPostComponent,
     AllAprovedPostComponent
+    CategoriesComponent,
+    EditSheltersComponent,
+    CategoriesComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -82,6 +92,7 @@ import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-po
 
 
 
+
       { path: 'post-communityuser', component:PostCommunityuserComponent  },
       { path: 'ContactUs', component: ContactUsComponent },
       {
@@ -89,6 +100,8 @@ import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-po
           { path: 'AllPosts', component: AllPostComponent },
           { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
           { path: 'AllRejectedPosts', component: AllRejectPostComponent }
+        path: 'adminDashboard', component: DashboardComponent, children: [
+          { path: 'ContactAdmin', component: ContactComponent }
         ]
       }
 

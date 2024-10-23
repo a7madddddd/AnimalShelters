@@ -107,13 +107,12 @@
             </div>
           </div>
         </div>
-
         <!-- Adoption History Section -->
         <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
           <div class="card-body">
-            <h5 class="mb-3">Adoption Application</h5>
+            <h5 class="mb-3">Adoption Applications</h5>
 
-            <table *ngIf="adoptionData" class="table table-bordered">
+            <table *ngIf="adoptionData && adoptionData.length > 0" class="table table-bordered">
               <thead>
                 <tr>
                   <th>Application ID</th>
@@ -121,34 +120,34 @@
                   <th>Status</th>
                   <th>Submitted At</th>
                   <th>Download PDF</th>
-
                   <th>Details</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{{ adoptionData.applicationId }}</td>
-                  <td>{{ adoptionData.animalName }}</td>
-                  <td>{{ adoptionData.status }}</td>
-                  <td>{{ adoptionData.submittedAt | date }}</td>
+                <tr *ngFor="let item of adoptionData">
+                  <td>{{ item.applicationId }}</td>
+                  <td>{{ item.animalName }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>{{ item.submittedAt | date }}</td>
                   <td>
-                    <a (click)="downloadPDF()" class="download-icon">
+                    <a (click)="downloadPDF(item)" class="download-icon">
                       <i class="fas fa-download" style="color: darkorange;"></i>
                     </a>
                   </td>
-
                   <td>
-                    <a [routerLink]="['/details', adoptionData.applicationId]" class="btn btn-info btn-sm">Details</a>
+                    <a [routerLink]="['/details', item.applicationId]" class="btn btn-info btn-sm">Details</a>
                   </td>
                 </tr>
               </tbody>
             </table>
 
-            <div *ngIf="!adoptionData" class="text-center">
-              No adoption application found.
+            <div *ngIf="adoptionData.length === 0" class="text-center">
+              No adoption applications found.
             </div>
           </div>
         </div>
+
+
 
       </div>
     </div>

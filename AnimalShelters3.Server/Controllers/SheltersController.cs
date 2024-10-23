@@ -45,34 +45,35 @@ namespace AnimalShelters3.Server.Controllers
         // PUT: api/Shelters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShelter(int id, Shelter shelter)
-        {
-            if (id != shelter.ShelterId)
+        public async Task<IActionResult> UpdateShelter(int id, [FromBody] ShelterDTO shelterDTO)
+        {   
+            if (shelterDTO == null)
             {
-                return BadRequest();
+                return BadRequest("Shelter data is null.");
             }
 
-            _context.Entry(shelter).State = EntityState.Modified;
-
-            try
+            // Find the shelter in the database
+            var shelter = await _context.Shelters.FindAsync(id);
+            if (shelter == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ShelterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound(); // Shelter not found
             }
 
-            return NoContent();
+            // Update properties
+            shelter.Name = shelterDTO.Name;
+            shelter.Address = shelterDTO.Address;
+            shelter.Phone = shelterDTO.Phone;
+            shelter.Email = shelterDTO.Email;
+            shelter.Verified = shelterDTO.Verified;
+            shelter.CreatedAt = shelterDTO.CreatedAt;
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // Return 204 No Content on success
         }
 
+         
         // POST: api/Shelters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("addShelter")]
