@@ -24,6 +24,8 @@ namespace AnimalShelters3.Server.Controllers
         }
 
 
+
+
         [HttpGet("GetByDesc")]
         public IActionResult GetContact()
         {
