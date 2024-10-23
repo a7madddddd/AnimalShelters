@@ -24,6 +24,9 @@ import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/ge
 import { DetailsComponent } from './newProject9/Lujain/details/details.component';
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
+import { AllPostComponent } from './Admin/all-post/all-post.component';
+import { AllRejectPostComponent } from './Admin/all-reject-post/all-reject-post.component';
+import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-post.component';
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
     GetAllSheltersComponent,
     AnimalsComponent,
     DetailsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AllPostComponent,
+    AllRejectPostComponent,
+    AllAprovedPostComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -71,6 +77,7 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
       { path: 'Admin', component: DashboardComponent },
+      
 
 
 
@@ -79,7 +86,9 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: '', component: DashboardComponent, children: [
-        
+          { path: 'AllPosts', component: AllPostComponent },
+          { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
+          { path: 'AllRejectedPosts', component: AllRejectPostComponent }
         ]
       }
 
