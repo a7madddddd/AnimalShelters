@@ -13,58 +13,18 @@ declare var bootstrap: any;
   styleUrls: ['./post-communityuser.component.css']
 })
 export class PostCommunityuserComponent implements OnInit {
-  //openPostModal() {
-  //  console.log('تم فتح النافذة المنبثقة');
-  //  // هنا يمكنك إضافة الكود الذي يقوم بفتح الـ modal 
-  //}
+  postContent: string = ''; // محتوى المنشور
+  selectedFile: File | null = null; // الملف المختار
 
-  //postContent: string = '';  // محتوى المنشور
-  //postTitle: string = '';     // عنوان المنشور
-  //postTag: string = '';       // علامة المنشور
-  //selectedFile: File | null = null;  // الملف المختار
 
-  //// دالة لمعالجة إضافة المنشور
-  //createPost(form: any) {
-  //  if (!this.postContent || !this.postTitle || !this.postTag) {
-  //    alert('الرجاء ملء جميع الحقول.');  // يمكنك استخدام SweetAlert بدلاً من alert
-  //    return;
-  //  }
-
-  //  const postData = {
-  //    title: this.postTitle,
-  //    content: this.postContent,
-  //    tag: this.postTag,
-  //    file: this.selectedFile  // يمكنك تعديل ذلك حسب كيفية التعامل مع الملف في API
-  //  };
-
-  //  this.najlaaService.addPost(postData).subscribe(
-  //    (response: any) => {
-  //      console.log('Post created successfully:', response);
-  //      // إعادة تعيين الحقول
-  //      this.postContent = '';
-  //      this.postTitle = '';
-  //      this.postTag = '';
-  //      this.selectedFile = null;
-  //      // يمكنك إغلاق المودال هنا إذا كنت تستخدم Bootstrap
-  //      // $('#PostModal').modal('hide');  // استخدم jQuery لإغلاق المودال إذا لزم الأمر
-  //    },
-  //    (error: any) => {
-  //      console.error('Error creating post:', error);
-  //      alert('حدث خطأ أثناء إنشاء المنشور. حاول مرة أخرى.');  // يمكنك استخدام SweetAlert بدلاً من alert
-  //    }
-  //  );
-  //}
-
-  //// دالة لاختيار الملف
-  //onFileSelected(event: any) {
-  //  this.selectedFile = event.target.files[0];  // تخزين الملف المختار
-  //}
 
   approvedPosts: any[] = [];
   currentUserId: string | undefined;
   selectedPost: any;
   newComment: string = '';
     errorMessage: string | undefined;
+    postTitle: string | undefined;
+    postTag: string | undefined;
 
   constructor(
     private najlaaService: NajlaaService,
@@ -81,6 +41,51 @@ export class PostCommunityuserComponent implements OnInit {
         this.fetchApprovedPosts();
       
     });
+  }
+  openPostModal() {
+    const postModal = new bootstrap.Modal(document.getElementById('PostModal') as HTMLElement);
+    postModal.show();
+  }
+
+  // دالة لمعالجة اختيار الملف
+  // دالة لمعالجة اختيار الملف
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  submitPost() {
+    const userId = Number(this.currentUserId);
+
+    // التحقق من تعبئة الحقول المطلوبة
+    if (!this.postTitle || !this.postTag || !this.postContent || !this.selectedFile) {
+      alert('Error: Please fill all fields and select an image.');
+      return;
+    }
+
+    // تجهيز بيانات المنشور
+    const postData = new FormData();
+    postData.append('UserId', userId.toString()); // Convert number to string
+    postData.append('Title', this.postTitle);
+    postData.append('Tag', this.postTag);
+    postData.append('Content', this.postContent);
+    postData.append('ImageFile', this.selectedFile);
+
+    // إرسال البيانات إلى السيرفر
+    this.najlaaService.addPost(postData).subscribe(
+      response => {
+        alert('Success: Post has been submitted successfully!');
+        this.postTitle = '';
+        this.postTag = '';
+        this.postContent = ''; // إعادة تعيين الحقول
+        this.selectedFile = null;
+        // إغلاق الـ Modal بعد النجاح
+        const postModal = bootstrap.Modal.getInstance(document.getElementById('PostModal') as HTMLElement);
+        postModal.hide();
+      },
+      error => {
+        alert('Error: There was an error submitting the post. Please try again.');
+      }
+    );
   }
 
   fetchApprovedPosts() {

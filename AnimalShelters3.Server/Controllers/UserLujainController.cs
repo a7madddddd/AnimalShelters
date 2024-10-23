@@ -168,7 +168,7 @@ namespace AnimalShelters3.Server.Controllers
                 animalBread=animal.Breed,
                 animalTemp= animal.Temperament,
 
-            }).Where(a=>a.userId == id).FirstOrDefault();
+            }).Where(a=>a.userId == id).ToList();
             return Ok(adoption);
         
         }
