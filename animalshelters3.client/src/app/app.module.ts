@@ -21,6 +21,7 @@ import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-pro
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
 import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/get-all-shelters.component';
 
 
 @NgModule({
@@ -43,9 +44,10 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
     AdoptionComponent,
     ProfileComponent,
     EditProfileComponent,
-    AddSheltersComponent
+    AddSheltersComponent,
     EditProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    GetAllSheltersComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -67,6 +69,7 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
+      { path: 'Admin', component: DashboardComponent },
 
 
 
