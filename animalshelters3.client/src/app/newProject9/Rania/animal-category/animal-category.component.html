@@ -25,7 +25,7 @@
                 <a href="animal-detail.html" class="title-1 h5 fw-600 mb-8">{{ animal.name }}</a>
                 <p class="mb-24">Age: {{ animal.age }} years, <br /> About: {{ animal.temperament }}</p>
                 <div class="pricing-blockk">
-                  <button class="adopt-btn">Adopt</button>
+                  <a [routerLink]="['/adoption', animal.animalId]" class="adopt-btn">Adopt</a>
                 </div>
               </div>
             </div>
