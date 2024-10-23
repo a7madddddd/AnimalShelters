@@ -28,7 +28,6 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
 
 @NgModule({
   declarations: [
-    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
@@ -36,25 +35,18 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
     HomeComponent,
     SheltersComponent,
     PostCommunityuserComponent,
-    HomeComponent,
     AnimalCategoryComponent,
     AboutUSComponent,
-    PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
-    PostCommunityuserComponent,
     AdoptionComponent,
     ProfileComponent,
     EditProfileComponent,
     AddSheltersComponent,
-    EditProfileComponent,
     DashboardComponent,
-    GetAllSheltersComponent
-    AddSheltersComponent,
-    DashboardComponent,
+    GetAllSheltersComponent,
     AnimalsComponent,
     DetailsComponent,
-    PostCommunityuserComponent,
     CategoriesComponent
   ],
   imports: [
