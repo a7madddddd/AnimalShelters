@@ -29,3 +29,12 @@ export interface ShelterDTO {
   verified?: boolean;
   createdAt?: string; // Or Date
 }
+
+export interface AdoptionApplication {
+  applicationId: number; // Strictly a number
+  userId?: number;       // Optional
+  animalId?: number;     // Optional
+  status?: string;       // Optional
+  submittedAt?: Date;    // Optional
+  message?: string;      // Optional
+}

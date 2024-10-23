@@ -111,5 +111,18 @@ export class A7madService {
   }
 
 
+
+
+
+  private apiUrl = 'https://localhost:7295/api/Adoption'; // Adjust the API URL
+
+
+  getAllAdoptions(): Observable<any[]> { // Use 'any' instead of a specific type
+    return this.http.get<any[]>(this.apiUrl);
   }
+
+  deleteAdoption(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+}
 

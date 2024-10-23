@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { A7madService } from '../../../../Services/a7mad.service';
-import { ShelterDTO } from '../../../../shared/interfaces'; // Adjust this path
+import { ShelterDTO } from '../../../../shared/interfaces'; 
 import Swal from 'sweetalert2';
 import { formatDate } from '@angular/common';
 
@@ -35,7 +35,7 @@ export class EditSheltersComponent implements OnInit {
       (shelter: ShelterDTO) => {
         this.animal = shelter;
 
-        // Format createdAt for the datetime-local input
+        
         if (this.animal.createdAt) {
           this.animal.createdAt = formatDate(this.animal.createdAt, 'yyyy-MM-ddTHH:mm', 'en-US');
         }
@@ -49,12 +49,12 @@ export class EditSheltersComponent implements OnInit {
   addShelters(data: ShelterDTO) {
     console.log('Submitted Data:', data);
 
-    // Ensure verified is a boolean
+    
     if (data.verified === undefined || typeof data.verified !== 'boolean') {
-      data.verified = false; // Default to false if undefined or not a boolean
+      data.verified = false; 
     }
 
-    // Directly pass the data object
+    
     this._ser.updateShelter(this.shelterId, data).subscribe(
       (response) => {
         Swal.fire({
@@ -105,7 +105,7 @@ export class EditSheltersComponent implements OnInit {
               text: 'Shelter has been deleted.',
               icon: 'success'
             }).then(() => {
-              this.router.navigate(['/adminDashboard/All Shelter']); // Navigate to the shelters list
+              this.router.navigate(['/adminDashboard/All Shelter']);
             });
           },
           (error) => {
