@@ -69,10 +69,15 @@ export class A7madService {
       })
     );
   }
+  //https://localhost:7295/api/
 
 
-  addShelters(data: any): Observable<any> { // Ensure it returns an Observable
-    return this.http.post(this.url, data);
+  private url2 = 'https://localhost:7295/api/Shelters/addShelter'; // Updated API URL
+
+
+  addShelters(data: any): Observable<any> {
+    // Send the data directly without wrapping it in another object
+    return this.http.post(this.url2, data);
   }
 
   }

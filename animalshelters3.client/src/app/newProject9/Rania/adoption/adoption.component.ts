@@ -51,9 +51,16 @@ export class AdoptionComponent implements OnInit {
     console.log('Animal:', this.animal);
 
     if (!this.userId || !this.animal) {
-      Swal.fire('Error!', 'User ID or animal details are missing.', 'error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'You have to log in before sending the application.',
+      }).then(() => {
+        this.router.navigate(['/Login']);
+      });
       return;
     }
+
 
     const application: AdoptionApplication = {
       userId: Number(this.userId),

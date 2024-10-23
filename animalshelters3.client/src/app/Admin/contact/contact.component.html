@@ -1,0 +1,32 @@
+<hr />
+<h2 class="text-center my-4">Contact Messages</h2> 
+<hr />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">User Name</th>
+      <th scope="col">User Email</th>
+      <th scope="col">The Message</th>
+      <th scope="col">Time Sent</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Replay</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let message of ConactArray">
+      <td>{{ message.name }}</td>
+      <td>{{ message.email }}</td>
+      <td>{{ message.message }}</td>
+      <td>{{ formatDate(message.createdAt) }}</td> 
+      <td>{{ message.phoneNum }}</td>
+      <td>
+        <button class="btn btn-success" (click)="openMail(message.email)">Click To Reply</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteContactById(message.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
