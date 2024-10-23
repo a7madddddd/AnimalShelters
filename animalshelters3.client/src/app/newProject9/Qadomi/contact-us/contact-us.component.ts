@@ -16,7 +16,7 @@ export class ContactUsComponent {
   }
 
   AddNewMessage(data: any) {
-    debugger
+    
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key])

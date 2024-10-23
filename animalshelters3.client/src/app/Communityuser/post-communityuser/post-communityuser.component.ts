@@ -16,15 +16,23 @@ export class PostCommunityuserComponent implements OnInit {
   postContent: string = ''; // محتوى المنشور
   selectedFile: File | null = null; // الملف المختار
 
+  approvedPosts: any[] = []; // List of approved posts
+  currentUserId: string | undefined; // Current logged-in user ID
+  selectedPost: any; // Post selected for viewing comments
+  newComment: string = ''; // Comment input field content
+  //newReply: { [key: number]: string } = {}; // New replies keyed by comment ID
+  postTitle: string = ''; // Post title
+  postTag: string = ''; // Post tag
+  errorMessage: string | undefined;
 
 
-  approvedPosts: any[] = [];
-  currentUserId: string | undefined;
-  selectedPost: any;
-  newComment: string = '';
-    errorMessage: string | undefined;
-    postTitle: string | undefined;
-    postTag: string | undefined;
+  //approvedPosts: any[] = [];
+  //currentUserId: string | undefined;
+  //selectedPost: any;
+  //newComment: string = '';
+  //  errorMessage: string | undefined;
+  //  postTitle: string | undefined;
+  //  postTag: string | undefined;
 
   constructor(
     private najlaaService: NajlaaService,
@@ -50,40 +58,33 @@ export class PostCommunityuserComponent implements OnInit {
   // دالة لمعالجة اختيار الملف
   // دالة لمعالجة اختيار الملف
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+    }
   }
 
+  // Method to submit a new post
   submitPost() {
+    debugger;
     const userId = Number(this.currentUserId);
 
-    // التحقق من تعبئة الحقول المطلوبة
-    if (!this.postTitle || !this.postTag || !this.postContent || !this.selectedFile) {
-      alert('Error: Please fill all fields and select an image.');
-      return;
-    }
+    const postData = {
+      userId: userId,
+      title: this.postTitle,
+      content: this.postContent,
+      tag: this.postTag,
+      file: this.selectedFile
+    };
 
-    // تجهيز بيانات المنشور
-    const postData = new FormData();
-    postData.append('UserId', userId.toString()); // Convert number to string
-    postData.append('Title', this.postTitle);
-    postData.append('Tag', this.postTag);
-    postData.append('Content', this.postContent);
-    postData.append('ImageFile', this.selectedFile);
-
-    // إرسال البيانات إلى السيرفر
     this.najlaaService.addPost(postData).subscribe(
       response => {
-        alert('Success: Post has been submitted successfully!');
-        this.postTitle = '';
-        this.postTag = '';
-        this.postContent = ''; // إعادة تعيين الحقول
-        this.selectedFile = null;
-        // إغلاق الـ Modal بعد النجاح
-        const postModal = bootstrap.Modal.getInstance(document.getElementById('PostModal') as HTMLElement);
-        postModal.hide();
+        console.log('Post submitted successfully:', response);
+        this.fetchApprovedPosts(); // Refresh the post list
+        bootstrap.Modal.getInstance(document.getElementById('PostModal')).hide(); // Close modal
       },
       error => {
-        alert('Error: There was an error submitting the post. Please try again.');
+        console.error('Error submitting post:', error);
+        this.errorMessage = 'Failed to submit post.';
       }
     );
   }
