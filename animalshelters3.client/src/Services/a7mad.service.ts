@@ -106,5 +106,10 @@ export class A7madService {
     return this.http.put<any>(`${this.url}Shelters/${id}`, shelter);
   }
 
+  deleteShelter(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}Shelters/${id}`);
+  }
+
+
   }
 

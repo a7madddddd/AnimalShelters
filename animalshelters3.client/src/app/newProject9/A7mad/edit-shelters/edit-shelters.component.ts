@@ -45,6 +45,7 @@ export class EditSheltersComponent implements OnInit {
       }
     );
   }
+
   addShelters(data: ShelterDTO) {
     console.log('Submitted Data:', data);
 
@@ -62,7 +63,7 @@ export class EditSheltersComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
-          this.router.navigate(['/shelters']);
+          this.router.navigate(['/adminDashboard/All Shelter']);
         });
       },
       (error) => {
@@ -87,5 +88,37 @@ export class EditSheltersComponent implements OnInit {
     );
   }
 
-
+  deleteShelter() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._ser.deleteShelter(this.shelterId).subscribe(
+          () => {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Shelter has been deleted.',
+              icon: 'success'
+            }).then(() => {
+              this.router.navigate(['/adminDashboard/All Shelter']); // Navigate to the shelters list
+            });
+          },
+          (error) => {
+            console.error("Error occurred: ", error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error deleting the shelter.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        );
+      }
+    });
+  }
 }
