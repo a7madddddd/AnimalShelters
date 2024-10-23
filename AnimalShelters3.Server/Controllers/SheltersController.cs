@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalShelters3.Server.Models;
+using AnimalShelters3.Server.DTOs;
 
 namespace AnimalShelters3.Server.Controllers
 {
@@ -74,14 +75,26 @@ namespace AnimalShelters3.Server.Controllers
 
         // POST: api/Shelters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
+        [HttpPost("addShelter")]
+        public async Task<ActionResult<Shelter>> PostShelter(ShelterDTO shelterDto)
         {
+            // Map DTO to Entity
+            var shelter = new Shelter
+            {
+                Name = shelterDto.Name,
+                Address = shelterDto.Address,
+                Phone = shelterDto.Phone,
+                Email = shelterDto.Email,
+                Verified = shelterDto.Verified,
+                CreatedAt = shelterDto.CreatedAt ?? DateTime.UtcNow // Set CreatedAt to now if not provided
+            };
+
             _context.Shelters.Add(shelter);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetShelter", new { id = shelter.ShelterId }, shelter);
         }
+
 
         // DELETE: api/Shelters/5
         [HttpDelete("{id}")]

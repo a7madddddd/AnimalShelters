@@ -17,14 +17,17 @@ import { AnimalCategoryComponent } from './newProject9/Rania/animal-category/ani
 import { LoginComponent } from './newProject9/Lujain/login/LoginComponent';
 import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.component';
 import { ProfileComponent } from './newProject9/Lujain/profile/profile.component';
-import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
+import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/get-all-shelters.component';
+import { DetailsComponent } from './newProject9/Lujain/details/details.component';
+import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
+import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 
 
 @NgModule({
   declarations: [
-    AnimalsComponent,
     AppComponent,
     RegesterComponent,
     NavBarComponent,
@@ -32,17 +35,19 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
     HomeComponent,
     SheltersComponent,
     PostCommunityuserComponent,
-    HomeComponent,
     AnimalCategoryComponent,
     AboutUSComponent,
-    PostCommunityuserComponent,
     ContactUsComponent,
     LoginComponent,
-    PostCommunityuserComponent,
     AdoptionComponent,
     ProfileComponent,
     EditProfileComponent,
-    DashboardComponent
+    AddSheltersComponent,
+    DashboardComponent,
+    GetAllSheltersComponent,
+    AnimalsComponent,
+    DetailsComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -55,6 +60,7 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
       { path: 'Login', component: LoginComponent },
       { path: 'Profile', component: ProfileComponent },
       { path: 'EditProfile/:id', component: EditProfileComponent },
+      { path: 'details/:id', component: DetailsComponent },
 
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animal/:shelterId', component: AnimalCategoryComponent },
@@ -63,6 +69,8 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
       { path: 'Shelters', component: SheltersComponent },
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
+      { path: 'Add Shelters', component: AddSheltersComponent },
+      { path: 'Admin', component: DashboardComponent },
 
 
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace AnimalShelters3.Server.Controllers
@@ -149,9 +150,52 @@ namespace AnimalShelters3.Server.Controllers
             return Ok(adoption);
         }
 
+        [HttpGet("AdoptionByUserId/{id}")]
+        public IActionResult addoptionId(int id) { 
+        
+        var adoption = _db.AdoptionApplications.Join(_db.Animals,
+            adoption=>adoption.AnimalId,
+            animal=>animal.AnimalId,
+            (adoption,animal) => new
+            {
+                applicationId=adoption.ApplicationId,
+                userId=adoption.UserId,
+                status=adoption.Status,
+                submittedAt=adoption.SubmittedAt,
+                message=adoption.Message,
+                animalName= animal.Name,
+                animalAge=animal.Age,
+                animalBread=animal.Breed,
+                animalTemp= animal.Temperament,
+
+            }).Where(a=>a.userId == id).FirstOrDefault();
+            return Ok(adoption);
+        
+        }
 
 
 
+        [HttpGet("FromId/{id}")]
+        public IActionResult FormId(int id)
+        {
+            var formId= _db.AdoptionApplications.Join(_db.Animals,
+            adoption => adoption.AnimalId,
+            animal => animal.AnimalId,
+            (adoption, animal) => new
+            {
+                applicationId = adoption.ApplicationId,
+                userId = adoption.UserId,
+                status = adoption.Status,
+                submittedAt = adoption.SubmittedAt,
+                message = adoption.Message,
+                animalName = animal.Name,
+                animalAge = animal.Age,
+                animalBread = animal.Breed,
+                animalTemp = animal.Temperament,
+
+            }).Where(a=>a.applicationId == id).FirstOrDefault();
+            return Ok(formId);
+        }
 
 
 
