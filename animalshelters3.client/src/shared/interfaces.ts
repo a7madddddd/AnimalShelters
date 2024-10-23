@@ -13,6 +13,6 @@ export interface Animal {
 
 export interface Category {
   categoryId: number;  // ID of the category
-  name: string;        // Name of the category
+  Species: string;        // Name of the category
   description?: string; // Optional description field
 }

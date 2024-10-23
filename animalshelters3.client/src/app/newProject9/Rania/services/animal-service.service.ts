@@ -59,4 +59,10 @@ export class AnimalService {
     return this.http.post<AdoptionApplication>(`https://localhost:7295/api/Adoption`, application);
   }
  
+  getAnimalsByCategory(categoryId: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`https://localhost:7295/api/Animal/byCategory/${categoryId}`);
+  }
+
+
+
 }

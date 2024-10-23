@@ -9,7 +9,7 @@ import { LujainServiceService } from '../LujainService/lujain-service.service';
 })
 export class EditProfileComponent implements OnInit {
   @Input() user: any;
-  @Output() userUpdated = new EventEmitter<any>(); // Add this line
+  @Output() userUpdated = new EventEmitter<any>(); 
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
 
@@ -56,7 +56,6 @@ export class EditProfileComponent implements OnInit {
         console.log('Profile updated successfully:', response);
         alert("Profile updated successfully");
 
-        // Emit the updated user data back to the parent
         this.userUpdated.emit({ ...this.user, image: this.imagePreview });
       },
       (error: HttpErrorResponse) => {
