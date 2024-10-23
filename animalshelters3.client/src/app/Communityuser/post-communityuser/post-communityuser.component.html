@@ -1,4 +1,4 @@
-<!--<section class="title-banner mb-80">
+<section class="title-banner mb-80">
   <div class="container-fluid-2">
     <div class="title-wrapper">
       <div class="row align-items-center">
@@ -17,9 +17,10 @@
   </div>
 </section>
 
-<!--<button class="btn btn-sm" style="color: white; background-color: black; border-radius: 20px;" (click)="openPostModal()">
+<!-- زر فتح الـ Modal -->
+<button class="btn btn-sm" style="color: white; background-color: black; border-radius: 20px;" (click)="openPostModal()">
   <i class="bi fa-biking-mountain"></i> Post
-</button>-->
+</button>
 
 <!-- قائمة المنشورات -->
 <div class="container mt-4">
@@ -55,8 +56,11 @@
 </div>
 
 <!-- نافذة إنشاء المنشور -->
-<!--<div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="PostModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- نافذة الـ Modal -->
+<!-- نافذة الـ Modal -->
+<div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="PostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!-- إضافة الصنف modal-lg هنا -->
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="PostModalLabel">Create a Post</h5>
@@ -65,19 +69,28 @@
       <div class="modal-body">
         <form (ngSubmit)="submitPost()">
           <div class="mb-3">
+            <label for="postTitle" class="form-label">Post Title</label>
+            <input id="postTitle" type="text" class="form-control" [(ngModel)]="postTitle" name="postTitle" required />
+          </div>
+          <div class="mb-3">
+            <label for="postTag" class="form-label">Post Tag</label>
+            <input id="postTag" type="text" class="form-control" [(ngModel)]="postTag" name="postTag" required />
+          </div>
+          <div class="mb-3">
             <label for="postContent" class="form-label">Post Content</label>
             <textarea id="postContent" class="form-control" [(ngModel)]="postContent" name="postContent" required></textarea>
           </div>
           <div class="mb-3">
             <label for="postImage" class="form-label">Upload Image</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" />
+            <input type="file" id="postImage" class="form-control" (change)="onFileSelected($event)" accept="image/*" required />
           </div>
           <button type="submit" class="btn btn-primary">Submit Post</button>
         </form>
       </div>
     </div>
   </div>
-</div>-->
+</div>
+
 
 <!-- نافذة عرض التعليقات والردود -->
 <div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
@@ -142,7 +155,7 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 
 <!-- نافذة مشاركة المنشور -->
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
