@@ -56,8 +56,7 @@
 </div>
 
 <!-- نافذة إنشاء المنشور -->
-<!-- نافذة الـ Modal -->
-<!-- نافذة الـ Modal -->
+
 <div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="PostModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <!-- إضافة الصنف modal-lg هنا -->
@@ -82,7 +81,8 @@
           </div>
           <div class="mb-3">
             <label for="postImage" class="form-label">Upload Image</label>
-            <input type="file" id="postImage" class="form-control" (change)="onFileSelected($event)" accept="image/*" required />
+            <br />
+            <input type="file" id="postImage" class="form-control" (change)="onFileSelected($event)" accept="image/*" />
           </div>
           <button type="submit" class="btn btn-primary">Submit Post</button>
         </form>
