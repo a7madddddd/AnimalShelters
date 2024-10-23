@@ -24,6 +24,7 @@ import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/ge
 import { DetailsComponent } from './newProject9/Lujain/details/details.component';
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
+import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
     GetAllSheltersComponent,
     AnimalsComponent,
     DetailsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    EditSheltersComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
