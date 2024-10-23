@@ -48,7 +48,7 @@ import { CategoriesComponent } from './newProject9/Rania/categories/categories.c
     AddSheltersComponent,
     DashboardComponent,
     AnimalsComponent,
-    DetailsComponent
+    DetailsComponent,
     PostCommunityuserComponent,
     CategoriesComponent
   ],
