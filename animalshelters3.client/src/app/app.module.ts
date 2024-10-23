@@ -19,6 +19,7 @@ import { ContactUsComponent } from './newProject9/Qadomi/contact-us/contact-us.c
 import { ProfileComponent } from './newProject9/Lujain/profile/profile.component';
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component';
+import { AddSheltersComponent } from './newProject9/A7mad/add-shelters/add-shelters.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
     PostCommunityuserComponent,
     AdoptionComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    AddSheltersComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -61,6 +63,7 @@ import { AnimalsComponent } from './newProject9/A7mad/animals/animals.component'
       { path: 'Shelters', component: SheltersComponent },
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
+      { path: 'Add Shelters', component: AddSheltersComponent },
 
 
 

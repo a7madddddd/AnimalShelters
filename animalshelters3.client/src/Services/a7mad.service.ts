@@ -69,4 +69,11 @@ export class A7madService {
       })
     );
   }
-}
+
+
+  addShelters(data: any): Observable<any> { // Ensure it returns an Observable
+    return this.http.post(this.url, data);
+  }
+
+  }
+
