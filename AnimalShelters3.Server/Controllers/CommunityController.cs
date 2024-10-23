@@ -97,6 +97,7 @@ namespace AnimalShelters3.Server.Controllers
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
+                            .ThenInclude(r => r.User) // إضافة المستخدم للردود
                     .Include(p => p.Likes)
                     .ToListAsync();
 
@@ -120,11 +121,13 @@ namespace AnimalShelters3.Server.Controllers
                         Id = comment.Id,
                         Content = comment.Content,
                         UserId = comment.UserId,
+                        UserName = comment.User.UserName, // إضافة اسم المستخدم للتعليق
                         Replies = comment.Replies.Select(reply => new ReplyDto
                         {
                             Id = reply.Id,
                             Content = reply.Content,
-                            UserId = reply.UserId
+                            UserId = reply.UserId,
+                            UserName = reply.User.UserName // إضافة اسم المستخدم للرد
                         }).ToList()
                     }).ToList()
                 }).ToList();
@@ -147,6 +150,7 @@ namespace AnimalShelters3.Server.Controllers
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
+                            .ThenInclude(r => r.User) // إضافة المستخدم للردود
                     .Include(p => p.Likes)
                     .ToListAsync();
 
@@ -170,11 +174,13 @@ namespace AnimalShelters3.Server.Controllers
                         Id = comment.Id,
                         Content = comment.Content,
                         UserId = comment.UserId,
+                        UserName = comment.User.UserName, // إضافة اسم المستخدم للتعليق
                         Replies = comment.Replies.Select(reply => new ReplyDto
                         {
                             Id = reply.Id,
                             Content = reply.Content,
-                            UserId = reply.UserId
+                            UserId = reply.UserId,
+                            UserName = reply.User.UserName // إضافة اسم المستخدم للرد
                         }).ToList()
                     }).ToList()
                 }).ToList();
@@ -186,7 +192,6 @@ namespace AnimalShelters3.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving rejected posts: {ex.Message}");
             }
         }
-
         [HttpGet("getAllPendingPosts")]
         public async Task<IActionResult> GetAllPendingPosts()
         {
@@ -197,6 +202,7 @@ namespace AnimalShelters3.Server.Controllers
                     .Include(p => p.User)
                     .Include(p => p.Comments)
                         .ThenInclude(c => c.Replies)
+                            .ThenInclude(r => r.User) // إضافة المستخدم للردود
                     .Include(p => p.Likes)
                     .ToListAsync();
 
@@ -220,11 +226,13 @@ namespace AnimalShelters3.Server.Controllers
                         Id = comment.Id,
                         Content = comment.Content,
                         UserId = comment.UserId,
+                        UserName = comment.User.UserName, // إضافة اسم المستخدم للتعليق
                         Replies = comment.Replies.Select(reply => new ReplyDto
                         {
                             Id = reply.Id,
                             Content = reply.Content,
-                            UserId = reply.UserId
+                            UserId = reply.UserId,
+                            UserName = reply.User.UserName // إضافة اسم المستخدم للرد
                         }).ToList()
                     }).ToList()
                 }).ToList();
@@ -236,7 +244,6 @@ namespace AnimalShelters3.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving pending posts: {ex.Message}");
             }
         }
-
 
 
         [HttpPost("addComment")]

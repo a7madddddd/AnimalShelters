@@ -34,5 +34,16 @@ export class NajlaaService {
     const comment = { postId, userId, content };
     return this.http.post(`${this.baseUrl}/Community/addComment`, comment);
   }
+  addPost(postData: any): Observable<any> {
+    const formData = new FormData();
+    formData.append('title', postData.title);
+    formData.append('content', postData.content);
+    formData.append('tag', postData.tag);
+    if (postData.file) {
+      formData.append('file', postData.file, postData.file.name);  // إضافة الملف إلى FormData
+    } 
 
+
+    return this.http.post(`${this.baseUrl}Community/createPost`, formData);  // يجب أن يتعامل API مع FormData
+  }
 }

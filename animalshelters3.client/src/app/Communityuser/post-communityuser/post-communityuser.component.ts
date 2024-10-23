@@ -13,6 +13,52 @@ declare var bootstrap: any;
   styleUrls: ['./post-communityuser.component.css']
 })
 export class PostCommunityuserComponent implements OnInit {
+  //openPostModal() {
+  //  console.log('تم فتح النافذة المنبثقة');
+  //  // هنا يمكنك إضافة الكود الذي يقوم بفتح الـ modal 
+  //}
+
+  //postContent: string = '';  // محتوى المنشور
+  //postTitle: string = '';     // عنوان المنشور
+  //postTag: string = '';       // علامة المنشور
+  //selectedFile: File | null = null;  // الملف المختار
+
+  //// دالة لمعالجة إضافة المنشور
+  //createPost(form: any) {
+  //  if (!this.postContent || !this.postTitle || !this.postTag) {
+  //    alert('الرجاء ملء جميع الحقول.');  // يمكنك استخدام SweetAlert بدلاً من alert
+  //    return;
+  //  }
+
+  //  const postData = {
+  //    title: this.postTitle,
+  //    content: this.postContent,
+  //    tag: this.postTag,
+  //    file: this.selectedFile  // يمكنك تعديل ذلك حسب كيفية التعامل مع الملف في API
+  //  };
+
+  //  this.najlaaService.addPost(postData).subscribe(
+  //    (response: any) => {
+  //      console.log('Post created successfully:', response);
+  //      // إعادة تعيين الحقول
+  //      this.postContent = '';
+  //      this.postTitle = '';
+  //      this.postTag = '';
+  //      this.selectedFile = null;
+  //      // يمكنك إغلاق المودال هنا إذا كنت تستخدم Bootstrap
+  //      // $('#PostModal').modal('hide');  // استخدم jQuery لإغلاق المودال إذا لزم الأمر
+  //    },
+  //    (error: any) => {
+  //      console.error('Error creating post:', error);
+  //      alert('حدث خطأ أثناء إنشاء المنشور. حاول مرة أخرى.');  // يمكنك استخدام SweetAlert بدلاً من alert
+  //    }
+  //  );
+  //}
+
+  //// دالة لاختيار الملف
+  //onFileSelected(event: any) {
+  //  this.selectedFile = event.target.files[0];  // تخزين الملف المختار
+  //}
 
   approvedPosts: any[] = [];
   currentUserId: string | undefined;
@@ -140,6 +186,11 @@ export class PostCommunityuserComponent implements OnInit {
 
   shareOnWhatsApp(post: any) {
     this.shareOnPlatform('whatsapp', post.id);
+  }
+  openCommentsModal(post: any) {
+    this.selectedPost = post; // Set the selected post for the modal
+    const commentsModal = new bootstrap.Modal(document.getElementById('commentsModal') as HTMLElement);
+    commentsModal.show();
   }
 
   shareOnFacebook(post: any) {
