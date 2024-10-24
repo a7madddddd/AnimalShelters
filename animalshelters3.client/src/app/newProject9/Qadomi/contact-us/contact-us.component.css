@@ -4,11 +4,13 @@
   position: relative;
   right: 0.65em; 
 }
-.relative-right-phone[_ngcontent-ng-c639657812] {
+
+
+h6.fw-700.mb-8.relative-right {
+  position: relative;
+  right: 7.5em;
+}
+h6.fw-700.mb-8.relative-right-phone {
   position: relative;
   right: 2.55em;
-}
-.relative-right[_ngcontent-ng-c639657812] {
-  position: relative;
-  right: 7.45em;
 }

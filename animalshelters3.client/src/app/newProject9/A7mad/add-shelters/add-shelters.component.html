@@ -5,7 +5,12 @@
         <div class="form-container">
           <form class="contact-form" #addNewShelter="ngForm" (ngSubmit)="addShelters(addNewShelter.value)" novalidate>
             <div class="form-wrapper bg-ter p-24 br-12">
-              <h4 class="fw-700 medium-black mb-12">Add Shelter</h4>
+              <h2 class="text-center my-4 d-flex flex-column align-items-center">
+                <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+                  <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3">
+                  <span>Add Shelter</span>
+                </a>
+              </h2>
               <div class="row row-gap-3">
                 <div class="col-md-6">
                   <div class="input-block">
