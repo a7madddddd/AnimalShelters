@@ -69,10 +69,10 @@ export class A7madService {
       })
     );
   }
-  //https://localhost:7295/api/
+  //https://localhost:44354/api/
 
 
-  private url2 = 'https://localhost:7295/api/Shelters/addShelter'; // Updated API URL
+  private url2 = 'https://localhost:44354/api/Shelters/addShelter'; // Updated API URL
 
 
   addShelters(data: any): Observable<any> {
