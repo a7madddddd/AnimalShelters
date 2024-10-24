@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { QadomiService } from '../../../Services/qadomi.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-contact',
@@ -23,11 +25,28 @@ export class ContactComponent {
   }
 
   deleteContactById(id: any) {
-    this._ser.deletContact(id).subscribe(() => {
-      alert("This message deleted successfully");
-      this.ReplayContact();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._ser.deletContact(id).subscribe(() => {
+          Swal.fire(
+            'Deleted!',
+            'This message has been deleted successfully.',
+            'success'
+          );
+          this.ReplayContact();
+        });
+      }
     });
   }
+
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
