@@ -4,6 +4,15 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
+export interface ShelterDTO {
+
+  name: string;
+  address?: string;
+  phone?: string;
+  email: string;
+  verified?: boolean;
+  createdAt?: string; // Or Date
+}
 
 
 
@@ -48,7 +57,7 @@ export interface Animal {
   providedIn: 'root'
 })
 export class A7madService {
-  private url = 'https://localhost:44354/api/';
+  private url = 'https://localhost:7295/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -80,5 +89,40 @@ export class A7madService {
     return this.http.post(this.url2, data);
   }
 
+
+  getAllSheltersAdmin(): Observable<any> {
+
+    return this.http.get<any>(`${this.url}Shelters`)
   }
+
+  //https://localhost:7295/api/Shelters/11
+
+
+  getShelterById(id: number): Observable<ShelterDTO> {
+    return this.http.get<ShelterDTO>(`${this.url}Shelters/${id}`);
+  }
+
+  updateShelter(id: number, shelter: ShelterDTO): Observable<any> {
+    return this.http.put<any>(`${this.url}Shelters/${id}`, shelter);
+  }
+
+  deleteShelter(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}Shelters/${id}`);
+  }
+
+
+
+
+
+  private apiUrl = 'https://localhost:7295/api/Adoption'; // Adjust the API URL
+
+
+  getAllAdoptions(): Observable<any[]> { // Use 'any' instead of a specific type
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  deleteAdoption(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+}
 

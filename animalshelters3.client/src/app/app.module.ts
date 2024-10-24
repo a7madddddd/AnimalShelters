@@ -26,6 +26,9 @@ import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-pro
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 import { ContactComponent } from './Admin/contact/contact.component';
+//import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.';
+import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
+import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { ContactComponent } from './Admin/contact/contact.component';
     CategoriesComponent,
     EditSheltersComponent,
     CategoriesComponent,
-    ContactComponent
+    ContactComponent,
+    //AdminAdoptionComponent,
+    AllAdoptionsComponent,
+    EditAdoptionComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -83,11 +89,16 @@ import { ContactComponent } from './Admin/contact/contact.component';
 
 
 
-      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
-          { path: 'ContactAdmin', component: ContactComponent }
+          { path: 'Add Shelters', component: AddSheltersComponent },
+          { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'All Shelter', component: GetAllSheltersComponent },
+          { path: 'Edit Shelter/:id', component: EditSheltersComponent },
+          { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
+          { path: 'All Adoption', component: AllAdoptionsComponent },
         ]
       }
 

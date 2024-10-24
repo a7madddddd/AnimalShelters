@@ -7,7 +7,7 @@ import { Animal } from '../../../../shared/interfaces';
   providedIn: 'root'
 })
 export class CategoryServiceService {
-  private apiUrl = 'https://localhost:44354/api/Category';  // Adjust the API URL as needed
+  private apiUrl = 'https://localhost:7295/api/Category';  // Adjust the API URL as needed
 
   constructor(private http: HttpClient) { }
 

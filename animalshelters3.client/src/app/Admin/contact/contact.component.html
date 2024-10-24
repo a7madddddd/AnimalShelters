@@ -1,5 +1,11 @@
-<hr />
-<h2 class="text-center my-4">Contact Messages</h2> 
+<h2 class="text-center my-4 d-flex flex-column align-items-center">
+  <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+    <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3"> 
+    <span>Contact Messages</span> 
+  </a>
+</h2>
+
+
 <hr />
 
 <table class="table table-striped">
@@ -19,7 +25,7 @@
       <td>{{ message.name }}</td>
       <td>{{ message.email }}</td>
       <td>{{ message.message }}</td>
-      <td>{{ formatDate(message.createdAt) }}</td> 
+      <td>{{ formatDate(message.createdAt) }}</td>
       <td>{{ message.phoneNum }}</td>
       <td>
         <button class="btn btn-success" (click)="openMail(message.email)">Click To Reply</button>
