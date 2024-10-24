@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LujainServiceService } from '../LujainService/lujain-service.service';
 import jsPDF from 'jspdf'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-details',
@@ -31,12 +32,14 @@ export class DetailsComponent {
       },
       (error) => {
         console.error('Error fetching adoption details:', error);
-        alert('Failed to fetch adoption details: ' + (error.error.message || 'An error occurred.'));
+        Swal.fire({ 
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to fetch adoption details: ' + (error.error.message || 'An error occurred.')
+        });
       }
     );
   }
-
-
 
   downloadPDF(): void {
     const doc = new jsPDF();
@@ -56,5 +59,6 @@ export class DetailsComponent {
     doc.save(`adoption_application_${this.adoptionDataDetails.applicationId}.pdf`);
   }
 }
+
 
 

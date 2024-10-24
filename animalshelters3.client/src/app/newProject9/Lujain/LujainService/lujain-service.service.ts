@@ -18,6 +18,13 @@ export class LujainServiceService {
     return this.http.post<any>(`${this.staticData}/UserLujain/Login`, data)
   }
 
+  LoginAdmin(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/UserLujain/LoginAdmin`, data)
+  }
+
+  withdrawApplication(applicationId: number): Observable<any> {
+    return this.http.delete(`${this.staticData}/UserLujain/${applicationId}`);
+  }
   getUser(id: number): Observable<any> {
     return this.http.get<any>(`${this.staticData}/UserLujain/${id}`);
   }
@@ -33,5 +40,9 @@ export class LujainServiceService {
 
   getAdoptionAppDetails(appId: number): Observable<any> {
     return this.http.get<any>(`${this.staticData}/UserLujain/FromId/${appId}`);
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/UserLujain`);
   }
 }

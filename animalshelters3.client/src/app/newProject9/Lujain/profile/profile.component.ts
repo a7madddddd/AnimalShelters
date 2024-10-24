@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LujainServiceService } from '../LujainService/lujain-service.service';
 import { BehaviorSubjectService } from '../BehaviorSubject/behavior-subject.service';
 import jsPDF from 'jspdf';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 @Component({
   selector: 'app-profile',
@@ -35,14 +36,23 @@ export class ProfileComponent implements OnInit {
         }
       },
       (error) => {
-        console.error("Login Error:", error);
-        alert("Login failed: " + (error.error.message || "An error occurred."));
+        console.error("Error fetching user details:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: "Failed to fetch user details: " + (error.error.message || "An error occurred.")
+        });
       }
     );
   }
 
   handleUserUpdate(updatedUser: any) {
     this.user = { ...this.user, ...updatedUser };
+    Swal.fire({
+      icon: 'success',
+      title: 'Profile Updated',
+      text: 'Your profile has been updated successfully.'
+    });
   }
 
   getAdoption(userId: number): void {
@@ -53,7 +63,11 @@ export class ProfileComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching adoption data:', error);
-        alert('Failed to fetch adoption data: ' + (error.error.message || 'An error occurred.'));
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to fetch adoption data: ' + (error.error.message || 'An error occurred.')
+        });
       }
     );
   }
@@ -74,5 +88,47 @@ export class ProfileComponent implements OnInit {
     doc.text(`Submitted At: ${new Date(application.submittedAt).toLocaleString()}`, 14, 110);
 
     doc.save(`adoption_application_${application.applicationId}.pdf`);
+
+    // SweetAlert for successful PDF download
+    Swal.fire({
+      icon: 'success',
+      title: 'Download Successful',
+      text: 'Your adoption application details have been downloaded.'
+    });
+  }
+
+
+  withdrawApplication(applicationId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, withdraw it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._ser.withdrawApplication(applicationId).subscribe(
+          () => {
+            Swal.fire(
+              'Withdrawn!',
+              'Your application has been withdrawn.',
+              'success'
+            );
+            // Optionally refresh the adoption data or navigate
+            this.getAdoption(Number(this.behaviorSubjectService.getUserId()));
+          },
+          (error) => {
+            console.error('Error withdrawing application:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Failed to withdraw application: ' + (error.error.message || 'An error occurred.')
+            });
+          }
+        );
+      }
+    });
   }
 }

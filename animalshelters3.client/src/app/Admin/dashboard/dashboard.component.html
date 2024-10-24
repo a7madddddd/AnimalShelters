@@ -1,121 +1,125 @@
-<div class="container-fluid" style="border-radius:20px">
-  <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary" style="border-radius:10px; padding-top:20px ">
-      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <img src="assets/images/logo.svg" alt="">
-        </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
-          <!-- All Users -->
-          <li class="nav-item">
-            <a routerLink="/adminDashboard/allusers" class="nav-link text-white align-middle px-0">
-              <i class="fs-4 bi-house"></i>
-              <span class="ms-1 d-none d-sm-inline">All Users</span>
-            </a>
-          </li>
+<ng-container *ngIf="isLoggedIn;">
 
-          <!-- Gyms & Fitness Dropdown -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#gymMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="gymMenu">
-              <i class="fs-4 bi-house"></i>
-              <span class="ms-1 d-none d-sm-inline">Gyms & Fitness</span>
-            </a>
-            <div class="collapse" id="gymMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/Dashboard/addgym" class="dropdown-item text-white">Add Gym</a></li>
-                <li><a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item text-white">All Gyms</a></li>
-                <li><a routerLink="/Dashboard/addfitness" class="dropdown-item text-white">Add Fitness</a></li>
-                <li><a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item text-white">All Fitness</a></li>
-              </ul>
-            </div>
-          </li>
+  <div class="container-fluid" style="border-radius:20px">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary" style="border-radius:10px; padding-top:20px ">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <img src="assets/images/logo.svg" alt="">
+          </a>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
+            <!-- All Users -->
+            <li class="nav-item">
+              <a routerLink="/adminDashboard/AllUsers" class="nav-link text-white align-middle px-0">
+                <i class="fs-4 bi-house"></i>
+                <span class="ms-1 d-none d-sm-inline">All Users</span>
+              </a>
+            </li>
 
-          <!-- Nutrition Management -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#nutritionMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="nutritionMenu">
-              <i class="fs-4 bi-speedometer2"></i>
-              <span class="ms-1 d-none d-sm-inline">Nutrition</span>
-            </a>
-            <div class="collapse" id="nutritionMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/Dashboard/RecipeAdmin" class="dropdown-item text-white">Recipe</a></li>
-                <li><a routerLink="/Dashboard/SubRecipeAdmin" class="dropdown-item text-white">Subrecipes</a></li>
-                <li><a routerLink="/Dashboard/TipsAdmin" class="dropdown-item text-white">Tips</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <!-- Products & Categories -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#submenu3" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="submenu3">
-              <i class="fs-4 bi-grid"></i>
-              <span class="ms-1 d-none d-sm-inline">Shop</span>
-            </a>
-            <div class="collapse" id="submenu3">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/Dashboard/products" class="dropdown-item text-white">All Products</a></li>
-                <li><a routerLink="/Dashboard/addproduct" class="dropdown-item text-white">Add New Product</a></li>
-                <li><a routerLink="/Dashboard/admin-category" class="dropdown-item text-white">Categories</a></li>
-                <li><a routerLink="/Dashboard/manage-orders" class="dropdown-item text-white">Orders</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Gyms & Fitness Dropdown -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#gymMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="gymMenu">
+                <i class="fs-4 bi-house"></i>
+                <span class="ms-1 d-none d-sm-inline">Gyms & Fitness</span>
+              </a>
+              <div class="collapse" id="gymMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/Dashboard/addgym" class="dropdown-item text-white">Add Gym</a></li>
+                  <li><a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item text-white">All Gyms</a></li>
+                  <li><a routerLink="/Dashboard/addfitness" class="dropdown-item text-white">Add Fitness</a></li>
+                  <li><a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item text-white">All Fitness</a></li>
+                </ul>
+              </div>
+            </li>
 
 
-          <!-- Testimonial -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#TestimonialMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="TestimonialMenu">
-              <i class="fs-4 bi-house"></i>
-              <span class="ms-1 d-none d-sm-inline">Testimonial</span>
-            </a>
-            <div class="collapse" id="TestimonialMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/Dashboard/TestimonialAdmin" class="dropdown-item text-white">ِAccept Testimonial</a></li>
-                <li><a routerLink="/Dashboard/AllTestimonial" class="dropdown-item text-white">All Accepted Testimonial</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Nutrition Management -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#nutritionMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="nutritionMenu">
+                <i class="fs-4 bi-speedometer2"></i>
+                <span class="ms-1 d-none d-sm-inline">Nutrition</span>
+              </a>
+              <div class="collapse" id="nutritionMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/Dashboard/RecipeAdmin" class="dropdown-item text-white">Recipe</a></li>
+                  <li><a routerLink="/Dashboard/SubRecipeAdmin" class="dropdown-item text-white">Subrecipes</a></li>
+                  <li><a routerLink="/Dashboard/TipsAdmin" class="dropdown-item text-white">Tips</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Products & Categories -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#submenu3" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="submenu3">
+                <i class="fs-4 bi-grid"></i>
+                <span class="ms-1 d-none d-sm-inline">Shop</span>
+              </a>
+              <div class="collapse" id="submenu3">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/Dashboard/products" class="dropdown-item text-white">All Products</a></li>
+                  <li><a routerLink="/Dashboard/addproduct" class="dropdown-item text-white">Add New Product</a></li>
+                  <li><a routerLink="/Dashboard/admin-category" class="dropdown-item text-white">Categories</a></li>
+                  <li><a routerLink="/Dashboard/manage-orders" class="dropdown-item text-white">Orders</a></li>
+                </ul>
+              </div>
+            </li>
+
+
+            <!-- Testimonial -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#TestimonialMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="TestimonialMenu">
+                <i class="fs-4 bi-house"></i>
+                <span class="ms-1 d-none d-sm-inline">Testimonial</span>
+              </a>
+              <div class="collapse" id="TestimonialMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/Dashboard/TestimonialAdmin" class="dropdown-item text-white">ِAccept Testimonial</a></li>
+                  <li><a routerLink="/Dashboard/AllTestimonial" class="dropdown-item text-white">All Accepted Testimonial</a></li>
+                </ul>
+              </div>
+            </li>
 
 
 
 
-          <!--<li class="nav-item">
-            <a routerLink="/Dashboard/TestimonialAdmin" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Testimonial</span>
-            </a>
-          </li>-->
-          <!-- Contact -->
-          <li class="nav-item">
-            <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Contact</span>
-            </a>
-          </li>
+            <!--<li class="nav-item">
+              <a routerLink="/Dashboard/TestimonialAdmin" class="nav-link text-white px-0 align-middle">
+                <i class="fs-4 bi-table"></i>
+                <span class="ms-1 d-none d-sm-inline">Testimonial</span>
+              </a>
+            </li>-->
+            <!-- Contact -->
+            <li class="nav-item">
+              <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
+                <i class="fs-4 bi-table"></i>
+                <span class="ms-1 d-none d-sm-inline">Contact</span>
+              </a>
+            </li>
 
 
+            <br />
+            <br />
+            <br />
+
+            <li class="nav-item">
+              <a  class="nav-link text-white px-0 align-middle">
+                <i class="fs-4 bi-table"></i>
+                <span class="ms-1 d-none d-sm-inline" (click)="logout()">Log out</span>
+              </a>
+            </li>
+
+          </ul>
+          <hr>
           <br />
-          <br />
-          <br />
+        </div>
+      </div>
 
-          <li class="nav-item">
-            <a routerLink="/Login" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Log out</span>
-            </a>
-          </li>
-
-        </ul>
-        <hr>
-        <br />
+      <!-- Main Content -->
+      <div class="col py-3">
+        <router-outlet></router-outlet>
       </div>
     </div>
-
-    <!-- Main Content -->
-    <div class="col py-3">
-      <router-outlet></router-outlet>
-    </div>
   </div>
-</div>
+</ng-container>

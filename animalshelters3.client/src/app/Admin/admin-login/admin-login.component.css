@@ -1,0 +1,48 @@
+/* Apply a dark gradient background to the whole page */
+:host {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full height of the viewport */
+  background: linear-gradient(to bottom, #555, #222); /* Lighter gradient background */
+}
+
+/* Style for the login container */
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Lighter background for better contrast */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding around the form */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  width: 447px; /* Fixed width for the form */
+  text-align: center; /* Center text inside the container */
+}
+
+/* Style for form elements */
+label {
+  display: block; /* Stack labels on top of inputs */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #333; /* Dark text color for labels */
+}
+
+input {
+  width: 100%; /* Full width of the container */
+  padding: 10px; /* Padding inside inputs */
+  margin-bottom: 15px; /* Space between inputs */
+  border: 1px solid #ccc; /* Light border for inputs */
+  border-radius: 5px; /* Rounded corners for inputs */
+}
+
+/* Style for the button */
+button {
+  background-color: darkorange; /* Button color */
+  color: white; /* Text color for button */
+  border: none; /* Remove border */
+  padding: 10px; /* Padding for button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 100%; /* Full width of the container */
+}
+
+  button:hover {
+    background-color: orange; /* Change color on hover */
+  }
