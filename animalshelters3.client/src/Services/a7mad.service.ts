@@ -133,5 +133,25 @@ export class A7madService {
   updateAdoption(id: number, adoption: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, adoption);
   }
+
+
+
+  private apiUrl3 = '  https://localhost:7295/api/Animals'; // Adjust URL to match your API
+
+
+  getAnimalById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl3}/${id}`);
+  }
+
+
+
+
+
+  private apiUrl4 = 'https://localhost:7295/api/UserLujain'; // Adjust URL to match your API
+
+
+  getUserById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl4}/${id}`);
+  }
 }
 

@@ -5,90 +5,112 @@
         <div class="form-container">
           <form class="contact-form" (ngSubmit)="updateAdoption()" #editAdoptionForm="ngForm">
             <div class="form-wrapper bg-ter p-24 br-12">
-              <h4 class="fw-700 medium-black mb-12">Edit Adoption Application</h4>
-              <div class="row row-gap-3">
-                <!-- Application ID (readonly) -->
-                <div class="col-md-6">
-                  <div class="input-block">
-                    <label for="applicationId" class="form-label">Application ID</label>
-                    <input type="text" id="applicationId" class="form-control form-control-2 bg-white"
-                           [value]="adoption.applicationId" disabled>
-                  </div>
-                </div>
+              <h4 class="fw-700 medium-black mb-12">Application Details</h4>
 
-                <!-- User ID -->
-                <div class="col-md-6">
-                  <div class="input-block">
-                    <label for="userId" class="form-label">User ID</label>
-                    <input type="text" id="userId" class="form-control form-control-2 bg-white"
-                           [(ngModel)]="adoption.userId" name="userId" disabled>
-                  </div>
-                </div>
+              <!-- Application Details -->
+              <div class="mb-4">
+                <h5 class="fw-600"></h5>
+                <p hidden>Application ID: {{adoption.applicationId}}</p>
+              </div>
 
-                <!-- Animal ID -->
-                <div class="col-md-6">
-                  <div class="input-block">
-                    <label for="animalId" class="form-label">Animal ID</label>
-                    <input type="text" id="animalId" class="form-control form-control-2 bg-white"
-                           [(ngModel)]="adoption.animalId" name="animalId" disabled>
+              <!-- User Details Section -->
+              <div class="mb-4">
+                <h5 class="fw-600">Adopter Information</h5>
+                <div class="row row-gap-3">
+                  <div class="col-md-6">
+                    <div class="input-block">
+                      <label class="form-label">User Name</label>
+                      <input type="text" class="form-control form-control-2 bg-white"
+                             [value]="user.userName" disabled style="color:gray">
+                    </div>
                   </div>
-                </div>
-
-                <!-- Status -->
-                <div class="col-md-6">
-                  <div class="input-block">
-                    <label for="status" class="form-label">Status</label>
-                    <select id="status" class="form-control form-control-2 bg-white"
-                            [(ngModel)]="adoption.status" name="status" required>
-                      <option *ngFor="let status of statuses" [value]="status">
-                        {{status}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Submitted Date -->
-                <div class="col-md-12">
-                  <div class="input-block">
-                    <label for="submittedAt" class="form-label">Submission Date</label>
-                    <input type="datetime-local" id="submittedAt" class="form-control form-control-2 bg-white"
-                           [(ngModel)]="adoption.submittedAt" name="submittedAt" disabled>
-                  </div>
-                </div>
-
-                <!-- Message -->
-                <div class="col-12">
-                  <div class="input-block">
-                    <label for="message" class="form-label">Adoption Message</label>
-                    <textarea id="message" class="form-control form-control-2 bg-white" rows="1"
-                              [(ngModel)]="adoption.message" name="message" disabled>
-                    </textarea>
-                  </div>
-                </div>
-
-                <!-- Admin Notes (if you want to add them) -->
-                <div class="col-12">
-                  <div class="input-block">
-                    <label for="adminNotes" class="form-label">Admin Notes</label>
-                    <input id="adminNotes" class="form-control form-control-2 bg-white" rows="3"
-                              [(ngModel)]="adoption.adminNotes" name="adminNotes">
+                  <div class="col-md-6">
+                    <div class="input-block">
+                      <label class="form-label">User Email</label>
+                      <input type="text" class="form-control form-control-2 bg-white"
+                             [value]="user.email" disabled style="color:gray">
+                    </div>
                   </div>
                 </div>
               </div>
 
+              <!-- Animal Details Section -->
+              <div class="mb-4">
+                <h5 class="fw-600">Animal Information</h5>
+                <div class="row row-gap-3">
+                  <div class="col-md-6">
+                    <div class="input-block">
+                      <label class="form-label">Animal Name</label>
+                      <input type="text" class="form-control form-control-2 bg-white"
+                             [value]="animal.name" disabled style="color:gray">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-block">
+                      <label class="form-label">Breed</label>
+                      <input type="text" class="form-control form-control-2 bg-white"
+                             [value]="animal.breed" disabled style="color:gray">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Application Status -->
+              <div class="row row-gap-3">
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="status" class="form-label">Application Status</label>
+                    <div class="input-with-icon">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                      <select id="status" class="form-control form-control-2 bg-white"
+                              [(ngModel)]="adoption.status" name="status" required>
+                        <option *ngFor="let status of statuses" [value]="status">
+                          {{status}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label class="form-label">Submitted Date</label>
+                    <input type="text" class="form-control form-control-2 bg-white"
+                           [value]="(adoption.submittedAt | date:'shortDate') + ' at ' + (adoption.submittedAt | date:'HH') + ':00'"
+                           disabled style="color:gray">
+                  </div>
+                </div>
+              </div>
+              
+
+              <!-- Adoption Message -->
+              <div class="col-12 mt-3">
+                <div class="input-block">
+                  <label for="message" class="form-label">Adoption Message</label>
+                  <input id="message" class="form-control form-control-1 bg-white" rows="1"
+                            [(ngModel)]="adoption.message" name="message" disabled style="color:gray">
+                </div>
+              </div>
+
+              <!-- Admin Notes -->
+              <div class="col-12 mt-3">
+                <div class="input-block">
+                  <label for="adminNotes" class="form-label">Admin Notes</label>
+                  <input id="adminNotes" class="form-control form-control-2 bg-white" rows="2"
+                         [(ngModel)]="adoption.adminNotes" name="adminNotes" placeholder="Optional Message" style="color:gray">
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
               <div class="mt-4 d-flex gap-3">
-                <!-- Update Button -->
                 <button type="submit" class="btn btn-primary" [disabled]="!editAdoptionForm.form.valid">
-                  Update Adoption
+                  Update Application
                 </button>
-
-                <!-- Delete Button -->
                 <button type="button" class="btn btn-danger" (click)="deleteAdoption()">
-                  Delete Adoption
+                  Delete Application
                 </button>
-
-                <!-- Back Button -->
-                <button type="button" class="btn btn-secondary" [routerLink]="['/adoptions']">
+                <button type="button" class="btn btn-secondary" [routerLink]="['/adminDashboard/All Adoption']">
                   Back to List
                 </button>
               </div>

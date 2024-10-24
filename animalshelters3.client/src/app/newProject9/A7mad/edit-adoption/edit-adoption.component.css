@@ -7,3 +7,16 @@
   .contact-wrapper label {
     margin-left: -50%;
   }
+
+
+.input-with-icon {
+  position: relative;
+}
+
+  .input-with-icon i {
+    position: absolute;
+    left: 10px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent icon from interfering with input */
+  }
