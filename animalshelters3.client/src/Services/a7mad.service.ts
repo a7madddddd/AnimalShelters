@@ -17,6 +17,13 @@ export interface ShelterDTO {
 
 
 
+
+
+
+
+
+
+
 export interface AdoptionApplication {
   applicationId?: number;
   userId: number;

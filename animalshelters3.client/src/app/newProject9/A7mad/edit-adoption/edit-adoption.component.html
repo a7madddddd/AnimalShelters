@@ -82,14 +82,14 @@
                   </div>
                 </div>
               </div>
-              
+
 
               <!-- Adoption Message -->
               <div class="col-12 mt-3">
                 <div class="input-block">
                   <label for="message" class="form-label">Adoption Message</label>
                   <input id="message" class="form-control form-control-1 bg-white" rows="1"
-                            [(ngModel)]="adoption.message" name="message" disabled style="color:gray">
+                         [(ngModel)]="adoption.message" name="message" disabled style="color:gray">
                 </div>
               </div>
 
@@ -97,8 +97,14 @@
               <div class="col-12 mt-3">
                 <div class="input-block">
                   <label for="adminNotes" class="form-label">Admin Notes</label>
-                  <input id="adminNotes" class="form-control form-control-2 bg-white" rows="2"
-                         [(ngModel)]="adoption.adminNotes" name="adminNotes" placeholder="Optional Message" style="color:gray">
+                  <textarea id="adminNotes"
+                            class="form-control form-control-2 bg-white"
+                            rows="2"
+                            [(ngModel)]="adoption.adminNotes"
+                            name="adminNotes"
+                            placeholder="Optional Message"
+                            style="color:gray">
+                  </textarea>
                 </div>
               </div>
 
@@ -123,3 +129,4 @@
     </div>
   </div>
 </div>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
