@@ -1,7 +1,6 @@
-<!--<hr />
+<hr />
 <h2 class="text-center my-4">Adoptions</h2>
 <hr />
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,8 +9,7 @@
       <th scope="col">Status</th>
       <th scope="col">Time Sent</th>
       <th scope="col">Message</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -22,11 +20,10 @@
       <td>{{ adoption.submittedAt }}</td>
       <td>{{ adoption.message }}</td>
       <td>
-        <button class="btn btn-primary" (click)="editAdoption(adoption.applicationId)">Edit</button>--> <!-- Change to Edit -->
-      <!--</td>
+        <button class="btn btn-info" (click)="viewDetails(adoption.applicationId)">Details</button>
+      </td>
       <td>
-        <button class="btn btn-danger" (click)="deleteAdoption(adoption.applicationId)">Delete</button>
       </td>
     </tr>
   </tbody>
-</table>-->
+</table>

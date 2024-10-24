@@ -62,6 +62,7 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
     EditSheltersComponent,
     CategoriesComponent,
     ContactComponent,
+    AdoptionComponent,
     GetAllUsersComponent,
     AdminLoginComponent,
     //AdminAdoptionComponent,
