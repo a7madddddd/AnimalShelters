@@ -28,6 +28,9 @@ import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-sh
 import { ContactComponent } from './Admin/contact/contact.component';
 import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+//import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.';
+import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
+import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
 
 
 @NgModule({
@@ -61,6 +64,10 @@ import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
     ContactComponent,
     GetAllUsersComponent,
     AdminLoginComponent
+    ContactComponent,
+    //AdminAdoptionComponent,
+    AllAdoptionsComponent,
+    EditAdoptionComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -88,13 +95,19 @@ import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 
 
 
-      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
           { path: 'ContactAdmin', component: ContactComponent },
           { path: 'AllUsers', component: GetAllUsersComponent }
 
+          { path: 'Add Shelters', component: AddSheltersComponent },
+          { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'All Shelter', component: GetAllSheltersComponent },
+          { path: 'Edit Shelter/:id', component: EditSheltersComponent },
+          { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
+          { path: 'All Adoption', component: AllAdoptionsComponent },
         ]
       }
 
