@@ -26,6 +26,9 @@ import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-pro
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 import { ContactComponent } from './Admin/contact/contact.component';
+import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+//import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.';
 import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
 import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
 
@@ -60,6 +63,9 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
     CategoriesComponent,
     ContactComponent,
     AdoptionComponent,
+    GetAllUsersComponent,
+    AdminLoginComponent,
+    //AdminAdoptionComponent,
     AllAdoptionsComponent,
     EditAdoptionComponent
   ],
@@ -84,6 +90,7 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
+      { path: 'admin', component: AdminLoginComponent },
 
 
 
@@ -92,8 +99,11 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
-          { path: 'Add Shelters', component: AddSheltersComponent },
           { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'AllUsers', component: GetAllUsersComponent },
+
+          { path: 'Add Shelters', component: AddSheltersComponent },
+      
           { path: 'All Shelter', component: GetAllSheltersComponent },
           { path: 'Edit Shelter/:id', component: EditSheltersComponent },
           { path: 'Edit Adoption/:id', component: EditAdoptionComponent },

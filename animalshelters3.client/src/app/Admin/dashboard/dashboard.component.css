@@ -2,3 +2,35 @@
   position: relative;
   right: 4.65em;
 }
+
+span.ms-1.d-none.d-sm-inline {
+  color: black;
+  font-size: large;
+}
+
+.animals-icon,
+.adoption-icon,
+.shelters-icon,
+.users-icon,
+.contact-icon,
+.community-icon {
+  color: #ff782c;
+  font-weight: bold;
+}
+
+.bi-box-arrow-right::before {
+  content: "\f1c3";
+  color: #ff782c;
+}
+
+::after {
+  color: #ff782c;
+}
+
+.dropdown-item {
+  color: black !important;
+}
+
+  .dropdown-item:hover {
+    color: #333 !important;
+  }

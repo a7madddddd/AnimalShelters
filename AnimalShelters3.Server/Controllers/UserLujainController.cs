@@ -199,25 +199,44 @@ namespace AnimalShelters3.Server.Controllers
 
 
 
+        [HttpPost("LoginAdmin")]
+        public IActionResult Login([FromForm] UserAdminDTO user)
+        {
+            var existingUser = _db.Admins.Where(a => a.Email == user.Email && a.Password == user.Password ).FirstOrDefault();
+
+            if (existingUser == null)
+            {
+                return BadRequest("Invalid email or password.");
+            }
+
+            return Ok(new { UserId = existingUser.Id, message = "Login successful" });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Withdraw(int id)
+        {
+            // Find the adoption application in the database
+            var application = _db.AdoptionApplications.Find(id);
+
+            if (application == null)
+            {
+                return NotFound(new { message = "Application not found." });
+            }
+
+            if (application.Status != "Accepted")
+            {
+                _db.AdoptionApplications.Remove(application);
+                _db.SaveChanges(); 
+                return Ok(new { message = "Application withdrawn successfully." });
+            }
+
+            return BadRequest(new { message = "Unable to withdraw the application. It has already been accepted." });
+        }
+    
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private byte[] HashPassword(string password, out byte[] salt)
+    private byte[] HashPassword(string password, out byte[] salt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {

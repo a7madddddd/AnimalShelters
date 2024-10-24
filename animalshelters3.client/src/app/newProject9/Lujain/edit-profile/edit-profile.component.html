@@ -39,9 +39,13 @@
         <label class="btn btn-secondary" for="fileUpload" style="cursor: pointer;">
           Upload Image
         </label>
-
-        <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-fluid mt-2" style="max-width: 150px;">
       </div>
+
+      <!-- New div for image preview -->
+      <div class="mt-2">
+        <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-fluid" style="max-width: 150px;">
+      </div>
+
     </div>
 
     <button type="submit" class="btn" style="background-color: #d66a00; color: aliceblue;">

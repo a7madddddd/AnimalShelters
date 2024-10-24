@@ -1,0 +1,13 @@
+<div class="login-container">
+  <h2>Login Admin</h2>
+
+  <form   #LoginForm="ngForm" (ngSubmit)="Login(LoginForm.value)">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="Email" required ngModel>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="Password" required ngModel>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
