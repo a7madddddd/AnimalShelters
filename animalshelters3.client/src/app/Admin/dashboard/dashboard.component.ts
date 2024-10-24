@@ -6,8 +6,8 @@ import Swal from 'sweetalert2'; // Import SweetAlert
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
-  styleUrls: ['./dashboard.component.css'] 
+  styleUrls: ['./dashboard.component.css'],
+
 })
 export class DashboardComponent {
   private openedDropdowns: Set<string> = new Set();
@@ -38,7 +38,7 @@ export class DashboardComponent {
 
   logout() {
     this.behaviorSubjectService.setUserId('');
-    Swal.fire({ // SweetAlert for logout confirmation
+    Swal.fire({
       icon: 'success',
       title: 'Logged Out',
       text: 'Logged out successfully.',

@@ -1,15 +1,17 @@
-<div class="container-fluid">
-  <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #ccebef;">
-      <a routerLink="/adminDashboard" class="d-flex align-items-center header-logo-box flex-column">
-        <img src="assets/media/logo.png" alt="logo" class="header-logo">
-        <hr class="my-2" style="width: 100%; border: 1px solid #000;">
-      </a>
-      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <img src="assets/images/logo.svg" alt="">
+
+<ng-container *ngIf="isLoggedIn;">
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #ccebef;">
+        <a routerLink="/adminDashboard" class="d-flex align-items-center header-logo-box flex-column">
+          <img src="assets/media/logo.png" alt="logo" class="header-logo">
+          <hr class="my-2" style="width: 100%; border: 1px solid #000;">
         </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <img src="assets/images/logo.svg" alt="">
+          </a>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
             <!-- All Users -->
             <li class="nav-item">
@@ -19,72 +21,72 @@
               </a>
             </li>
 
-          <!-- Shelters -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('gymMenu'); $event.stopPropagation()">
-              <i class="fs-4 bi-house-door shelters-icon"></i>
-              <span class="ms-1 d-none d-sm-inline">Shelters</span>
-            </a>
-            <div class="collapse" [ngClass]="{'show': isDropdownOpen('gymMenu')}" id="gymMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/adminDashboard/All Shelter" class="dropdown-item text-white">All Shelters</a></li>
-                <li><a routerLink="/adminDashboard/Add Shelters" class="dropdown-item text-white">Add Shelter</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Shelters -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('gymMenu'); $event.stopPropagation()">
+                <i class="fs-4 bi-house-door shelters-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Shelters</span>
+              </a>
+              <div class="collapse" [ngClass]="{'show': isDropdownOpen('gymMenu')}" id="gymMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/adminDashboard/All Shelter" class="dropdown-item text-white">All Shelters</a></li>
+                  <li><a routerLink="/adminDashboard/Add Shelters" class="dropdown-item text-white">Add Shelter</a></li>
+                </ul>
+              </div>
+            </li>
 
-          <!-- Adoption -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('nutritionMenu'); $event.stopPropagation()">
-              <i class="fs-4 bi-heart adoption-icon"></i>
-              <span class="ms-1 d-none d-sm-inline">Adoption</span>
-            </a>
-            <div class="collapse" [ngClass]="{'show': isDropdownOpen('nutritionMenu')}" id="nutritionMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/adminDashboard/All Adoption" class="dropdown-item text-white">All Adoptions</a></li>
-                <li><a routerLink="/adminDashboard/All Adoption" class="dropdown-item text-white">Subrecipes</a></li>
-                <li><a routerLink="/Dashboard/TipsAdmin" class="dropdown-item text-white">Tips</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Adoption -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('nutritionMenu'); $event.stopPropagation()">
+                <i class="fs-4 bi-heart adoption-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Adoption</span>
+              </a>
+              <div class="collapse" [ngClass]="{'show': isDropdownOpen('nutritionMenu')}" id="nutritionMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/adminDashboard/All Adoption" class="dropdown-item text-white">All Adoptions</a></li>
+                  <li><a routerLink="/adminDashboard/All Adoption" class="dropdown-item text-white">Subrecipes</a></li>
+                  <li><a routerLink="/Dashboard/TipsAdmin" class="dropdown-item text-white">Tips</a></li>
+                </ul>
+              </div>
+            </li>
 
-          <!-- Animals -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('submenu3'); $event.stopPropagation()">
-              <i class="fs-4 bi-archive animals-icon"></i>
-              <span class="ms-1 d-none d-sm-inline">Animals</span>
-            </a>
-            <div class="collapse" [ngClass]="{'show': isDropdownOpen('submenu3')}" id="submenu3">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 1</a></li>
-                <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 2</a></li>
-                <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 3</a></li>
-                <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 4</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Animals -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('submenu3'); $event.stopPropagation()">
+                <i class="fs-4 bi-archive animals-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Animals</span>
+              </a>
+              <div class="collapse" [ngClass]="{'show': isDropdownOpen('submenu3')}" id="submenu3">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 1</a></li>
+                  <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 2</a></li>
+                  <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 3</a></li>
+                  <li><a routerLink="/adminDashboard/" class="dropdown-item text-white">Item 4</a></li>
+                </ul>
+              </div>
+            </li>
 
-          <!-- Community -->
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('TestimonialMenu'); $event.stopPropagation()">
-              <i class="fs-4 bi-chat community-icon"></i>
-              <span class="ms-1 d-none d-sm-inline">Community</span>
-            </a>
-            <div class="collapse" [ngClass]="{'show': isDropdownOpen('TestimonialMenu')}" id="TestimonialMenu">
-              <ul class="list-unstyled ps-3">
-                <li><a routerLink="/adminDashboard/communityMembers" class="dropdown-item text-white">Community Members</a></li>
-                <li><a routerLink="/adminDashboard/communityEvents" class="dropdown-item text-white">Community Events</a></li>
-              </ul>
-            </div>
-          </li>
+            <!-- Community -->
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle text-white align-middle px-0" (click)="toggleDropdown('TestimonialMenu'); $event.stopPropagation()">
+                <i class="fs-4 bi-chat community-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Community</span>
+              </a>
+              <div class="collapse" [ngClass]="{'show': isDropdownOpen('TestimonialMenu')}" id="TestimonialMenu">
+                <ul class="list-unstyled ps-3">
+                  <li><a routerLink="/adminDashboard/communityMembers" class="dropdown-item text-white">Community Members</a></li>
+                  <li><a routerLink="/adminDashboard/communityEvents" class="dropdown-item text-white">Community Events</a></li>
+                </ul>
+              </div>
+            </li>
 
-          <!-- Contact -->
-          <li class="nav-item">
-            <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-envelope contact-icon"></i>
-              <span class="ms-1 d-none d-sm-inline">Contact</span>
-            </a>
-          </li>
+            <!-- Contact -->
+            <li class="nav-item">
+              <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
+                <i class="fs-4 bi-envelope contact-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Contact</span>
+              </a>
+            </li>
 
 
             <br />
@@ -92,7 +94,7 @@
             <br />
 
             <li class="nav-item">
-              <a  class="nav-link text-white px-0 align-middle">
+              <a class="nav-link text-white px-0 align-middle">
                 <i class="fs-4 bi-table"></i>
                 <span class="ms-1 d-none d-sm-inline" (click)="logout()">Log out</span>
               </a>

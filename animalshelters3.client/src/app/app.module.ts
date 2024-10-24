@@ -63,8 +63,7 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
     CategoriesComponent,
     ContactComponent,
     GetAllUsersComponent,
-    AdminLoginComponent
-    ContactComponent,
+    AdminLoginComponent,
     //AdminAdoptionComponent,
     AllAdoptionsComponent,
     EditAdoptionComponent
@@ -100,10 +99,10 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
           { path: 'ContactAdmin', component: ContactComponent },
-          { path: 'AllUsers', component: GetAllUsersComponent }
+          { path: 'AllUsers', component: GetAllUsersComponent },
 
           { path: 'Add Shelters', component: AddSheltersComponent },
-          { path: 'ContactAdmin', component: ContactComponent },
+      
           { path: 'All Shelter', component: GetAllSheltersComponent },
           { path: 'Edit Shelter/:id', component: EditSheltersComponent },
           { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
