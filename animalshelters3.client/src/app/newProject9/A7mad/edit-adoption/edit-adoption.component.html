@@ -1,1 +1,103 @@
-<p>edit-adoption works!</p>
+<div class="contact-wrapper pt-40 pb-80">
+  <div class="container-fluid-12">
+    <div class="row row-gap-4 align-items-center">
+      <div class="col-xl-8">
+        <div class="form-container">
+          <form class="contact-form" (ngSubmit)="updateAdoption()" #editAdoptionForm="ngForm">
+            <div class="form-wrapper bg-ter p-24 br-12">
+              <h4 class="fw-700 medium-black mb-12">Edit Adoption Application</h4>
+              <div class="row row-gap-3">
+                <!-- Application ID (readonly) -->
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="applicationId" class="form-label">Application ID</label>
+                    <input type="text" id="applicationId" class="form-control form-control-2 bg-white"
+                           [value]="adoption.applicationId" disabled>
+                  </div>
+                </div>
+
+                <!-- User ID -->
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="userId" class="form-label">User ID</label>
+                    <input type="text" id="userId" class="form-control form-control-2 bg-white"
+                           [(ngModel)]="adoption.userId" name="userId" disabled>
+                  </div>
+                </div>
+
+                <!-- Animal ID -->
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="animalId" class="form-label">Animal ID</label>
+                    <input type="text" id="animalId" class="form-control form-control-2 bg-white"
+                           [(ngModel)]="adoption.animalId" name="animalId" disabled>
+                  </div>
+                </div>
+
+                <!-- Status -->
+                <div class="col-md-6">
+                  <div class="input-block">
+                    <label for="status" class="form-label">Status</label>
+                    <select id="status" class="form-control form-control-2 bg-white"
+                            [(ngModel)]="adoption.status" name="status" required>
+                      <option *ngFor="let status of statuses" [value]="status">
+                        {{status}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Submitted Date -->
+                <div class="col-md-12">
+                  <div class="input-block">
+                    <label for="submittedAt" class="form-label">Submission Date</label>
+                    <input type="datetime-local" id="submittedAt" class="form-control form-control-2 bg-white"
+                           [(ngModel)]="adoption.submittedAt" name="submittedAt" disabled>
+                  </div>
+                </div>
+
+                <!-- Message -->
+                <div class="col-12">
+                  <div class="input-block">
+                    <label for="message" class="form-label">Adoption Message</label>
+                    <textarea id="message" class="form-control form-control-2 bg-white" rows="1"
+                              [(ngModel)]="adoption.message" name="message" disabled>
+                    </textarea>
+                  </div>
+                </div>
+
+                <!-- Admin Notes (if you want to add them) -->
+                <div class="col-12">
+                  <div class="input-block">
+                    <label for="adminNotes" class="form-label">Admin Notes</label>
+                    <input id="adminNotes" class="form-control form-control-2 bg-white" rows="3"
+                              [(ngModel)]="adoption.adminNotes" name="adminNotes">
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 d-flex gap-3">
+                <!-- Update Button -->
+                <button type="submit" class="btn btn-primary" [disabled]="!editAdoptionForm.form.valid">
+                  Update Adoption
+                </button>
+
+                <!-- Delete Button -->
+                <button type="button" class="btn btn-danger" (click)="deleteAdoption()">
+                  Delete Adoption
+                </button>
+
+                <!-- Back Button -->
+                <button type="button" class="btn btn-secondary" [routerLink]="['/adoptions']">
+                  Back to List
+                </button>
+              </div>
+
+              <div id="message" class="alert-msg mt-3"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

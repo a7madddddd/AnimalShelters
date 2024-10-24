@@ -26,7 +26,6 @@ import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-pro
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 import { ContactComponent } from './Admin/contact/contact.component';
-import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.component';
 import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
 import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
 
@@ -60,7 +59,7 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
     EditSheltersComponent,
     CategoriesComponent,
     ContactComponent,
-    AdminAdoptionComponent,
+    AdoptionComponent,
     AllAdoptionsComponent,
     EditAdoptionComponent
   ],
