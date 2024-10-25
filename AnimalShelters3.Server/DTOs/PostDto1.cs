@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public int UserId { get; set; }
         public string UserName { get; set; } // إضافة خاصية UserName
+        public string? Image2 { get; set; }
 
         public string Content { get; set; }
         public string Image { get; set; }
@@ -12,6 +13,10 @@
         public string Tag { get; set; }
         public int LikesCount { get; set; } // عدد الإعجابات
         public List<CommentDto> Comments { get; set; } // قائمة التعليقات
+
+
+
+
     }
 
 }
