@@ -122,10 +122,10 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
           { path: 'AllPosts', component: AllPostComponent },
           { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
           { path: 'AllRejectedPosts', component: AllRejectPostComponent },
-        
+
         ]
-         
-        ]
+
+
       }
 
     ])
