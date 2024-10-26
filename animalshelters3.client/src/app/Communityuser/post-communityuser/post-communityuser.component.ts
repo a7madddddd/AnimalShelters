@@ -4,7 +4,8 @@ import { BehaviorSubjectService } from '../../newProject9/Lujain/BehaviorSubject
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ReplyDto } from '../../../shared/ReplyDto';
-
+import Swal from 'sweetalert2';
+import { Meta, Title } from '@angular/platform-browser';
 declare var bootstrap: any;
 
 @Component({
@@ -24,6 +25,7 @@ export class PostCommunityuserComponent implements OnInit {
   postTitle: string = ''; // Post title
   postTag: string = ''; // Post tag
   errorMessage: string | undefined;
+  imagePreview: any;
 
 
   //approvedPosts: any[] = [];
@@ -38,16 +40,16 @@ export class PostCommunityuserComponent implements OnInit {
     private najlaaService: NajlaaService,
     private behaviorSubjectService: BehaviorSubjectService,
     private http: HttpClient,
-    private router: Router
+    private router: Router, private meta: Meta, private titleService: Title
   ) { }
 
   ngOnInit() {
     // Subscribe to the user ID observable
     this.behaviorSubjectService.userId$.subscribe(userId => {
       this.currentUserId = userId;
-        // Fetch approved posts only if logged in
-        this.fetchApprovedPosts();
-      
+      // Fetch approved posts only if logged in
+      this.fetchApprovedPosts();
+
     });
   }
   openPostModal() {
@@ -55,18 +57,38 @@ export class PostCommunityuserComponent implements OnInit {
     postModal.show();
   }
 
-  // دالة لمعالجة اختيار الملف
-  // دالة لمعالجة اختيار الملف
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectedFile = event.target.files[0];
+
+      // تأكد أن selectedFile ليس null
+      if (this.selectedFile) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePreview = e.target.result;  // تعيين URL للصورة المصغرة
+        };
+        reader.readAsDataURL(this.selectedFile);  // قراءة الملف كـ Data URL
+      }
     }
   }
+
+
+
 
   // Method to submit a new post
   submitPost() {
     debugger;
     const userId = Number(this.currentUserId);
+
+    // التحقق من أن userId ليس null
+    if (!userId) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please log in before submitting a post.'
+      });
+      return; // إيقاف تنفيذ الوظيفة حتى يتم تسجيل الدخول
+    }
 
     const postData = {
       userId: userId,
@@ -81,6 +103,14 @@ export class PostCommunityuserComponent implements OnInit {
         console.log('Post submitted successfully:', response);
         this.fetchApprovedPosts(); // Refresh the post list
         bootstrap.Modal.getInstance(document.getElementById('PostModal')).hide(); // Close modal
+
+        // عرض رسالة تأكيد بعد إنشاء المنشور بنجاح
+        Swal.fire({
+          icon: 'success',
+          title: 'Post Created!',
+          text: 'Your post has been successfully created and is awaiting approval.',
+          confirmButtonText: 'OK'
+        });
       },
       error => {
         console.error('Error submitting post:', error);
@@ -89,12 +119,27 @@ export class PostCommunityuserComponent implements OnInit {
     );
   }
 
+
   fetchApprovedPosts() {
-    // Fetch approved posts from the service
+    // جلب المنشورات المعتمدة
     this.najlaaService.getAllApprovedPosts().subscribe(
-      (data) => {
-        this.approvedPosts = data;
-        console.log(this.approvedPosts);
+      (approvedData) => {
+        this.approvedPosts = approvedData;
+
+        // بعد جلب المنشورات المعتمدة، جلب المنشورات مع حالة الإعجاب
+        this.najlaaService.getPostsWithLikes(Number(this.currentUserId)).subscribe(
+          (likedPostsData: any[]) => {
+            // تحديث حالة الإعجاب للمنشورات المعتمدة بناءً على البيانات المسترجعة
+            this.approvedPosts.forEach((post: any) => {
+              const likedPost = likedPostsData.find((p: any) => p.id === post.id);
+              post.isLiked = likedPost ? likedPost.isLiked : false; // إذا وجد المنشور في حالة الإعجاب
+            });
+            console.log(this.approvedPosts);
+          },
+          (error: any) => {
+            console.error('Error loading posts with likes', error);
+          }
+        );
       },
       (error) => {
         console.error('Error fetching approved posts', error);
@@ -104,17 +149,26 @@ export class PostCommunityuserComponent implements OnInit {
 
   toggleLike(post: any) {
     if (!this.currentUserId) {
-      alert('Please log in to like this post.');
-      this.router.navigate(['/login']);
+      Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'Please log in to like this post.',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        this.router.navigate(['/login']);
+      });
       return;
     }
 
+    // تحديث حالة الإعجاب في قاعدة البيانات
     this.najlaaService.likePost(post.id, Number(this.currentUserId)).subscribe(
       (response: any) => {
         if (response.message === 'Post liked') {
           post.likesCount++;
+          post.isLiked = true;  // تحديد الإعجاب للمنشور
         } else if (response.message === 'Like removed') {
           post.likesCount--;
+          post.isLiked = false; // إزالة الإعجاب للمنشور
         }
       },
       (error: any) => {
@@ -123,31 +177,68 @@ export class PostCommunityuserComponent implements OnInit {
     );
   }
 
-  addComment(post: any) {
-    if (this.newComment.trim()) {
-      const userId = Number(this.currentUserId);
 
-      if (!isNaN(userId)) {
-        this.najlaaService.addComment(post.id, userId, this.newComment).subscribe(
-          (response) => {
-            post.comments.push(response);
-            this.newComment = '';
-            post.errorMessage = ''; // Reset error message if comment added successfully
-          },
-          (error) => {
-            console.error('Error adding comment', error);
-          }
-        );
-      } else {
-        console.error('User ID is invalid or undefined.');
-        post.errorMessage = 'Please log in to add a comment.'; // Set error message for the specific post
-      }
+
+  addComment(post: any) {
+    const userId = Number(this.currentUserId);
+
+    // تحقق من القيمة الحالية لـ `currentUserId`
+    console.log('Current User ID:', this.currentUserId);
+
+    // إذا لم يتم تسجيل الدخول
+    if (!userId || isNaN(userId)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'Please log in to add a comment.',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+      });
+      return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
+    }
+
+    // التحقق من أن التعليق ليس فارغاً
+    if (this.newComment.trim()) {
+      this.najlaaService.addComment(post.id, userId, this.newComment).subscribe(
+        (response) => {
+          post.comments.push(response);
+          this.newComment = ''; // إعادة تعيين حقل التعليق
+          post.errorMessage = ''; // إعادة تعيين رسالة الخطأ
+
+          // SweetAlert لإعلام المستخدم بنجاح إضافة التعليق
+          Swal.fire({
+            icon: 'success',
+            title: 'Comment Posted',
+            text: 'Your comment has been successfully posted!',
+            confirmButtonText: 'OK',
+          });
+        },
+        (error) => {
+          console.error('Error adding comment', error);
+        }
+      );
     }
   }
-  addReply(comment: { id: number; replies: any[]; errorMessage?: string }) {
-    const userId = Number(this.currentUserId); // تأكد من تعيين معرف المستخدم بشكل صحيح
-    const replyContent = this.newReply[comment.id];
 
+  addReply(comment: { id: number; replies: any[]; errorMessage?: string }) {
+    const userId = Number(this.currentUserId); // التأكد من تعيين معرف المستخدم
+
+    // تحقق من تسجيل الدخول
+    if (!userId || isNaN(userId)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'Please log in to add a reply.',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+      });
+      return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
+    }
+
+    // التحقق من أن الرد ليس فارغاً
+    const replyContent = this.newReply[comment.id];
     if (replyContent && replyContent.trim()) {
       const replyDto: ReplyDto = {
         CommentId: comment.id,
@@ -155,10 +246,19 @@ export class PostCommunityuserComponent implements OnInit {
         Content: replyContent
       };
 
+      // إضافة الرد إلى الخدمة
       this.najlaaService.addReply(replyDto).subscribe(
         (response: any) => {
           comment.replies.push(response); // أضف الرد إلى القائمة
           this.newReply[comment.id] = ''; // امسح الإدخال
+
+          // عرض تنبيه نجاح
+          Swal.fire({
+            icon: 'success',
+            title: 'Reply Posted',
+            text: 'Your reply has been successfully posted!',
+            confirmButtonText: 'OK',
+          });
         },
         (error: any) => {
           console.error('Error adding reply', error);
@@ -166,40 +266,68 @@ export class PostCommunityuserComponent implements OnInit {
         }
       );
     } else {
+      // رسالة خطأ إذا كان الرد فارغاً
       comment.errorMessage = 'Please enter a reply.';
     }
   }
-
   newReply: { [key: number]: string } = {}; // Track replies by comment ID
 
-
-  openShareModal(post: any) {
-    this.selectedPost = post;
-    const shareModal = new bootstrap.Modal(document.getElementById('shareModal') as HTMLElement);
-    shareModal.show();
-  }
-
-  shareOnPlatform(platform: 'whatsapp' | 'facebook', postId: number) {
-    this.http.get(`https://localhost:44354/api/Community/sharePost/${platform}/${postId}`).subscribe(
-      (response: any) => {
-        window.open(response.shareUrl, '_blank');
-      },
-      (error) => {
-        console.error(`Error sharing post on ${platform}`, error);
-      }
-    );
-  }
-
-  shareOnWhatsApp(post: any) {
-    this.shareOnPlatform('whatsapp', post.id);
-  }
   openCommentsModal(post: any) {
     this.selectedPost = post; // Set the selected post for the modal
     const commentsModal = new bootstrap.Modal(document.getElementById('commentsModal') as HTMLElement);
     commentsModal.show();
   }
 
-  shareOnFacebook(post: any) {
-    this.shareOnPlatform('facebook', post.id);
+
+  // Function to generate the post URL
+  // المتغير الذي سيحتوي على المنشور المختار
+
+  // دالة لتحديد المنشور المختار وفتح نافذة المشاركة
+  openShareModal(post: any) {
+    this.selectedPost = post;
+    const shareModal = new bootstrap.Modal(document.getElementById('shareModal'), {
+      keyboard: false
+    });
+    shareModal.show();
   }
+  setMetaTags(post: any) {
+    this.titleService.setTitle(post.title || 'Community Post');
+    this.meta.updateTag({ name: 'og:title', content: post.title || 'Community Post' });
+    this.meta.updateTag({ name: 'og:description', content: post.content });
+    this.meta.updateTag({ name: 'og:image', content: 'https://localhost:44354/api/Community/getImage/' + post.image });
+    this.meta.updateTag({ name: 'og:url', content: 'https://127.0.0.1:4200/post-communityuser/' + post.id });
+  }
+
+  // دالة للحصول على رابط محدد للبوست
+  getPostUrl(postId: number): string {
+    return `https://127.0.0.1:4200/post-communityuser/${postId}`;
+  }
+
+  // دالة لمشاركة البوست على WhatsApp
+  shareOnWhatsApp(post: any) {
+    const postUrl = this.getPostUrl(post.id); // استخدم رابط البوست المحدد
+    let message = encodeURIComponent(post.content); // ترميز محتوى البوست
+
+    // إذا كان هناك صورة، أضف رابط الصورة إلى الرسالة
+    if (post.image) {
+      message += `%0Ahttps://localhost:44354/api/Community/getImage/${encodeURIComponent(post.image)}`;
+    }
+
+    // رابط مشاركة WhatsApp مع المحتوى والرابط
+    const whatsappShareUrl = `https://wa.me/?text=${message}%20${encodeURIComponent(postUrl)}`;
+    window.open(whatsappShareUrl, '_blank'); // فتح في نافذة جديدة
+    console.log("Sharing on WhatsApp:", post);
+  }
+
+  // دالة لمشاركة البوست على Facebook
+  shareOnFacebook(post: any) {
+    const postUrl = this.getPostUrl(post.id); // استخدم رابط البوست المحدد
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+    window.open(facebookShareUrl, '_blank'); // فتح في نافذة جديدة
+    console.log("Sharing on Facebook:", post);
+  }
+
+
+
+
 }

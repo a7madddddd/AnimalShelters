@@ -1,66 +1,90 @@
 import { Component } from '@angular/core';
-import { EmailJS } from 'emailjs-com';
+import emailjs from 'emailjs-com'; 
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { A7madService } from '../../../Services/a7mad.service';
 
-updateAdoption() {
-  Swal.fire({
-    title: 'Update Adoption',
-    text: 'Are you sure you want to update this adoption?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, update it!',
-    cancelButtonText: 'No, cancel'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.a7madService.updateAdoption(this.adoption.applicationId, this.adoption).subscribe({
-        next: () => {
-          if (this.adoption.status === 'Approved') {
-            // Send email using EmailJS
-            const templateParams = {
-              to_email: this.user.email,
-              status: this.adoption.status,
-              animal_name: this.animal.name
-            };
+@Component({
+  selector: 'app-your-component',
+  templateUrl: './your-component.component.html',
+  styleUrls: ['./your-component.component.css']
+})
+export class YourComponent {
+  adoption: any = {}; 
+  user: any = {};
+  animal: any = {};
 
-            EmailJS.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-              .then(() => {
+  constructor(private a7madService: A7madService, private router: Router) { }
+
+  updateAdoption() {
+    Swal.fire({
+      title: 'Update Adoption',
+      text: 'Are you sure you want to update this adoption?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'No, cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.adoption && this.adoption.applicationId && this.user && this.animal) { // التحقق من أن المتغيرات معرفة
+          this.a7madService.updateAdoption(this.adoption.applicationId, this.adoption).subscribe({
+            next: () => {
+              if (this.adoption.status === 'Approved') {
+                // إرسال البريد الإلكتروني باستخدام EmailJS
+                const templateParams = {
+                  to_email: this.user.email,
+                  status: this.adoption.status,
+                  animal_name: this.animal.name
+                };
+
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                  .then(() => {
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Success!',
+                      text: 'Adoption updated and email sent successfully',
+                      timer: 1500,
+                      showConfirmButton: false
+                    });
+                    this.router.navigate(['/adminDashboard/All Adoption']);
+                  })
+                  .catch((error: any) => {
+                    console.error('Error sending email:', error);
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Email Not Sent',
+                      text: 'Adoption updated, but failed to send email notification.',
+                    });
+                    this.router.navigate(['/adminDashboard/All Adoption']);
+                  });
+              } else {
                 Swal.fire({
                   icon: 'success',
                   title: 'Success!',
-                  text: 'Adoption updated and email sent successfully',
+                  text: 'Adoption updated successfully',
                   timer: 1500,
                   showConfirmButton: false
                 });
                 this.router.navigate(['/adminDashboard/All Adoption']);
-              })
-              .catch((error) => {
-                console.error('Error sending email:', error);
-                Swal.fire({
-                  icon: 'warning',
-                  title: 'Email Not Sent',
-                  text: 'Adoption updated, but failed to send email notification.',
-                });
-                this.router.navigate(['/adminDashboard/All Adoption']);
+              }
+            },
+            error: (error: any) => {
+              console.error('Error updating adoption:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to update adoption',
               });
-          } else {
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: 'Adoption updated successfully',
-              timer: 1500,
-              showConfirmButton: false
-            });
-            this.router.navigate(['/adminDashboard/All Adoption']);
-          }
-        },
-        error: (error) => {
-          console.error('Error updating adoption:', error);
+            }
+          });
+        } else {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Failed to update adoption',
+            text: 'Some required data is missing!',
           });
         }
-      });
-    }
-  });
+      }
+    });
+  }
 }
