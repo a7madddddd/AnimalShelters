@@ -9,7 +9,7 @@ import { ReplyDto } from '../shared/ReplyDto';
 
 export class NajlaaService {
 
-  private baseUrl = 'https://localhost:44354/api'; // URL الخاص بـ API الخاص بك
+  private baseUrl = 'https://localhost:7295/api'; // URL الخاص بـ API الخاص بك
   getWhatsAppShareUrl(postId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/Community/sharePost/whatsapp/${postId}`);
   }
