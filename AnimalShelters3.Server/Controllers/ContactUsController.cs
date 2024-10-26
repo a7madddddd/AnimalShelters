@@ -88,9 +88,9 @@ namespace AnimalShelters3.Server.Controllers
         public async Task<ActionResult<IEnumerable<Shelter>>> GetLatestVerifiedShelters()
         {
             var latestShelters = await _db.Shelters
-                .Where(s => s.Verified == true) 
+                
                 .OrderByDescending(s => s.CreatedAt) 
-                .Take(3) 
+                .Take(4) 
                 .ToListAsync();
 
             return Ok(latestShelters);

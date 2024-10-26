@@ -125,7 +125,7 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
         
         ]
          
-        ]
+        
       }
 
     ])

@@ -81,7 +81,6 @@ export class PostCommunityuserComponent implements OnInit {
 
   // Method to submit a new post
   submitPost() {
-    debugger;
     const userId = Number(this.currentUserId);
 
     // التحقق من أن userId ليس null
@@ -288,7 +287,6 @@ export class PostCommunityuserComponent implements OnInit {
   
   // دالة لتحديد المنشور المختار وفتح نافذة المشاركة
   openShareModal(post: any) {
-    debugger;
     this.selectedPost = post;
     const shareModal = new bootstrap.Modal(document.getElementById('shareModal'), {
       keyboard: false

@@ -90,12 +90,6 @@
   </li>-->
           <!-- Contact -->
           <li class="nav-item">
-            <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Contact</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a routerLink="/adminDashboard/AllPosts" class="nav-link text-white px-0 align-middle">
               <i class="fs-4 bi-table"></i>
               <span class="ms-1 d-none d-sm-inline">All Posts</span>
@@ -113,6 +107,12 @@
               <span class="ms-1 d-none d-sm-inline">All Rejected Posts</span>
             </a>
           </li>
+            <li class="nav-item">
+              <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
+                <i class="fs-4 bi-envelope contact-icon"></i>
+                <span class="ms-1 d-none d-sm-inline">Contact</span>
+              </a>
+            </li>
 
 
           <br />
@@ -120,9 +120,9 @@
           <br />
 
           <li class="nav-item">
-            <a routerLink="/Login" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Log out</span>
+            <a class="nav-link text-white px-0 align-middle">
+              <i class="fs-4 bi-box-arrow-right"></i>
+              <span class="ms-1 d-none d-sm-inline" (click)="logout()">Log out</span>
             </a>
           </li>
 
