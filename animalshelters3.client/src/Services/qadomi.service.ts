@@ -10,7 +10,7 @@ export class QadomiService {
   constructor(private http: HttpClient) { }
 
 
-  staticData = "https://localhost:44354/api"
+  staticData = "https://localhost:7295/api"
 
   addContact(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/ContactUs/AddContact`, data)

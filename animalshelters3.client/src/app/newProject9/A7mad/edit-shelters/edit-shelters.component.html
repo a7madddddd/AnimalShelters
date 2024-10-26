@@ -37,25 +37,25 @@
                     <input type="datetime-local" name="createdAt" class="form-control form-control-2 bg-white" [(ngModel)]="animal.createdAt" required>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="input-block">
-                    <label for="verified" class="form-label">Is Verified</label>
-                    <select name="verified" [(ngModel)]="animal.verified">
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
-                    </select>
-                  </div>
+                <!--<div class="col-md-6">
+                <div class="input-block">
+                  <label for="verified" class="form-label">Is Verified</label>
+                  <select name="verified" [(ngModel)]="animal.verified">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
                 </div>
+              </div>-->
               </div>
               <br />
               <button type="submit" class="cus-btn">
-                <span class="text">Submit Application</span>
+                <span class="text">Confirm Edits</span>
                 <span class="circle"></span>
               </button>
-              <button type="button" class="btn btn-danger" (click)="deleteShelter()">
-                Delete Shelter
+              <button type="button" class="cus-btn" (click)="deleteShelter()">
+                <span class="text"> Delete Shelter</span>
+                <span class="circle"></span>
               </button>
-
               <div id="message" class="alert-msg"></div>
             </div>
           </form>

@@ -23,7 +23,7 @@
       <td>{{ Shelter.address }}</td>
       <td>{{ Shelter.phone }}</td>
       <td>{{ Shelter.email }}</td>
-      <td>{{ Shelter.createdAt }}</td>
+      <td>{{ Shelter.createdAt | date: 'MMMM d, y,' }}</td>
       <td>
         <button type="button"
                 class="btn btn-info"
