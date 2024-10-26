@@ -158,7 +158,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to like this post.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/Login']);
       });
       return;
     }
@@ -196,7 +196,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to add a comment.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+        this.router.navigate(['/Login']); // الانتقال إلى صفحة تسجيل الدخول
       });
       return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
     }
@@ -235,7 +235,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to add a reply.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+        this.router.navigate(['/Login']); // الانتقال إلى صفحة تسجيل الدخول
       });
       return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
     }
