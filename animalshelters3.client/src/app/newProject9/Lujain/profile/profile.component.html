@@ -139,7 +139,7 @@
                     <a [routerLink]="['/details', item.applicationId]" class="btn btn-info btn-sm">Details</a>
                   </td>
                   <td>
-                    <ng-container *ngIf="item.status === 'Accepted'; else withdrawButton">
+                    <ng-container *ngIf="item.status === 'Approved'; else withdrawButton">
                       <span class="text-success">Congratulations! You got it!</span>
                     </ng-container>
                     <ng-template #withdrawButton>
