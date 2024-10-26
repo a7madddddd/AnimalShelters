@@ -111,6 +111,7 @@ namespace AnimalShelters3.Server.Controllers
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
                     UserName = post.User.UserName, // إضافة UserName هنا
+                    Image2 = post.User.Image,
                     Content = post.Content,
                     Image = post.Image,
                     Title = post.Title,
@@ -122,12 +123,15 @@ namespace AnimalShelters3.Server.Controllers
                         Content = comment.Content,
                         UserId = comment.UserId,
                         UserName = comment.User.UserName, // إضافة اسم المستخدم للتعليق
+                        Image = comment.User.Image,
+
                         Replies = comment.Replies.Select(reply => new ReplyDto
                         {
                             Id = reply.Id,
                             Content = reply.Content,
                             UserId = reply.UserId,
-                            UserName = reply.User.UserName // إضافة اسم المستخدم للرد
+                            UserName = reply.User.UserName, // إضافة اسم المستخدم للرد
+                            Image = reply.User.Image,
                         }).ToList()
                     }).ToList()
                 }).ToList();
@@ -164,6 +168,7 @@ namespace AnimalShelters3.Server.Controllers
                     Id = (int)post.Id,
                     UserId = (int)post.UserId,
                     UserName = post.User.UserName, // إضافة UserName هنا
+
                     Content = post.Content,
                     Image = post.Image,
                     Title = post.Title,
@@ -320,37 +325,86 @@ namespace AnimalShelters3.Server.Controllers
 
             return Ok(new { message = "Comment liked" });
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpGet("sharePost/whatsapp/{postId}")]
-        public async Task<IActionResult> SharePostOnWhatsApp(long postId)
+        public async Task<IActionResult> SharePostOnWhatsApp(int postId)
         {
-            var post = await _context.Posts.FindAsync(postId);
+            var post = await _context.Posts.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == postId);
             if (post == null)
             {
                 return NotFound();
             }
-            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
-            var whatsappShareUrl = $"https://wa.me/?text=Check out this post: {postUrl}";
 
-            return Ok(new { shareUrl = whatsappShareUrl });
+            var postDto = new PostDto1
+            {
+                Id = (int)post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                Image = post.Image,
+                Tag = post.Tag,
+                Comments = post.Comments.Select(c => new CommentDto { /* تفاصيل التعليقات */ }).ToList()
+            };
+
+            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
+            var whatsappShareUrl = $"https://wa.me/?text={postDto.Title}%0A{postDto.Content}%0A{postUrl}";
+
+            return Ok(new { shareUrl = whatsappShareUrl, postDetails = postDto });
         }
+
         [HttpGet("sharePost/facebook/{postId}")]
-        public async Task<IActionResult> SharePostOnFacebook(long postId)
+        public async Task<IActionResult> SharePostOnFacebook(int postId)
         {
-            var post = await _context.Posts.FindAsync(postId);
+            var post = await _context.Posts.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == postId);
             if (post == null)
             {
                 return NotFound();
             }
 
-            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
-            var facebookShareUrl = $"https://www.facebook.com/sharer/sharer.php?u={postUrl}";
+            var postDto = new PostDto1
+            {
+                Id = (int)post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                Image = post.Image,
+                Tag = post.Tag,
+                Comments = post.Comments.Select(c => new CommentDto { /* تفاصيل التعليقات */ }).ToList()
+            };
 
-            return Ok(new { shareUrl = facebookShareUrl });
+            var postUrl = $"https://127.0.0.1:4200/post/{postId}";
+            var facebookShareUrl = $"https://www.facebook.com/sharer/sharer.php?u={postUrl}&quote={postDto.Content}";
+
+            return Ok(new { shareUrl = facebookShareUrl, postDetails = postDto });
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpPost("approvePost/{postId}")]
-        public async Task<IActionResult> ApprovePost(long postId, int approverUserId)
+        public async Task<IActionResult> ApprovePost(long postId)
         {
+            // البحث عن المنشور بناءً على postId
             var post = await _context.Posts.FindAsync(postId);
 
             if (post == null)
@@ -358,23 +412,25 @@ namespace AnimalShelters3.Server.Controllers
                 return NotFound("Post not found.");
             }
 
-            post.Status = "Approved"; // Change status based on your logic
+            // تغيير حالة المنشور إلى "Approved" أو أي حالة أخرى بناءً على منطقك
+            post.Status = "Approved";
             await _context.SaveChangesAsync();
 
-            // Fetch the user's email who created the post
+            // البحث عن المستخدم الذي أنشأ المنشور
             var postUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == post.UserId);
             if (postUser == null)
             {
                 return NotFound("User associated with the post not found.");
             }
 
-            // إعداد البريد الإلكتروني للموافقة أو الرفض
+            // إعداد البريد الإلكتروني للموافقة
             var subject = "تمت الموافقة على منشورك";
             var body = $"مرحبًا، تم الموافقة على منشورك بعنوان: {post.Title}. شكرًا لك!";
-            await _emailService.SendEmailAsync(postUser.Email, subject, body, approverUserId);
+            await _emailService.SendEmailAsync(postUser.Email, subject, body, 0);
 
             return Ok("Post approved successfully and email sent.");
         }
+
 
         [HttpPost("rejectPost/{postId}")]
         public async Task<IActionResult> RejectPost(long postId, int approverUserId)
@@ -410,6 +466,22 @@ namespace AnimalShelters3.Server.Controllers
 
 
 
+        [HttpGet("getLikesByUser")]
+        public async Task<IActionResult> GetLikesByUser(int userId)
+        {
+            // جلب جميع الإعجابات التي قام بها المستخدم
+            var userLikes = await _context.Likes
+                .Where(l => l.UserId == userId)
+                .Select(l => new { l.PostId })
+                .ToListAsync();
+
+            if (userLikes == null || !userLikes.Any())
+            {
+                return NotFound(new { message = "No likes found for this user" });
+            }
+
+            return Ok(new { likes = userLikes });
+        }
 
 
 

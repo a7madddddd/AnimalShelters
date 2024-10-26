@@ -1,0 +1,43 @@
+<h2 class="text-center my-4 d-flex flex-column align-items-center">
+  <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+    <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3">
+    <span>
+      All Users
+    </span>
+  </a>
+</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">User ID</th>
+
+      <th scope="col">User Name</th>
+      <th scope="col">User Email</th>
+      <th scope="col">Age</th>
+      <th scope="col">Address</th>
+      <th scope="col">Description</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataUser">
+      <td>{{ item.userId }}</td>
+
+      <td>{{ item.userName }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.userAge }}</td>
+      <td>{{ item.userAdderss }}</td>
+      <td>{{ item.description}}</td>
+
+
+      <!--<td>
+    <button class="btn btn-success" (click)="openMail(message.email)">Click To Reply</button>
+  </td>
+  <td>
+    <button class="btn btn-danger" (click)="deleteContactById(message.id)">Delete</button>
+  </td>-->
+    </tr>
+  </tbody>
+</table>

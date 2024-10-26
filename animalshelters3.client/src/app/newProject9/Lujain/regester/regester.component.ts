@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LujainServiceService } from '../LujainService/lujain-service.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 @Component({
   selector: 'app-regester',
@@ -12,21 +13,30 @@ export class RegesterComponent {
 
   ngOnInit() { }
 
-
   SignUp(data: any) {
-    debugger
     var form = new FormData();
 
     for (let key in data) {
-      form.append(key, data[key])
+      form.append(key, data[key]);
     }
+
     this._ser.SignUserUp(form).subscribe(() => {
-      alert("user added successfully")
+      // SweetAlert for successful sign up
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Account created successfully!' // Updated success message
+      });
+
       this._router.navigate(['/Login']);
     },
       (error) => {
-        alert(error.error)
-      }
-    )
+        // SweetAlert for sign up error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error || 'An error occurred during sign-up.'
+        });
+      });
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSheltersComponent } from './add-shelters.component';
+import { AdminLoginComponent } from './admin-login.component';
 
-describe('AddSheltersComponent', () => {
-  let component: AddSheltersComponent;
-  let fixture: ComponentFixture<AddSheltersComponent>;
+describe('AdminLoginComponent', () => {
+  let component: AdminLoginComponent;
+  let fixture: ComponentFixture<AdminLoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddSheltersComponent]
+      declarations: [AdminLoginComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddSheltersComponent);
+    fixture = TestBed.createComponent(AdminLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

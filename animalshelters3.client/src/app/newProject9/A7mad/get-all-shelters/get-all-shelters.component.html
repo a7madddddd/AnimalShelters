@@ -1,1 +1,36 @@
-<p>get-all-shelters works!</p>
+<h2 class="text-center my-4 d-flex flex-column align-items-center">
+  <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+    <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3">
+    <span>Shelters</span>
+  </a>
+</h2>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Shelter Name</th>
+      <th scope="col">Shelter address</th>
+      <th scope="col">Shelter phone</th>
+      <th scope="col">Shelter email</th>
+      <th scope="col">Shelter createdAt</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Shelter of dataArray">
+      <td>{{ Shelter.name }}</td>
+      <td>{{ Shelter.address }}</td>
+      <td>{{ Shelter.phone }}</td>
+      <td>{{ Shelter.email }}</td>
+      <td>{{ Shelter.createdAt }}</td>
+      <td>
+        <button type="button"
+                class="btn btn-info"
+                [routerLink]="['/adminDashboard/Edit Shelter', Shelter.shelterId]">
+          Edit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

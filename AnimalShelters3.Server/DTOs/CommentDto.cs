@@ -9,6 +9,8 @@ namespace AnimalShelters3.Server.DTOs
         public int? UserId { get; set; }
         public string? Content { get; set; }
         public string? UserName { get; set; } // اسم المستخدم
+        public string? Image { get; set; }
+
 
         public List<ReplyDto>? Replies { get; set; }
         public int LikesCount { get; set; } // Count of likes

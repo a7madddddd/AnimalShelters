@@ -29,6 +29,12 @@ import { AllRejectPostComponent } from './Admin/all-reject-post/all-reject-post.
 import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-post.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 import { ContactComponent } from './Admin/contact/contact.component';
+import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
+//import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.';
+import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
+import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
+import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qadomi-shelter.component';
 
 
 @NgModule({
@@ -63,7 +69,14 @@ import { ContactComponent } from './Admin/contact/contact.component';
     CategoriesComponent,
     EditSheltersComponent,
     CategoriesComponent,
-    ContactComponent
+    ContactComponent,
+    AdoptionComponent,
+    GetAllUsersComponent,
+    AdminLoginComponent,
+    //AdminAdoptionComponent,
+    AllAdoptionsComponent,
+    EditAdoptionComponent,
+    QadomiShelterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -77,6 +90,7 @@ import { ContactComponent } from './Admin/contact/contact.component';
       { path: 'Profile', component: ProfileComponent },
       { path: 'EditProfile/:id', component: EditProfileComponent },
       { path: 'details/:id', component: DetailsComponent },
+      {path: 'ShelterInHome', component: QadomiShelterComponent},
 
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animal/:shelterId', component: AnimalCategoryComponent },
@@ -86,17 +100,29 @@ import { ContactComponent } from './Admin/contact/contact.component';
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
+      { path: 'admin', component: AdminLoginComponent },
       { path: 'Admin', component: DashboardComponent },
 
 
 
 
 
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
 
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       {
         path: 'adminDashboard', component: DashboardComponent, children: [
+          { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'AllUsers', component: GetAllUsersComponent },
+
+          { path: 'Add Shelters', component: AddSheltersComponent },
+      
+          { path: 'All Shelter', component: GetAllSheltersComponent },
+          { path: 'Edit Shelter/:id', component: EditSheltersComponent },
+          { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
+          { path: 'All Adoption', component: AllAdoptionsComponent },
+        ]
             { path: 'ContactAdmin', component: ContactComponent },
             { path: 'AllPosts', component: AllPostComponent },
             { path: 'AllAprovedPosts', component: AllAprovedPostComponent },

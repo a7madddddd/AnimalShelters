@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LujainServiceService } from '../LujainService/lujain-service.service';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +10,7 @@ import { LujainServiceService } from '../LujainService/lujain-service.service';
 })
 export class EditProfileComponent implements OnInit {
   @Input() user: any;
-  @Output() userUpdated = new EventEmitter<any>(); 
+  @Output() userUpdated = new EventEmitter<any>();
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
 
@@ -54,12 +55,21 @@ export class EditProfileComponent implements OnInit {
     this._ser.updateProfile(this.user.userId, formData).subscribe(
       response => {
         console.log('Profile updated successfully:', response);
-        alert("Profile updated successfully");
+        Swal.fire({
+          icon: 'success',
+          title: 'Profile Updated',
+          text: 'Profile updated successfully'
+        });
 
         this.userUpdated.emit({ ...this.user, image: this.imagePreview });
       },
       (error: HttpErrorResponse) => {
         console.error('Error updating profile:', error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to update profile: ' + (error.error.message || 'An error occurred.')
+        });
       }
     );
   }

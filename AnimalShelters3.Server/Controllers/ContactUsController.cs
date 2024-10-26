@@ -2,6 +2,7 @@
 using AnimalShelters3.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnimalShelters3.Server.Controllers
 {
@@ -81,5 +82,20 @@ namespace AnimalShelters3.Server.Controllers
             _db.SaveChanges();
             return Ok();
         }
+
+        // Shelters
+        [HttpGet("latest")]
+        public async Task<ActionResult<IEnumerable<Shelter>>> GetLatestVerifiedShelters()
+        {
+            var latestShelters = await _db.Shelters
+                .Where(s => s.Verified == true) 
+                .OrderByDescending(s => s.CreatedAt) 
+                .Take(3) 
+                .ToListAsync();
+
+            return Ok(latestShelters);
+        }
+
+
     }
 }

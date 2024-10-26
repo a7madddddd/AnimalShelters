@@ -1,0 +1,32 @@
+<h2 class="text-center my-4 d-flex flex-column align-items-center">
+  <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+    <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3">
+    <span>Adoptions</span>
+  </a>
+</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">User ID</th>
+      <th scope="col">Animal ID</th>
+      <th scope="col">Status</th>
+      <th scope="col">Time Sent</th>
+      <th scope="col">Message</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let adoption of adoptions">
+      <td>{{ adoption.userId }}</td>
+      <td>{{ adoption.animalId }}</td>
+      <td>{{ adoption.status }}</td>
+      <td>{{ adoption.submittedAt }}</td>
+      <td>{{ adoption.message }}</td>
+      <td>
+        <button class="btn btn-info" (click)="viewDetails(adoption.applicationId)">Details</button>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</table>
