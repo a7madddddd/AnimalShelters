@@ -25,4 +25,8 @@ export class QadomiService {
 
     return this.http.delete<any>(`${this.staticData}/ContactUs/DeleteContact/${id}`)
   }
+
+  GetSheler(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/ContactUs/latest`)
+  }
 }

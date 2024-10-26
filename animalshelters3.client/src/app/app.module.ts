@@ -31,6 +31,7 @@ import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 //import { AdminAdoptionComponent } from './Admin/admin-adoption/admin-adoption.';
 import { AllAdoptionsComponent } from './Admin/all-adoptions/all-adoptions.component';
 import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-adoption.component';
+import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qadomi-shelter.component';
 
 
 @NgModule({
@@ -62,11 +63,13 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
     EditSheltersComponent,
     CategoriesComponent,
     ContactComponent,
+    AdoptionComponent,
     GetAllUsersComponent,
     AdminLoginComponent,
     //AdminAdoptionComponent,
     AllAdoptionsComponent,
-    EditAdoptionComponent
+    EditAdoptionComponent,
+    QadomiShelterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -80,6 +83,7 @@ import { EditAdoptionComponent } from './newProject9/A7mad/edit-adoption/edit-ad
       { path: 'Profile', component: ProfileComponent },
       { path: 'EditProfile/:id', component: EditProfileComponent },
       { path: 'details/:id', component: DetailsComponent },
+      {path: 'ShelterInHome', component: QadomiShelterComponent},
 
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animal/:shelterId', component: AnimalCategoryComponent },

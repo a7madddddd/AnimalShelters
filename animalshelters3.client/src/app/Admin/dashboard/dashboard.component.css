@@ -1,6 +1,7 @@
 .container-fluid {
   position: relative;
   right: 4.65em;
+
 }
 
 span.ms-1.d-none.d-sm-inline {
@@ -16,21 +17,27 @@ span.ms-1.d-none.d-sm-inline {
 .community-icon {
   color: #ff782c;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .bi-box-arrow-right::before {
   content: "\f1c3";
   color: #ff782c;
+  cursor:pointer;
 }
 
 ::after {
   color: #ff782c;
+  cursor: pointer;
 }
 
 .dropdown-item {
   color: black !important;
+  cursor: pointer;
+
 }
 
   .dropdown-item:hover {
     color: #333 !important;
+    cursor: pointer;
   }
