@@ -32,7 +32,7 @@
         <div class="card-body">
           <!-- Post Header -->
           <div class="d-flex align-items-center mb-3">
-            <!--<img [src]="post.image2 ? 'https://localhost:44354/api/Community/getImage/' +post.image2 : 'https://localhost:44354/api/Community/getImage/'+default-image.jpg'" />-->
+            <!--<img [src]="post.image2 ? 'https://localhost:7295/api/Community/getImage/' +post.image2 : 'https://localhost:44354/api/Community/getImage/'+default-image.jpg'" />-->
             <div>
               <h5 class="card-title m-0">{{ post.userName }}</h5>
               <small class="text-muted">{{ post.timeAgo }}</small>
@@ -131,8 +131,9 @@
           <ul class="list-group mb-3" style="max-height: 300px; overflow-y: auto;">
             <li *ngFor="let comment of selectedPost.comments" class="list-group-item" style="background-color: #f0f4f7; border-radius: 10px;">
               <div class="d-flex align-items-start">
-                <!--<img [src]="comment.image2 ? 'https://localhost:44354/api/Community/getImage/' +comment.image2 : 'https://localhost:44354/api/Community/getImage/'+default-image.jpg'" />-->
-                <div>
+                <!--<img [src]="user.image"
+                     class="rounded-circle me-3"
+                     alt="User Image" />-->                <div>
                   <strong class="text-primary">{{ comment.userName }}</strong>
                   <p class="mb-1" style="font-size: 0.9rem;">{{ comment.content }}</p>
 
@@ -145,9 +146,9 @@
                     <ul class="list-group" style="max-height: 150px; overflow-y: auto;">
                       <li *ngFor="let reply of comment.replies" class="list-group-item border-0">
                         <div class="d-flex align-items-start">
-                          <!--<img [src]="reply.image2 ? 'https://localhost:44354/api/Community/getImage/' +reply.image2 : 'https://localhost:44354/api/Community/getImage/'+default-image.jpg'" />-->
-                          class="rounded-circle me-3"
-                          alt="User Image">
+                          <!--<img [src]="user.image"
+                               class="rounded-circle me-3"
+                               alt="User Image" />-->
                           <div>
                             <strong class="text-secondary">{{ reply.userName }}</strong>
                             <p class="mb-1" style="font-size: 0.85rem;">{{ reply.content }}</p>
@@ -194,8 +195,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <button class="btn btn-light w-100 mb-3" (click)="shareOnWhatsApp(selectedPost)">
-          <i class="bi bi-whatsapp"></i> Share on WhatsApp
+        <button class="btn btn-light w-100 mb-3" (click)="shareOnTwitter(selectedPost)">
+          <i class="bi bi-twitter"></i> Share on Twitter
         </button>
         <button class="btn btn-light w-100" (click)="shareOnFacebook(selectedPost)">
           <i class="bi bi-facebook"></i> Share on Facebook
@@ -204,6 +205,7 @@
     </div>
   </div>
 </div>
+
 
 <style>
   textarea {

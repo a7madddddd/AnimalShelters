@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ReplyDto } from '../../../shared/ReplyDto';
 import Swal from 'sweetalert2';
 import { Meta, Title } from '@angular/platform-browser';
+import { LujainServiceService } from '../../newProject9/Lujain/LujainService/lujain-service.service';
 declare var bootstrap: any;
 
 @Component({
@@ -26,6 +27,7 @@ export class PostCommunityuserComponent implements OnInit {
   postTag: string = ''; // Post tag
   errorMessage: string | undefined;
   imagePreview: any;
+  user: any = { image: '' };
 
 
   //approvedPosts: any[] = [];
@@ -40,7 +42,8 @@ export class PostCommunityuserComponent implements OnInit {
     private najlaaService: NajlaaService,
     private behaviorSubjectService: BehaviorSubjectService,
     private http: HttpClient,
-    private router: Router, private meta: Meta, private titleService: Title
+    private router: Router, private meta: Meta, private titleService: Title,
+    private _ser:LujainServiceService
   ) { }
 
   ngOnInit() {
@@ -49,6 +52,7 @@ export class PostCommunityuserComponent implements OnInit {
       this.currentUserId = userId;
       // Fetch approved posts only if logged in
       this.fetchApprovedPosts();
+      //this.ShowUserDetails(Number( this.currentUserId = userId));
 
     });
   }
@@ -281,52 +285,57 @@ export class PostCommunityuserComponent implements OnInit {
 
   // Function to generate the post URL
   // المتغير الذي سيحتوي على المنشور المختار
-
+  
   // دالة لتحديد المنشور المختار وفتح نافذة المشاركة
   openShareModal(post: any) {
+    debugger;
     this.selectedPost = post;
     const shareModal = new bootstrap.Modal(document.getElementById('shareModal'), {
       keyboard: false
     });
     shareModal.show();
   }
-  setMetaTags(post: any) {
-    this.titleService.setTitle(post.title || 'Community Post');
-    this.meta.updateTag({ name: 'og:title', content: post.title || 'Community Post' });
-    this.meta.updateTag({ name: 'og:description', content: post.content });
-    this.meta.updateTag({ name: 'og:image', content: 'https://localhost:44354/api/Community/getImage/' + post.image });
-    this.meta.updateTag({ name: 'og:url', content: 'https://127.0.0.1:4200/post-communityuser/' + post.id });
-  }
-
-  // دالة للحصول على رابط محدد للبوست
+  // دالة لضبط Meta Tags للبوست
+  // دالة للحصول على رابط البوست
   getPostUrl(postId: number): string {
     return `https://127.0.0.1:4200/post-communityuser/${postId}`;
   }
 
-  // دالة لمشاركة البوست على WhatsApp
-  shareOnWhatsApp(post: any) {
-    const postUrl = this.getPostUrl(post.id); // استخدم رابط البوست المحدد
-    let message = encodeURIComponent(post.content); // ترميز محتوى البوست
-
-    // إذا كان هناك صورة، أضف رابط الصورة إلى الرسالة
-    if (post.image) {
-      message += `%0Ahttps://localhost:44354/api/Community/getImage/${encodeURIComponent(post.image)}`;
-    }
-
-    // رابط مشاركة WhatsApp مع المحتوى والرابط
-    const whatsappShareUrl = `https://wa.me/?text=${message}%20${encodeURIComponent(postUrl)}`;
-    window.open(whatsappShareUrl, '_blank'); // فتح في نافذة جديدة
-    console.log("Sharing on WhatsApp:", post);
-  }
-
-  // دالة لمشاركة البوست على Facebook
+  // دالة مشاركة على فيسبوك
   shareOnFacebook(post: any) {
-    const postUrl = this.getPostUrl(post.id); // استخدم رابط البوست المحدد
+    const postUrl = this.getPostUrl(post.id);
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
-    window.open(facebookShareUrl, '_blank'); // فتح في نافذة جديدة
-    console.log("Sharing on Facebook:", post);
+    window.open(facebookShareUrl, '_blank');
   }
 
+  // دالة مشاركة على تويتر
+  shareOnTwitter(post: any) {
+    const postUrl = this.getPostUrl(post.id);
+    const message = encodeURIComponent(post.content);
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodeURIComponent(postUrl)}`;
+    window.open(twitterShareUrl, '_blank');
+  }
+
+  //ShowUserDetails(userId: number): void {
+  //  this._ser.getUser(userId).subscribe(
+  //    (data: any) => {
+  //      console.log('API Response:', data);
+  //      this.user = data;
+
+  //      if (this.user.image) {
+  //        this.user.image = `https://localhost:44354/${this.user.image}`;
+  //      }
+  //    },
+  //    (error: { error: { message: any; }; }) => {
+  //      console.error("Error fetching user details:", error);
+  //      Swal.fire({
+  //        icon: 'error',
+  //        title: 'Error',
+  //        text: "Failed to fetch user details: " + (error.error.message || "An error occurred.")
+  //      });
+  //    }
+  //  );
+  //}
 
 
 
