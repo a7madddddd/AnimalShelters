@@ -223,7 +223,7 @@ namespace AnimalShelters3.Server.Controllers
                 return NotFound(new { message = "Application not found." });
             }
 
-            if (application.Status != "Accepted")
+            if (application.Status != "Approved")
             {
                 _db.AdoptionApplications.Remove(application);
                 _db.SaveChanges(); 

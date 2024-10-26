@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class LujainServiceService {
 
   constructor(private http: HttpClient) { }
-  staticData = "https://localhost:7295/api";
+  staticData = "https://localhost:44354/api";
 
   SignUserUp(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/UserLujain`, data)

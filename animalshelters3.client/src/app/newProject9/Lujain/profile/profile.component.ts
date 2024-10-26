@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
         this.user = data;
 
         if (this.user.image) {
-          this.user.image = `https://localhost:44354/${this.user.image}`;
+          this.user.image = `https://localhost:7295/${this.user.image}`;
         }
       },
       (error) => {
