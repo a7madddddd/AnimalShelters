@@ -122,12 +122,13 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
           { path: 'Edit Shelter/:id', component: EditSheltersComponent },
           { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
           { path: 'All Adoption', component: AllAdoptionsComponent },
+          { path: 'ContactAdmin', component: ContactComponent },
+          { path: 'AllPosts', component: AllPostComponent },
+          { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
+          { path: 'AllRejectedPosts', component: AllRejectPostComponent },
+        
         ]
-            { path: 'ContactAdmin', component: ContactComponent },
-            { path: 'AllPosts', component: AllPostComponent },
-            { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
-            { path: 'AllRejectedPosts', component: AllRejectPostComponent },
-          ]
+         
       }
 
     ])
