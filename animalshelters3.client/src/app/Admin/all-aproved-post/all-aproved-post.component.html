@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let post of servicesArray" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card shadow-sm" style="background-color: white; border: 1px solid orange; border-radius: 10px;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ post.userName }}</h6>
+          <img *ngIf="post.image" [src]="'https://localhost:44354/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="max-height: 150px; object-fit: cover;">
+          <p class="card-text flex-grow-1" style="overflow-y: auto; font-size: 0.9rem;">{{ post.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,9 @@ import { GetAllSheltersComponent } from './newProject9/A7mad/get-all-shelters/ge
 import { DetailsComponent } from './newProject9/Lujain/details/details.component';
 import { EditProfileComponent } from './newProject9/Lujain/edit-profile/edit-profile.component';
 import { CategoriesComponent } from './newProject9/Rania/categories/categories.component';
+import { AllPostComponent } from './Admin/all-post/all-post.component';
+import { AllRejectPostComponent } from './Admin/all-reject-post/all-reject-post.component';
+import { AllAprovedPostComponent } from './Admin/all-aproved-post/all-aproved-post.component';
 import { EditSheltersComponent } from './newProject9/A7mad/edit-shelters/edit-shelters.component';
 import { ContactComponent } from './Admin/contact/contact.component';
 import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
@@ -60,6 +63,10 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
     AnimalsComponent,
     DetailsComponent,
     CategoriesComponent,
+    AllPostComponent,
+    AllRejectPostComponent,
+    AllAprovedPostComponent,
+    CategoriesComponent,
     EditSheltersComponent,
     CategoriesComponent,
     ContactComponent,
@@ -94,9 +101,13 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
       { path: 'admin', component: AdminLoginComponent },
+      { path: 'Admin', component: DashboardComponent },
 
 
 
+
+
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
 
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
@@ -112,6 +123,11 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
           { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
           { path: 'All Adoption', component: AllAdoptionsComponent },
         ]
+            { path: 'ContactAdmin', component: ContactComponent },
+            { path: 'AllPosts', component: AllPostComponent },
+            { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
+            { path: 'AllRejectedPosts', component: AllRejectPostComponent },
+          ]
       }
 
     ])
