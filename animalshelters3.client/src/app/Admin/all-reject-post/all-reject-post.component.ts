@@ -17,10 +17,4 @@ export class AllRejectPostComponent {
       this.servicesArray = data;
     });
   }
-
-  getImage(image: any) {
-    this._ser.GetImage(image).subscribe((data) => {
-      this.servicesArray = data;
-    });
-  }
 }

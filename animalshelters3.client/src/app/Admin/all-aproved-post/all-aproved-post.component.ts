@@ -14,13 +14,8 @@ export class AllAprovedPostComponent {
   constructor(private _ser: NoorService) { }
   servicesArray: any[] = [];
   getPosts() {
+    debugger
     this._ser.GetAllAprovedPosts().subscribe((data) => {
-      this.servicesArray = data;
-    });
-  }
-
-  getImage(image : any) {
-    this._ser.GetImage(image).subscribe((data) => {
       this.servicesArray = data;
     });
   }

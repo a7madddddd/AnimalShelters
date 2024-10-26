@@ -18,9 +18,18 @@ export class AllPostComponent {
     });
   }
 
-  getImage(image: any) {
-    this._ser.GetImage(image).subscribe((data) => {
+
+  ApprovedPosts() {
+    this._ser.ApprovedPosts().subscribe((data) => {
+      this.servicesArray = data;
+      alert("")
+    });
+  }
+
+  RejectedPosts() {
+    this._ser.RejectedPosts().subscribe((data) => {
       this.servicesArray = data;
     });
   }
+
 }

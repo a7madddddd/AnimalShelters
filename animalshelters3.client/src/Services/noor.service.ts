@@ -9,10 +9,6 @@ export class NoorService {
   staticData = "https://localhost:44354/api";
   constructor(private http: HttpClient) { }
 
-  GetImage(image: any): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Community/getImage/${image}`);
-  }
-
   GetAllPosts(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Community/getAllPendingPosts`);
   }
@@ -23,6 +19,16 @@ export class NoorService {
 
   GetAllRejectedPosts(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Community/getAllRejectedPosts`);
+  }
+
+  userId: any;
+  rejectPost: any;
+  approvePost: any;
+  RejectedPosts(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Community/rejectPost/${this.rejectPost}?approverUserId=${this.userId}`);
+  }
+  ApprovedPosts(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Community/approvePost/${this.approvePost}?approverUserId=${this.userId}`);
   }
 
 }

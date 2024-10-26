@@ -59,7 +59,7 @@ import { ContactComponent } from './Admin/contact/contact.component';
     CategoriesComponent,
     AllPostComponent,
     AllRejectPostComponent,
-    AllAprovedPostComponent
+    AllAprovedPostComponent,
     CategoriesComponent,
     EditSheltersComponent,
     CategoriesComponent,
@@ -87,22 +87,21 @@ import { ContactComponent } from './Admin/contact/contact.component';
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
       { path: 'Admin', component: DashboardComponent },
-      
 
 
 
 
 
-      { path: 'post-communityuser', component:PostCommunityuserComponent  },
+
+      { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
       {
-        path: '', component: DashboardComponent, children: [
-          { path: 'AllPosts', component: AllPostComponent },
-          { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
-          { path: 'AllRejectedPosts', component: AllRejectPostComponent }
         path: 'adminDashboard', component: DashboardComponent, children: [
-          { path: 'ContactAdmin', component: ContactComponent }
-        ]
+            { path: 'ContactAdmin', component: ContactComponent },
+            { path: 'AllPosts', component: AllPostComponent },
+            { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
+            { path: 'AllRejectedPosts', component: AllRejectPostComponent },
+          ]
       }
 
     ])
