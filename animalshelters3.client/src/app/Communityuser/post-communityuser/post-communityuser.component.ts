@@ -81,7 +81,6 @@ export class PostCommunityuserComponent implements OnInit {
 
   // Method to submit a new post
   submitPost() {
-    debugger;
     const userId = Number(this.currentUserId);
 
     // التحقق من أن userId ليس null
@@ -159,7 +158,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to like this post.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/Login']);
       });
       return;
     }
@@ -197,7 +196,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to add a comment.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+        this.router.navigate(['/Login']); // الانتقال إلى صفحة تسجيل الدخول
       });
       return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
     }
@@ -236,7 +235,7 @@ export class PostCommunityuserComponent implements OnInit {
         text: 'Please log in to add a reply.',
         confirmButtonText: 'OK',
       }).then(() => {
-        this.router.navigate(['/login']); // الانتقال إلى صفحة تسجيل الدخول
+        this.router.navigate(['/Login']); // الانتقال إلى صفحة تسجيل الدخول
       });
       return; // إنهاء الدالة إذا لم يكن المستخدم مسجلاً للدخول
     }
@@ -288,7 +287,6 @@ export class PostCommunityuserComponent implements OnInit {
   
   // دالة لتحديد المنشور المختار وفتح نافذة المشاركة
   openShareModal(post: any) {
-    debugger;
     this.selectedPost = post;
     const shareModal = new bootstrap.Modal(document.getElementById('shareModal'), {
       keyboard: false
