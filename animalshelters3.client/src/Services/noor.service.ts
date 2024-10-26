@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoorService {
-  staticData = "https://localhost:44354/api";
+  staticData = "https://localhost:7295/api";
   constructor(private http: HttpClient) { }
 
   GetAllPosts(): Observable<any> {

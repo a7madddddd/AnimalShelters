@@ -90,7 +90,7 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
       { path: 'Profile', component: ProfileComponent },
       { path: 'EditProfile/:id', component: EditProfileComponent },
       { path: 'details/:id', component: DetailsComponent },
-      {path: 'ShelterInHome', component: QadomiShelterComponent},
+      { path: 'ShelterInHome', component: QadomiShelterComponent },
 
       { path: 'Shelters', component: SheltersComponent },
       { path: 'Animal/:shelterId', component: AnimalCategoryComponent },
@@ -101,13 +101,9 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
       { path: 'adoption/:id', component: AdoptionComponent },
       { path: 'Add Shelters', component: AddSheltersComponent },
       { path: 'admin', component: AdminLoginComponent },
-      { path: 'Admin', component: DashboardComponent },
 
 
 
-
-
-      { path: 'post-communityuser', component: PostCommunityuserComponent },
 
       { path: 'post-communityuser', component: PostCommunityuserComponent },
       { path: 'ContactUs', component: ContactUsComponent },
@@ -117,17 +113,12 @@ import { QadomiShelterComponent } from './newProject9/Qadomi/qadomi-shelter/qado
           { path: 'AllUsers', component: GetAllUsersComponent },
 
           { path: 'Add Shelters', component: AddSheltersComponent },
-      
+
           { path: 'All Shelter', component: GetAllSheltersComponent },
           { path: 'Edit Shelter/:id', component: EditSheltersComponent },
           { path: 'Edit Adoption/:id', component: EditAdoptionComponent },
           { path: 'All Adoption', component: AllAdoptionsComponent },
         ]
-            { path: 'ContactAdmin', component: ContactComponent },
-            { path: 'AllPosts', component: AllPostComponent },
-            { path: 'AllAprovedPosts', component: AllAprovedPostComponent },
-            { path: 'AllRejectedPosts', component: AllRejectPostComponent },
-          ]
       }
 
     ])
