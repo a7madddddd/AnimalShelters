@@ -32,7 +32,7 @@
         <div class="card-body">
           <!-- Post Header -->
           <div class="d-flex align-items-center mb-3">
-            <!--<img [src]="post.image2 ? 'https://localhost:44354/api/Community/getImage/' +post.image2 : 'https://localhost:44354/api/Community/getImage/'+default-image.jpg'" />-->
+            <!--<img [src]="post.image2 ? 'https://localhost:7295/api/Community/getImage/' +post.image2 : 'https://localhost:7295/api/Community/getImage/'+default-image.jpg'" />-->
             <div>
               <h5 class="card-title m-0">{{ post.userName }}</h5>
               <small class="text-muted">{{ post.timeAgo }}</small>
@@ -40,7 +40,7 @@
           </div>
 
           <!-- Post Image (if available) -->
-          <img *ngIf="post.image" [src]="'https://localhost:44354/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="max-height: 250px; object-fit: cover;">
+          <img *ngIf="post.image" [src]="'https://localhost:7295/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="max-height: 250px; object-fit: cover;">
 
           <!-- Post Content -->
           <p class="card-text">{{ post.content }}</p>

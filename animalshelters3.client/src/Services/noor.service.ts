@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 
 export class NoorService {
-  staticData = "https://localhost:44354/api";
+  staticData = "https://localhost:7295/api";
   userId: any = 1;
   constructor(private http: HttpClient) { }
 

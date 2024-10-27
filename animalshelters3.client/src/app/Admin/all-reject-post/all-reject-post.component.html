@@ -27,7 +27,7 @@
       <td>{{ post.userId }}</td>
       <td>{{ post.userName }}</td>
       <td>{{ post.title }}</td>
-      <td> <img *ngIf="post.image" [src]="'https://localhost:44354/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="height:80px; width:80px;"></td>
+      <td> <img *ngIf="post.image" [src]="'https://localhost:7295/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="height:80px; width:80px;"></td>
       <td>{{ post.content }}</td>
       <td><span class="badge rounded-pill bg-danger text-dark">Rejected</span></td>
     </tr>
