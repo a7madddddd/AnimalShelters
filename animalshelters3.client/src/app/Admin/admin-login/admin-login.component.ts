@@ -37,7 +37,7 @@ export class AdminLoginComponent {
             title: 'Success',
             text: 'User Logged In Successfully'
           });
-          this._router.navigate(['/adminDashboard']);
+          this._router.navigate(['/adminDashboard/AllUsers']);
         } else {
           console.warn("User ID not found in response.");
           Swal.fire({ // SweetAlert for warning notification

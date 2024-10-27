@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NoorService } from '../../../Services/noor.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-all-post',
@@ -19,17 +20,51 @@ export class AllPostComponent {
   }
 
 
-  ApprovedPosts() {
-    this._ser.ApprovedPosts().subscribe((data) => {
-      this.servicesArray = data;
-      alert("")
+  approvePost(postId: any): void {
+    this._ser.ApprovedPosts(postId).subscribe({
+      next: (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Approved!',
+          text: 'Post approved successfully.',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      },
+      error: (error: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Approved...',
+          text: 'Post approved successfully.',
+          showConfirmButton: true
+        });
+        console.error('Error approving post:', error);
+      }
     });
   }
 
-  RejectedPosts() {
-    this._ser.RejectedPosts().subscribe((data) => {
-      this.servicesArray = data;
+  rejectPost(postId: any): void {
+    this._ser.RejectedPosts(postId).subscribe({
+      next: (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Rejected!',
+          text: 'Post rejected successfully.',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      },
+      error: (error: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Rejected!...',
+          text: 'Post rejected successfully',
+          showConfirmButton: true
+        });
+        console.error('Error rejecting post:', error);
+      }
     });
   }
+
 
 }

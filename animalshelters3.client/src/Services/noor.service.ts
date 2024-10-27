@@ -5,8 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class NoorService {
-  staticData = "https://localhost:7295/api";
+  staticData = "https://localhost:44354/api";
+  userId: any = 1;
   constructor(private http: HttpClient) { }
 
   GetAllPosts(): Observable<any> {
@@ -21,14 +25,17 @@ export class NoorService {
     return this.http.get<any>(`${this.staticData}/Community/getAllRejectedPosts`);
   }
 
-  userId: any;
-  rejectPost: any;
-  approvePost: any;
-  RejectedPosts(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Community/rejectPost/${this.rejectPost}?approverUserId=${this.userId}`);
+  ApprovedPosts(postId: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.staticData}/Community/approvePost/${postId}`,
+      {}
+    );
   }
-  ApprovedPosts(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Community/approvePost/${this.approvePost}?approverUserId=${this.userId}`);
+  RejectedPosts(postId: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.staticData}/Community/rejectPost/${postId}`,
+      {}
+    );
   }
 
 }
