@@ -391,16 +391,6 @@ namespace AnimalShelters3.Server.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
         [HttpPost("approvePost/{postId}")]
         public async Task<IActionResult> ApprovePost(long postId)
         {
@@ -433,7 +423,7 @@ namespace AnimalShelters3.Server.Controllers
 
 
         [HttpPost("rejectPost/{postId}")]
-        public async Task<IActionResult> RejectPost(long postId, int approverUserId)
+        public async Task<IActionResult> RejectPost(long postId)
         {
             var post = await _context.Posts.FindAsync(postId);
 
@@ -455,7 +445,7 @@ namespace AnimalShelters3.Server.Controllers
             // إعداد البريد الإلكتروني للرفض
             var subject = "تم رفض منشورك";
             var body = $"مرحبًا، تم رفض منشورك بعنوان: {post.Title}. يرجى مراجعته وإجراء التعديلات المطلوبة.";
-            await _emailService.SendEmailAsync(postUser.Email, subject, body, approverUserId);
+            await _emailService.SendEmailAsync(postUser.Email, subject, body, 0);
 
             return Ok("Post rejected and email sent.");
         }

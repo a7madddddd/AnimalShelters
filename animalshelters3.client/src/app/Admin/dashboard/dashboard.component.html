@@ -73,8 +73,10 @@
               </a>
               <div class="collapse" [ngClass]="{'show': isDropdownOpen('TestimonialMenu')}" id="TestimonialMenu">
                 <ul class="list-unstyled ps-3">
-                  <li><a routerLink="/adminDashboard/communityMembers" class="dropdown-item text-white">Community Members</a></li>
-                  <li><a routerLink="/adminDashboard/communityEvents" class="dropdown-item text-white">Community Events</a></li>
+                  <li><a routerLink="/adminDashboard/AllPosts" class="dropdown-item text-white">All Posts</a></li>
+                  <li><a routerLink="/adminDashboard/AllAprovedPosts" class="dropdown-item text-white">All Approved Posts</a></li>
+                  <li><a routerLink="/adminDashboard/AllRejectedPosts" class="dropdown-item text-white">All Rejected Posts</a></li>
+
                 </ul>
               </div>
             </li>
@@ -89,7 +91,7 @@
               </a>
             </li>-->
             <!-- Contact -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a routerLink="/adminDashboard/AllPosts" class="nav-link text-white px-0 align-middle">
                 <i class="fs-4 bi-table"></i>
                 <span class="ms-1 d-none d-sm-inline">All Posts</span>
@@ -106,7 +108,7 @@
                 <i class="fs-4 bi-table"></i>
                 <span class="ms-1 d-none d-sm-inline">All Rejected Posts</span>
               </a>
-            </li>
+            </li>-->
             <li class="nav-item">
               <a routerLink="/adminDashboard/ContactAdmin" class="nav-link text-white px-0 align-middle">
                 <i class="fs-4 bi-envelope contact-icon"></i>

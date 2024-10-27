@@ -1,19 +1,35 @@
-<div class="container mt-4">
-  <div class="row">
-    <div *ngFor="let post of servicesArray" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-      <div class="card shadow-sm" style="background-color: white; border: 1px solid orange; border-radius: 10px;">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ post.userName }}</h6>
-          <img *ngIf="post.image" [src]="'https://localhost:7295/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="max-height: 150px; object-fit: cover;">
-          <p class="card-text flex-grow-1" style="overflow-y: auto; font-size: 0.9rem;">{{ post.content }}</p>
+<h2 class="text-center my-4 d-flex flex-column align-items-center">
+  <a routerLink="/adminDashboard" class="header-logo-box d-flex flex-column align-items-center">
+    <img src="assets/media/logo.png" alt="logo" class="header-logo mb-3">
+    <span>Rejected Posts</span>
+  </a>
+</h2>
 
-          <!--<div class="mt-3 d-flex justify-content-start">
-            <button type="button" class="btn btn-success">Aprove</button>
-            <button type="button" class="btn btn-danger">Reject</button>
-          </div>-->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+<hr />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Post ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Post Title</th>
+      <th scope="col">Image</th>
+      <th scope="col">Post Content</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of servicesArray">
+      <td>{{ post.id }}</td>
+      <td>{{ post.userId }}</td>
+      <td>{{ post.userName }}</td>
+      <td>{{ post.title }}</td>
+      <td> <img *ngIf="post.image" [src]="'https://localhost:44354/api/Community/getImage/' + post.image" class="img-fluid mb-3 rounded" alt="Post Image" style="height:80px; width:80px;"></td>
+      <td>{{ post.content }}</td>
+      <td><span class="badge rounded-pill bg-danger text-dark">Rejected</span></td>
+    </tr>
+  </tbody>
+</table>
