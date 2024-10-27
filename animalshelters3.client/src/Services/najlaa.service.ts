@@ -38,7 +38,8 @@ export class NajlaaService {
     return this.http.post(`${this.baseUrl}/Community/addComment`, comment);
   }
   addPost(postData: any): Observable<any> {
-    debugger;
+
+    
     const formData = new FormData();
     formData.append('UserId', postData.userId);  // إضافة UserId
     formData.append('title', postData.title);

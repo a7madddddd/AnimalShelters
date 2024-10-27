@@ -225,21 +225,7 @@ namespace AnimalShelters3.Server.Controllers
                     Image = post.Image,
                     Title = post.Title,
                     Tag = post.Tag,
-                    LikesCount = post.Likes.Count,
-                    Comments = post.Comments.Select(comment => new CommentDto
-                    {
-                        Id = comment.Id,
-                        Content = comment.Content,
-                        UserId = comment.UserId,
-                        UserName = comment.User.UserName, // إضافة اسم المستخدم للتعليق
-                        Replies = comment.Replies.Select(reply => new ReplyDto
-                        {
-                            Id = reply.Id,
-                            Content = reply.Content,
-                            UserId = reply.UserId,
-                            UserName = reply.User.UserName // إضافة اسم المستخدم للرد
-                        }).ToList()
-                    }).ToList()
+                    LikesCount = post.Likes.Count
                 }).ToList();
 
                 return Ok(postDtos);
